@@ -43,6 +43,7 @@
     "roots/wordpress": "6.9.4",
     "roots/wp-config": "1.0.0",
     "vlucas/phpdotenv": "^5.5",
+    "wp-plugin/vibe-ai": "^1.2",
     "wp-theme/twentytwentyfive": "^1.0"
   },
   "require-dev": {

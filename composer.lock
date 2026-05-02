@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c03dfd1d5f86f478a20a276671c842e2",
+    "content-hash": "4c87df12736c8c55e359d68a34651ed9",
     "packages": [
         {
             "name": "composer/installers",
@@ -1023,6 +1023,36 @@
                 }
             ],
             "time": "2025-12-27T19:49:13+00:00"
+        },
+        {
+            "name": "wp-plugin/vibe-ai",
+            "version": "1.2.1",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/vibe-ai/",
+                "reference": "tags/1.2.1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/vibe-ai.1.2.1.zip"
+            },
+            "require": {
+                "composer/installers": "~1.0|~2.0"
+            },
+            "type": "wordpress-plugin",
+            "notification-url": "https://wp-packages.org/downloads",
+            "authors": [
+                {
+                    "name": "SeedProd"
+                }
+            ],
+            "description": "MCP server for WordPress. Connect Claude, ChatGPT, Cursor & other AI assistants to manage content, edit themes & automate your WordPress site.",
+            "support": {
+                "changelog": "https://wordpress.org/plugins/vibe-ai/#developers",
+                "issues": "https://wordpress.org/support/plugin/vibe-ai",
+                "source": "https://plugins.svn.wordpress.org/vibe-ai"
+            },
+            "time": "2026-04-20T17:01:00+00:00"
         },
         {
             "name": "wp-theme/twentytwentyfive",

@@ -5,7 +5,7 @@ Template: twentytwentyfive
 Author: Creative by Melissa
 Author URI: https://blog.creativebymelissa.com
 Description: A cute pixel-style child theme of Twenty Twenty-Five — pixel headings, retro borders, hard offset shadows, pixelated dividers, custom pixel-art icons, and small touches in a warm millennial-gray, light-gray, brown, and navy palette.
-Version: 0.7.0
+Version: 0.8.0
 Requires at least: 6.7
 Tested up to: 6.9
 Requires PHP: 7.4
@@ -209,6 +209,57 @@ hr:not(.wp-block-separator) {
   font-size: 0.95em;
   margin-top: 0.5em;
   color: var(--wp--preset--color--charcoal, #1F1F1F);
+}
+
+/* ---------- CATEGORIES BLOCK (pill buttons) ---------- */
+
+/* Stretch the wrapper figure so flex layout applies cleanly */
+.wp-block-categories {
+  margin-top: 0.5em;
+  margin-bottom: 1em;
+}
+
+/* The list itself — horizontal pill row */
+ul.wp-block-categories,
+ul.wp-block-categories-list {
+  list-style: none !important;
+  padding-left: 0 !important;
+  display: flex !important;
+  flex-wrap: wrap;
+  gap: 0.75em;
+  margin: 0;
+}
+
+ul.wp-block-categories > li,
+ul.wp-block-categories-list > li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Each category as a pixel pill button */
+ul.wp-block-categories li a,
+ul.wp-block-categories-list li a {
+  display: inline-block;
+  font-family: 'Pixelify Sans', monospace;
+  font-weight: 600;
+  font-size: 1.05em;
+  text-decoration: none;
+  color: var(--wp--preset--color--charcoal, #1F1F1F);
+  background: var(--wp--preset--color--white, #ffffff);
+  border: 3px solid var(--wp--preset--color--charcoal, #1F1F1F);
+  box-shadow: 4px 4px 0 0 var(--wp--preset--color--charcoal, #1F1F1F);
+  padding: 0.4em 0.95em;
+  transition: transform 0.06s ease, box-shadow 0.06s ease, color 0.1s ease;
+}
+
+ul.wp-block-categories li a:hover,
+ul.wp-block-categories-list li a:hover,
+ul.wp-block-categories li a:focus,
+ul.wp-block-categories-list li a:focus {
+  color: var(--wp--preset--color--navy, #1F2D5C);
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 0 var(--wp--preset--color--charcoal, #1F1F1F);
 }
 
 /* ---------- LINKS ---------- */

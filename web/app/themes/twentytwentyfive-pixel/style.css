@@ -4,8 +4,8 @@ Theme URI: https://blog.creativebymelissa.com
 Template: twentytwentyfive
 Author: Creative by Melissa
 Author URI: https://blog.creativebymelissa.com
-Description: A cute pixel-style child theme of Twenty Twenty-Five — pixel headings, retro borders, hard offset shadows, pixelated dividers, custom pixel-art icons, and small touches in a warm millennial-gray, light-gray, brown, and navy palette.
-Version: 0.9.0
+Description: A cute pixel-style child theme of Twenty Twenty-Five — pixel headings, retro borders, hard offset shadows, pixelated dividers, custom pixel-art icons, and small touches in a warm millennial-gray, light-gray, brown, and slate-blue palette.
+Version: 0.10.0
 Requires at least: 6.7
 Tested up to: 6.9
 Requires PHP: 7.4
@@ -168,7 +168,7 @@ hr:not(.wp-block-separator) {
   font-size: 1.2em;
   font-weight: 600;
   text-decoration: none;
-  color: var(--wp--preset--color--navy, #1F2D5C);
+  color: var(--wp--preset--color--navy, #4F6E92);
 }
 .wp-block-latest-posts__list > li > a::before {
   content: '';
@@ -250,15 +250,13 @@ ul.wp-block-categories li a:hover,
 ul.wp-block-categories-list li a:hover,
 ul.wp-block-categories li a:focus,
 ul.wp-block-categories-list li a:focus {
-  color: var(--wp--preset--color--navy, #1F2D5C);
+  color: var(--wp--preset--color--navy, #4F6E92);
   transform: translate(2px, 2px);
   box-shadow: 2px 2px 0 0 var(--wp--preset--color--charcoal, #1F1F1F);
 }
 
 /* ---------- STICKY CATEGORIES SIDEBAR (desktop) ---------- */
 
-/* Output by the pixel-sidebar mu-plugin via wp_body_open.
-   Hidden below 1100px so it never overlaps narrow content. */
 .pixel-sidebar {
   display: none;
 }
@@ -327,7 +325,7 @@ ul.wp-block-categories-list li a:focus {
 
   .pixel-sidebar__item a:hover,
   .pixel-sidebar__item a:focus {
-    color: var(--wp--preset--color--navy, #1F2D5C);
+    color: var(--wp--preset--color--navy, #4F6E92);
     padding-left: 1.2em;
   }
 
@@ -337,7 +335,7 @@ ul.wp-block-categories-list li a:focus {
   }
 
   .pixel-sidebar__item.is-current a {
-    color: var(--wp--preset--color--navy, #1F2D5C);
+    color: var(--wp--preset--color--navy, #4F6E92);
     padding-left: 1.2em;
     font-weight: 700;
   }
@@ -375,7 +373,7 @@ a {
 
 code, pre, kbd, samp {
   font-family: 'Silkscreen', 'Courier New', monospace !important;
-  background: var(--wp--preset--color--millennial-gray, #D5CFC9);
+  background: var(--wp--preset--color--millennial-gray, #CFD2D7);
   padding: 0.1em 0.35em;
   border: 2px solid var(--wp--preset--color--charcoal, #1F1F1F);
 }
@@ -485,9 +483,9 @@ time.wp-block-post-date::before {
 }
 
 .wp-block-navigation__responsive-container.is-menu-open {
-  background-color: var(--wp--preset--color--cream, #E8E4DE) !important;
+  background-color: var(--wp--preset--color--cream, #E3E5E9) !important;
   background-image: radial-gradient(
-    var(--wp--preset--color--millennial-gray, #D5CFC9) 1.5px,
+    var(--wp--preset--color--millennial-gray, #CFD2D7) 1.5px,
     transparent 1.5px
   ) !important;
   background-size: 28px 28px !important;
@@ -548,7 +546,7 @@ time.wp-block-post-date::before {
   .wp-block-navigation-item__content:hover,
 .wp-block-navigation__responsive-container.is-menu-open
   .wp-block-navigation-item__content:focus {
-  color: var(--wp--preset--color--navy, #1F2D5C) !important;
+  color: var(--wp--preset--color--navy, #4F6E92) !important;
   padding-left: 1.5em;
 }
 .wp-block-navigation__responsive-container.is-menu-open
@@ -569,7 +567,7 @@ time.wp-block-post-date::before {
 
 .wp-block-navigation__responsive-container.is-menu-open
   .current-menu-item .wp-block-navigation-item__content {
-  color: var(--wp--preset--color--navy, #1F2D5C) !important;
+  color: var(--wp--preset--color--navy, #4F6E92) !important;
   padding-left: 1.5em;
 }
 .wp-block-navigation__responsive-container.is-menu-open

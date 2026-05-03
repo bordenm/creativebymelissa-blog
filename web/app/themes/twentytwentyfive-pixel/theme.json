@@ -10,7 +10,7 @@
         { "slug": "white", "color": "#FFFFFF", "name": "White" },
         { "slug": "charcoal", "color": "#1F1F1F", "name": "Charcoal" },
         { "slug": "warm-brown", "color": "#7A5C3E", "name": "Warm Brown" },
-        { "slug": "navy", "color": "#1F2D5C", "name": "Navy" }
+        { "slug": "navy", "color": "#4F6E92", "name": "Slate Blue" }
       ]
     },
     "typography": {

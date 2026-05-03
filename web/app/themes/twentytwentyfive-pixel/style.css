@@ -4,8 +4,8 @@ Theme URI: https://blog.creativebymelissa.com
 Template: twentytwentyfive
 Author: Creative by Melissa
 Author URI: https://blog.creativebymelissa.com
-Description: A cute pixel-style child theme of Twenty Twenty-Five — pixel headings, retro borders, hard offset shadows, pixelated dividers, and small pixel-art touches in a warm millennial-gray, cream, brown, and navy palette.
-Version: 0.2.0
+Description: A cute pixel-style child theme of Twenty Twenty-Five — pixel headings, retro borders, hard offset shadows, pixelated dividers, custom pixel-art icons, and small touches in a warm millennial-gray, cream, brown, and navy palette.
+Version: 0.3.0
 Requires at least: 6.7
 Tested up to: 6.9
 Requires PHP: 7.4
@@ -158,8 +158,15 @@ hr:not(.wp-block-separator) {
   color: var(--wp--preset--color--navy, #1F2D5C);
 }
 .wp-block-latest-posts__list > li > a::before {
-  content: '\25B8\00A0';
-  color: var(--wp--preset--color--warm-brown, #7A5C3E);
+  content: '';
+  display: inline-block;
+  width: 0.95em;
+  height: 0.95em;
+  margin-right: 0.5em;
+  background-color: var(--wp--preset--color--warm-brown, #7A5C3E);
+  -webkit-mask: url('assets/icons/page.svg') center/contain no-repeat;
+          mask: url('assets/icons/page.svg') center/contain no-repeat;
+  vertical-align: -0.1em;
 }
 .wp-block-latest-posts__post-date {
   display: block;
@@ -169,6 +176,17 @@ hr:not(.wp-block-separator) {
   margin-top: 0.4em;
   text-transform: uppercase;
   letter-spacing: 0.1em;
+}
+.wp-block-latest-posts__post-date::before {
+  content: '';
+  display: inline-block;
+  width: 1.05em;
+  height: 1.05em;
+  margin-right: 0.4em;
+  background-color: currentColor;
+  -webkit-mask: url('assets/icons/calendar.svg') center/contain no-repeat;
+          mask: url('assets/icons/calendar.svg') center/contain no-repeat;
+  vertical-align: -0.2em;
 }
 .wp-block-latest-posts__post-excerpt {
   font-size: 0.95em;
@@ -219,6 +237,84 @@ pre code {
   text-decoration: none;
 }
 
+.wp-block-site-title a::before {
+  content: '';
+  display: inline-block;
+  width: 0.9em;
+  height: 0.9em;
+  margin-right: 0.4em;
+  background-color: var(--wp--preset--color--warm-brown, #7A5C3E);
+  -webkit-mask: url('assets/icons/sparkle.svg') center/contain no-repeat;
+          mask: url('assets/icons/sparkle.svg') center/contain no-repeat;
+  vertical-align: -0.05em;
+}
+
+/* ---------- PIXEL ICONS (utility classes) ---------- */
+
+/*
+  Use anywhere in posts/pages by adding markup like:
+    <span class="pixel-icon pixel-icon--heart"></span>
+    <span class="pixel-icon pixel-icon--sparkle" style="color: #7A5C3E"></span>
+  Color is controlled by the parent element's `color` (or inline style).
+  Size scales with surrounding font-size (1em × 1em by default).
+*/
+
+.pixel-icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  background-color: currentColor;
+  -webkit-mask-position: center;
+          mask-position: center;
+  -webkit-mask-size: contain;
+          mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+          mask-repeat: no-repeat;
+  vertical-align: -0.15em;
+}
+.pixel-icon--sparkle  { -webkit-mask-image: url('assets/icons/sparkle.svg');     mask-image: url('assets/icons/sparkle.svg'); }
+.pixel-icon--calendar { -webkit-mask-image: url('assets/icons/calendar.svg');    mask-image: url('assets/icons/calendar.svg'); }
+.pixel-icon--heart    { -webkit-mask-image: url('assets/icons/heart.svg');       mask-image: url('assets/icons/heart.svg'); }
+.pixel-icon--page     { -webkit-mask-image: url('assets/icons/page.svg');        mask-image: url('assets/icons/page.svg'); }
+.pixel-icon--arrow    { -webkit-mask-image: url('assets/icons/arrow-right.svg'); mask-image: url('assets/icons/arrow-right.svg'); }
+
+/* Read-more arrow on post links */
+.wp-block-read-more::after,
+.wp-block-latest-posts__post-excerpt + a::after {
+  content: '';
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  margin-left: 0.35em;
+  background-color: currentColor;
+  -webkit-mask: url('assets/icons/arrow-right.svg') center/contain no-repeat;
+          mask: url('assets/icons/arrow-right.svg') center/contain no-repeat;
+  vertical-align: -0.15em;
+}
+
+/* Standalone post date (single post header) */
+.wp-block-post-date,
+.wp-block-post-date a,
+time.wp-block-post-date {
+  font-family: 'Silkscreen', monospace !important;
+  font-size: 0.85em;
+  color: var(--wp--preset--color--warm-brown, #7A5C3E);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.wp-block-post-date::before,
+time.wp-block-post-date::before {
+  content: '';
+  display: inline-block;
+  width: 1.05em;
+  height: 1.05em;
+  margin-right: 0.4em;
+  background-color: currentColor;
+  -webkit-mask: url('assets/icons/calendar.svg') center/contain no-repeat;
+          mask: url('assets/icons/calendar.svg') center/contain no-repeat;
+  vertical-align: -0.2em;
+}
+
 /* ---------- BURGER MENU / MOBILE NAV ---------- */
 
 /* Burger trigger button (closed state) */
@@ -242,7 +338,6 @@ pre code {
 /* The full-screen overlay (open state) */
 .wp-block-navigation__responsive-container.is-menu-open {
   background-color: var(--wp--preset--color--cream, #F5F1EC) !important;
-  /* Sparse pixel-dot pattern in the background */
   background-image: radial-gradient(
     var(--wp--preset--color--millennial-gray, #D5CFC9) 1.5px,
     transparent 1.5px

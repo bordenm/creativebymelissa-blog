@@ -5,7 +5,7 @@ Template: twentytwentyfive
 Author: Creative by Melissa
 Author URI: https://blog.creativebymelissa.com
 Description: A cute pixel-style child theme of Twenty Twenty-Five — pixel headings, retro borders, hard offset shadows, pixelated dividers, custom pixel-art icons, and small touches in a warm millennial-gray, light-gray, brown, and navy palette.
-Version: 0.8.0
+Version: 0.9.0
 Requires at least: 6.7
 Tested up to: 6.9
 Requires PHP: 7.4
@@ -29,8 +29,6 @@ h1, h2, h3, h4, h5, h6,
   font-weight: 600;
 }
 
-/* Site title gets its own pixel font (VT323) — a tall, terminal-style
-   retro look distinct from the rounder Pixelify Sans used on headings. */
 .wp-block-site-title,
 .wp-block-site-title a {
   font-family: 'VT323', monospace !important;
@@ -49,8 +47,6 @@ li,
 
 /* ---------- HEADER & FOOTER PADDING ---------- */
 
-/* Add comfortable horizontal padding to the header & footer template parts
-   so they don't sit edge-to-edge against the viewport on wider screens. */
 header.wp-block-template-part,
 footer.wp-block-template-part {
   padding-inline: clamp(1.25rem, 4vw, 3rem);
@@ -213,13 +209,11 @@ hr:not(.wp-block-separator) {
 
 /* ---------- CATEGORIES BLOCK (pill buttons) ---------- */
 
-/* Stretch the wrapper figure so flex layout applies cleanly */
 .wp-block-categories {
   margin-top: 0.5em;
   margin-bottom: 1em;
 }
 
-/* The list itself — horizontal pill row */
 ul.wp-block-categories,
 ul.wp-block-categories-list {
   list-style: none !important;
@@ -237,7 +231,6 @@ ul.wp-block-categories-list > li {
   padding: 0;
 }
 
-/* Each category as a pixel pill button */
 ul.wp-block-categories li a,
 ul.wp-block-categories-list li a {
   display: inline-block;
@@ -260,6 +253,105 @@ ul.wp-block-categories-list li a:focus {
   color: var(--wp--preset--color--navy, #1F2D5C);
   transform: translate(2px, 2px);
   box-shadow: 2px 2px 0 0 var(--wp--preset--color--charcoal, #1F1F1F);
+}
+
+/* ---------- STICKY CATEGORIES SIDEBAR (desktop) ---------- */
+
+/* Output by the pixel-sidebar mu-plugin via wp_body_open.
+   Hidden below 1100px so it never overlaps narrow content. */
+.pixel-sidebar {
+  display: none;
+}
+
+@media (min-width: 1100px) {
+  .pixel-sidebar {
+    display: block;
+    position: fixed;
+    top: 7.5rem;
+    left: clamp(1.5rem, 2vw, 2.5rem);
+    width: 200px;
+    z-index: 5;
+    background: var(--wp--preset--color--white, #ffffff);
+    border: 3px solid var(--wp--preset--color--charcoal, #1F1F1F);
+    box-shadow: 5px 5px 0 0 var(--wp--preset--color--charcoal, #1F1F1F);
+    padding: 1.1em 1em 1em;
+    margin: 0;
+  }
+
+  .pixel-sidebar__heading {
+    font-family: 'Silkscreen', monospace;
+    font-size: 0.8rem;
+    font-weight: 700;
+    margin: 0 0 0.75em;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--wp--preset--color--warm-brown, #7A5C3E);
+  }
+
+  .pixel-sidebar__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .pixel-sidebar__item {
+    margin: 0;
+    padding: 0;
+    border-bottom: 2px dashed var(--wp--preset--color--millennial-gray, #CFD2D7);
+  }
+
+  .pixel-sidebar__item:last-child {
+    border-bottom: none;
+  }
+
+  .pixel-sidebar__item a {
+    display: block;
+    font-family: 'Pixelify Sans', monospace;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--wp--preset--color--charcoal, #1F1F1F);
+    text-decoration: none;
+    padding: 0.45em 0;
+    position: relative;
+    transition: color 0.1s ease, padding-left 0.1s ease;
+  }
+
+  .pixel-sidebar__item a::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    opacity: 0;
+    color: var(--wp--preset--color--warm-brown, #7A5C3E);
+    transition: opacity 0.1s ease;
+  }
+
+  .pixel-sidebar__item a:hover,
+  .pixel-sidebar__item a:focus {
+    color: var(--wp--preset--color--navy, #1F2D5C);
+    padding-left: 1.2em;
+  }
+
+  .pixel-sidebar__item a:hover::before,
+  .pixel-sidebar__item a:focus::before {
+    opacity: 1;
+  }
+
+  .pixel-sidebar__item.is-current a {
+    color: var(--wp--preset--color--navy, #1F2D5C);
+    padding-left: 1.2em;
+    font-weight: 700;
+  }
+
+  .pixel-sidebar__item.is-current a::before {
+    opacity: 1;
+  }
+}
+
+@media (min-width: 1500px) {
+  .pixel-sidebar {
+    left: 3rem;
+    width: 220px;
+  }
 }
 
 /* ---------- LINKS ---------- */
@@ -319,14 +411,6 @@ pre code {
 
 /* ---------- PIXEL ICONS (utility classes) ---------- */
 
-/*
-  Use anywhere in posts/pages by adding markup like:
-    <span class="pixel-icon pixel-icon--heart"></span>
-    <span class="pixel-icon pixel-icon--sparkle" style="color: #7A5C3E"></span>
-  Color is controlled by the parent element's `color` (or inline style).
-  Size scales with surrounding font-size (1em × 1em by default).
-*/
-
 .pixel-icon {
   display: inline-block;
   width: 1em;
@@ -346,7 +430,6 @@ pre code {
 .pixel-icon--page     { -webkit-mask-image: url('assets/icons/page.svg');        mask-image: url('assets/icons/page.svg'); }
 .pixel-icon--arrow    { -webkit-mask-image: url('assets/icons/arrow-right.svg'); mask-image: url('assets/icons/arrow-right.svg'); }
 
-/* Read-more arrow on post links */
 .wp-block-read-more::after,
 .wp-block-latest-posts__post-excerpt + a::after {
   content: '';
@@ -360,7 +443,6 @@ pre code {
   vertical-align: -0.15em;
 }
 
-/* Standalone post date (single post header) */
 .wp-block-post-date,
 .wp-block-post-date a,
 time.wp-block-post-date {
@@ -385,7 +467,6 @@ time.wp-block-post-date::before {
 
 /* ---------- BURGER MENU / MOBILE NAV ---------- */
 
-/* Burger trigger button (closed state) */
 .wp-block-navigation__responsive-container-open {
   background: var(--wp--preset--color--white, #ffffff) !important;
   border: 3px solid var(--wp--preset--color--charcoal, #1F1F1F) !important;
@@ -403,7 +484,6 @@ time.wp-block-post-date::before {
   fill: var(--wp--preset--color--charcoal, #1F1F1F) !important;
 }
 
-/* The full-screen overlay (open state) */
 .wp-block-navigation__responsive-container.is-menu-open {
   background-color: var(--wp--preset--color--cream, #E8E4DE) !important;
   background-image: radial-gradient(
@@ -414,7 +494,6 @@ time.wp-block-post-date::before {
   padding: 4.5em 1.5em 2em !important;
 }
 
-/* Inner content container — center it nicely */
 .wp-block-navigation__responsive-container.is-menu-open
   .wp-block-navigation__responsive-container-content {
   width: 100%;
@@ -423,7 +502,6 @@ time.wp-block-post-date::before {
   align-items: stretch !important;
 }
 
-/* The little label above the menu (decorative) */
 .wp-block-navigation__responsive-container.is-menu-open
   .wp-block-navigation__responsive-container-content::before {
   content: '— MENU —';
@@ -436,14 +514,12 @@ time.wp-block-post-date::before {
   margin-bottom: 1.5em;
 }
 
-/* The menu list itself */
 .wp-block-navigation__responsive-container.is-menu-open
   .wp-block-navigation__container {
   gap: 0 !important;
   width: 100%;
 }
 
-/* Each menu item — dashed divider between, full-width tap target */
 .wp-block-navigation__responsive-container.is-menu-open
   .wp-block-navigation-item {
   width: 100%;
@@ -455,7 +531,6 @@ time.wp-block-post-date::before {
   border-bottom: none;
 }
 
-/* The link text inside each item */
 .wp-block-navigation__responsive-container.is-menu-open
   .wp-block-navigation-item__content {
   font-family: 'Pixelify Sans', monospace !important;
@@ -492,7 +567,6 @@ time.wp-block-post-date::before {
   opacity: 1;
 }
 
-/* Current/active page item */
 .wp-block-navigation__responsive-container.is-menu-open
   .current-menu-item .wp-block-navigation-item__content {
   color: var(--wp--preset--color--navy, #1F2D5C) !important;
@@ -503,7 +577,6 @@ time.wp-block-post-date::before {
   opacity: 1;
 }
 
-/* Close (X) button — match the open button styling */
 .wp-block-navigation__responsive-container-close {
   background: var(--wp--preset--color--white, #ffffff) !important;
   border: 3px solid var(--wp--preset--color--charcoal, #1F1F1F) !important;
@@ -523,7 +596,6 @@ time.wp-block-post-date::before {
   fill: var(--wp--preset--color--charcoal, #1F1F1F) !important;
 }
 
-/* Submenus inside the open overlay */
 .wp-block-navigation__responsive-container.is-menu-open
   .wp-block-navigation__submenu-container {
   background: transparent !important;

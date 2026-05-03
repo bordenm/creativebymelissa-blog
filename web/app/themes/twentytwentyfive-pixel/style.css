@@ -5,7 +5,7 @@ Template: twentytwentyfive
 Author: Creative by Melissa
 Author URI: https://blog.creativebymelissa.com
 Description: A cute pixel-style child theme of Twenty Twenty-Five — pixel headings, retro borders, hard offset shadows, pixelated dividers, custom pixel-art icons, and small touches in a warm millennial-gray, light-gray, brown, and navy palette.
-Version: 0.6.0
+Version: 0.7.0
 Requires at least: 6.7
 Tested up to: 6.9
 Requires PHP: 7.4
@@ -20,8 +20,6 @@ Tags: blog, child-theme, full-site-editing, two-columns, custom-colors, custom-l
 h1, h2, h3, h4, h5, h6,
 .wp-block-post-title,
 .wp-block-post-title a,
-.wp-block-site-title,
-.wp-block-site-title a,
 .wp-block-query-title,
 .wp-block-cover h1,
 .wp-block-cover h2,
@@ -29,6 +27,16 @@ h1, h2, h3, h4, h5, h6,
   font-family: 'Pixelify Sans', monospace !important;
   letter-spacing: 0.01em;
   font-weight: 600;
+}
+
+/* Site title gets its own pixel font (VT323) — a tall, terminal-style
+   retro look distinct from the rounder Pixelify Sans used on headings. */
+.wp-block-site-title,
+.wp-block-site-title a {
+  font-family: 'VT323', monospace !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.04em;
+  line-height: 1.2;
 }
 
 body,

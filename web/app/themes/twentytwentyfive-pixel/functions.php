@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 add_action( 'wp_enqueue_scripts', function () {
     wp_enqueue_style(
         'ttfp-google-fonts',
-        'https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&family=Silkscreen:wght@400;700&family=Inter:wght@400;500;600;700&display=swap',
+        'https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&family=Silkscreen:wght@400;700&family=VT323&family=Inter:wght@400;500;600;700&display=swap',
         array(),
         null
     );
@@ -41,7 +41,7 @@ add_action( 'after_setup_theme', function () {
 add_action( 'enqueue_block_editor_assets', function () {
     wp_enqueue_style(
         'ttfp-google-fonts-editor',
-        'https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&family=Silkscreen:wght@400;700&family=Inter:wght@400;500;600;700&display=swap',
+        'https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&family=Silkscreen:wght@400;700&family=VT323&family=Inter:wght@400;500;600;700&display=swap',
         array(),
         null
     );

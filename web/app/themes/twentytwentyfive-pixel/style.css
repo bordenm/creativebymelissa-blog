@@ -5,7 +5,7 @@ Template: twentytwentyfive
 Author: Creative by Melissa
 Author URI: https://blog.creativebymelissa.com
 Description: A cute pixel-style child theme of Twenty Twenty-Five — pixel headings, retro borders, hard offset shadows, pixelated dividers, and small pixel-art touches in a warm millennial-gray, cream, brown, and navy palette.
-Version: 0.1.0
+Version: 0.2.0
 Requires at least: 6.7
 Tested up to: 6.9
 Requires PHP: 7.4
@@ -61,7 +61,7 @@ textarea,
 
 .wp-block-button__link,
 .wp-block-search__button,
-button:not(.components-button):not([class*="editor-"]) {
+button:not(.components-button):not([class*="editor-"]):not(.wp-block-navigation__responsive-container-open):not(.wp-block-navigation__responsive-container-close) {
   font-family: 'Silkscreen', 'Pixelify Sans', monospace !important;
   font-weight: 700 !important;
   letter-spacing: 0.08em;
@@ -217,4 +217,158 @@ pre code {
 
 .wp-block-site-title a {
   text-decoration: none;
+}
+
+/* ---------- BURGER MENU / MOBILE NAV ---------- */
+
+/* Burger trigger button (closed state) */
+.wp-block-navigation__responsive-container-open {
+  background: var(--wp--preset--color--white, #ffffff) !important;
+  border: 3px solid var(--wp--preset--color--charcoal, #1F1F1F) !important;
+  border-radius: 0 !important;
+  padding: 0.45em 0.55em !important;
+  box-shadow: 4px 4px 0 0 var(--wp--preset--color--charcoal, #1F1F1F);
+  transition: transform 0.06s ease, box-shadow 0.06s ease;
+}
+.wp-block-navigation__responsive-container-open:hover,
+.wp-block-navigation__responsive-container-open:focus {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 0 var(--wp--preset--color--charcoal, #1F1F1F);
+}
+.wp-block-navigation__responsive-container-open svg {
+  fill: var(--wp--preset--color--charcoal, #1F1F1F) !important;
+}
+
+/* The full-screen overlay (open state) */
+.wp-block-navigation__responsive-container.is-menu-open {
+  background-color: var(--wp--preset--color--cream, #F5F1EC) !important;
+  /* Sparse pixel-dot pattern in the background */
+  background-image: radial-gradient(
+    var(--wp--preset--color--millennial-gray, #D5CFC9) 1.5px,
+    transparent 1.5px
+  ) !important;
+  background-size: 28px 28px !important;
+  padding: 4.5em 1.5em 2em !important;
+}
+
+/* Inner content container — center it nicely */
+.wp-block-navigation__responsive-container.is-menu-open
+  .wp-block-navigation__responsive-container-content {
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+  align-items: stretch !important;
+}
+
+/* The little label above the menu (decorative) */
+.wp-block-navigation__responsive-container.is-menu-open
+  .wp-block-navigation__responsive-container-content::before {
+  content: '— MENU —';
+  display: block;
+  font-family: 'Silkscreen', monospace;
+  font-size: 0.85rem;
+  letter-spacing: 0.25em;
+  color: var(--wp--preset--color--warm-brown, #7A5C3E);
+  text-align: center;
+  margin-bottom: 1.5em;
+}
+
+/* The menu list itself */
+.wp-block-navigation__responsive-container.is-menu-open
+  .wp-block-navigation__container {
+  gap: 0 !important;
+  width: 100%;
+}
+
+/* Each menu item — dashed divider between, full-width tap target */
+.wp-block-navigation__responsive-container.is-menu-open
+  .wp-block-navigation-item {
+  width: 100%;
+  border-bottom: 3px dashed var(--wp--preset--color--warm-brown, #7A5C3E);
+  padding: 0.5em 0;
+}
+.wp-block-navigation__responsive-container.is-menu-open
+  .wp-block-navigation-item:last-child {
+  border-bottom: none;
+}
+
+/* The link text inside each item */
+.wp-block-navigation__responsive-container.is-menu-open
+  .wp-block-navigation-item__content {
+  font-family: 'Pixelify Sans', monospace !important;
+  font-size: 1.6rem !important;
+  font-weight: 600 !important;
+  color: var(--wp--preset--color--charcoal, #1F1F1F) !important;
+  text-decoration: none !important;
+  letter-spacing: 0.02em;
+  display: block;
+  padding: 0.35em 0 0.35em 0;
+  position: relative;
+  transition: color 0.1s ease, padding-left 0.1s ease;
+}
+.wp-block-navigation__responsive-container.is-menu-open
+  .wp-block-navigation-item__content:hover,
+.wp-block-navigation__responsive-container.is-menu-open
+  .wp-block-navigation-item__content:focus {
+  color: var(--wp--preset--color--navy, #1F2D5C) !important;
+  padding-left: 1.5em;
+}
+.wp-block-navigation__responsive-container.is-menu-open
+  .wp-block-navigation-item__content::before {
+  content: '▸';
+  position: absolute;
+  left: 0;
+  opacity: 0;
+  color: var(--wp--preset--color--warm-brown, #7A5C3E);
+  transition: opacity 0.1s ease;
+}
+.wp-block-navigation__responsive-container.is-menu-open
+  .wp-block-navigation-item__content:hover::before,
+.wp-block-navigation__responsive-container.is-menu-open
+  .wp-block-navigation-item__content:focus::before {
+  opacity: 1;
+}
+
+/* Current/active page item */
+.wp-block-navigation__responsive-container.is-menu-open
+  .current-menu-item .wp-block-navigation-item__content {
+  color: var(--wp--preset--color--navy, #1F2D5C) !important;
+  padding-left: 1.5em;
+}
+.wp-block-navigation__responsive-container.is-menu-open
+  .current-menu-item .wp-block-navigation-item__content::before {
+  opacity: 1;
+}
+
+/* Close (X) button — match the open button styling */
+.wp-block-navigation__responsive-container-close {
+  background: var(--wp--preset--color--white, #ffffff) !important;
+  border: 3px solid var(--wp--preset--color--charcoal, #1F1F1F) !important;
+  border-radius: 0 !important;
+  padding: 0.45em 0.55em !important;
+  box-shadow: 4px 4px 0 0 var(--wp--preset--color--charcoal, #1F1F1F);
+  transition: transform 0.06s ease, box-shadow 0.06s ease;
+  top: 1.25em !important;
+  right: 1.25em !important;
+}
+.wp-block-navigation__responsive-container-close:hover,
+.wp-block-navigation__responsive-container-close:focus {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 0 var(--wp--preset--color--charcoal, #1F1F1F);
+}
+.wp-block-navigation__responsive-container-close svg {
+  fill: var(--wp--preset--color--charcoal, #1F1F1F) !important;
+}
+
+/* Submenus inside the open overlay */
+.wp-block-navigation__responsive-container.is-menu-open
+  .wp-block-navigation__submenu-container {
+  background: transparent !important;
+  border: none !important;
+  padding-left: 1.25em !important;
+  box-shadow: none !important;
+}
+.wp-block-navigation__responsive-container.is-menu-open
+  .wp-block-navigation__submenu-container .wp-block-navigation-item__content {
+  font-size: 1.1rem !important;
 }

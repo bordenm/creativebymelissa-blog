@@ -5,7 +5,7 @@
     "appearanceTools": true,
     "color": {
       "palette": [
-        { "slug": "cream", "color": "#F5F1EC", "name": "Cream" },
+        { "slug": "cream", "color": "#E8E4DE", "name": "Light Gray" },
         { "slug": "millennial-gray", "color": "#D5CFC9", "name": "Millennial Gray" },
         { "slug": "white", "color": "#FFFFFF", "name": "White" },
         { "slug": "charcoal", "color": "#1F1F1F", "name": "Charcoal" },

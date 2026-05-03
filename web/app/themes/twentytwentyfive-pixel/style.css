@@ -1,0 +1,220 @@
+/*
+Theme Name: Twenty Twenty-Five Pixel
+Theme URI: https://blog.creativebymelissa.com
+Template: twentytwentyfive
+Author: Creative by Melissa
+Author URI: https://blog.creativebymelissa.com
+Description: A cute pixel-style child theme of Twenty Twenty-Five — pixel headings, retro borders, hard offset shadows, pixelated dividers, and small pixel-art touches in a warm millennial-gray, cream, brown, and navy palette.
+Version: 0.1.0
+Requires at least: 6.7
+Tested up to: 6.9
+Requires PHP: 7.4
+License: GPL-2.0-or-later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: twentytwentyfive-pixel
+Tags: blog, child-theme, full-site-editing, two-columns, custom-colors, custom-logo, featured-images, threaded-comments, translation-ready
+*/
+
+/* ---------- PIXEL TYPOGRAPHY ---------- */
+
+h1, h2, h3, h4, h5, h6,
+.wp-block-post-title,
+.wp-block-post-title a,
+.wp-block-site-title,
+.wp-block-site-title a,
+.wp-block-query-title,
+.wp-block-cover h1,
+.wp-block-cover h2,
+.wp-block-cover h3 {
+  font-family: 'Pixelify Sans', monospace !important;
+  letter-spacing: 0.01em;
+  font-weight: 600;
+}
+
+body,
+p,
+li,
+.wp-block-post-content,
+.wp-block-post-excerpt {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+/* ---------- SHARP CORNERS ---------- */
+
+.wp-block-button__link,
+.wp-block-image img,
+.wp-block-cover,
+.wp-block-pullquote,
+.wp-block-quote,
+.wp-block-search__input,
+.wp-block-search__button,
+input[type="text"],
+input[type="email"],
+input[type="search"],
+input[type="url"],
+textarea,
+.wp-block-latest-posts__list > li {
+  border-radius: 0 !important;
+}
+
+/* ---------- PIXEL BUTTONS ---------- */
+
+.wp-block-button__link,
+.wp-block-search__button,
+button:not(.components-button):not([class*="editor-"]) {
+  font-family: 'Silkscreen', 'Pixelify Sans', monospace !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border: 3px solid var(--wp--preset--color--charcoal, #1F1F1F) !important;
+  box-shadow: 5px 5px 0 0 var(--wp--preset--color--charcoal, #1F1F1F);
+  padding: 0.7em 1.4em;
+  transition: transform 0.06s ease, box-shadow 0.06s ease;
+}
+
+.wp-block-button__link:hover,
+.wp-block-search__button:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 3px 3px 0 0 var(--wp--preset--color--charcoal, #1F1F1F);
+}
+
+.wp-block-button__link:active,
+.wp-block-search__button:active {
+  transform: translate(5px, 5px);
+  box-shadow: 0 0 0 0 var(--wp--preset--color--charcoal, #1F1F1F);
+}
+
+/* ---------- PIXEL SEPARATORS ---------- */
+
+.wp-block-separator:not(.is-style-wide):not(.is-style-dots) {
+  border: none !important;
+  height: 6px !important;
+  width: 200px;
+  margin: 2.5em auto;
+  background-image: linear-gradient(
+    to right,
+    var(--wp--preset--color--charcoal, #1F1F1F) 50%,
+    transparent 50%
+  );
+  background-size: 12px 6px;
+  background-repeat: repeat-x;
+  opacity: 1;
+}
+
+.wp-block-separator.is-style-dots {
+  font-size: 1.5em;
+}
+.wp-block-separator.is-style-dots::before {
+  font-family: 'Silkscreen', monospace;
+  letter-spacing: 0.5em;
+  color: var(--wp--preset--color--warm-brown, #7A5C3E);
+  content: '■  ■  ■';
+}
+
+hr:not(.wp-block-separator) {
+  border: none;
+  height: 6px;
+  background-image: linear-gradient(
+    to right,
+    var(--wp--preset--color--charcoal, #1F1F1F) 50%,
+    transparent 50%
+  );
+  background-size: 12px 6px;
+  background-repeat: repeat-x;
+  margin: 2em 0;
+}
+
+/* ---------- IMAGES & CARDS ---------- */
+
+.wp-block-image img {
+  border: 3px solid var(--wp--preset--color--charcoal, #1F1F1F);
+  box-shadow: 6px 6px 0 0 var(--wp--preset--color--charcoal, #1F1F1F);
+}
+
+.wp-block-cover {
+  border: 3px solid var(--wp--preset--color--charcoal, #1F1F1F);
+}
+
+/* ---------- LATEST POSTS LIST ---------- */
+
+.wp-block-latest-posts__list {
+  list-style: none !important;
+  padding-left: 0 !important;
+  margin: 0;
+}
+.wp-block-latest-posts__list > li {
+  padding: 1em 1.25em;
+  margin-bottom: 1.25em !important;
+  background: var(--wp--preset--color--white, #ffffff);
+  border: 3px solid var(--wp--preset--color--charcoal, #1F1F1F);
+  box-shadow: 5px 5px 0 0 var(--wp--preset--color--charcoal, #1F1F1F);
+  position: relative;
+}
+.wp-block-latest-posts__list > li > a {
+  font-family: 'Pixelify Sans', monospace !important;
+  font-size: 1.2em;
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--wp--preset--color--navy, #1F2D5C);
+}
+.wp-block-latest-posts__list > li > a::before {
+  content: '\25B8\00A0';
+  color: var(--wp--preset--color--warm-brown, #7A5C3E);
+}
+.wp-block-latest-posts__post-date {
+  display: block;
+  font-family: 'Silkscreen', monospace;
+  font-size: 0.7em;
+  color: var(--wp--preset--color--warm-brown, #7A5C3E);
+  margin-top: 0.4em;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+.wp-block-latest-posts__post-excerpt {
+  font-size: 0.95em;
+  margin-top: 0.5em;
+  color: var(--wp--preset--color--charcoal, #1F1F1F);
+}
+
+/* ---------- LINKS ---------- */
+
+a {
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}
+
+/* ---------- BLOCKQUOTES ---------- */
+
+.wp-block-quote,
+.wp-block-pullquote {
+  border-left: 4px solid var(--wp--preset--color--warm-brown, #7A5C3E) !important;
+  padding-left: 1.25em;
+  font-style: normal;
+  background: transparent;
+}
+
+/* ---------- CODE ---------- */
+
+code, pre, kbd, samp {
+  font-family: 'Silkscreen', 'Courier New', monospace !important;
+  background: var(--wp--preset--color--millennial-gray, #D5CFC9);
+  padding: 0.1em 0.35em;
+  border: 2px solid var(--wp--preset--color--charcoal, #1F1F1F);
+}
+
+pre {
+  padding: 1em;
+  box-shadow: 4px 4px 0 0 var(--wp--preset--color--charcoal, #1F1F1F);
+  overflow-x: auto;
+}
+pre code {
+  border: none;
+  padding: 0;
+  background: transparent;
+}
+
+/* ---------- SITE TITLE ---------- */
+
+.wp-block-site-title a {
+  text-decoration: none;
+}

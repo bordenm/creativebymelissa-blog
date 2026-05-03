@@ -5,8 +5,8 @@
     "appearanceTools": true,
     "color": {
       "palette": [
-        { "slug": "cream", "color": "#E8E4DE", "name": "Light Gray" },
-        { "slug": "millennial-gray", "color": "#D5CFC9", "name": "Millennial Gray" },
+        { "slug": "cream", "color": "#E3E5E9", "name": "Light Gray" },
+        { "slug": "millennial-gray", "color": "#CFD2D7", "name": "Millennial Gray" },
         { "slug": "white", "color": "#FFFFFF", "name": "White" },
         { "slug": "charcoal", "color": "#1F1F1F", "name": "Charcoal" },
         { "slug": "warm-brown", "color": "#7A5C3E", "name": "Warm Brown" },

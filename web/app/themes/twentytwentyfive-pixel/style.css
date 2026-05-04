@@ -4,8 +4,8 @@ Theme URI: https://blog.creativebymelissa.com
 Template: twentytwentyfive
 Author: Creative by Melissa
 Author URI: https://blog.creativebymelissa.com
-Description: A cute pixel-style child theme of Twenty Twenty-Five — sage + clay palette with cream cards, terracotta accents, pixel headings, retro borders, hard offset shadows, pixelated dividers, and custom pixel-art icons.
-Version: 0.19.0
+Description: A cute pixel-style child theme of Twenty Twenty-Five — sky + mustard palette with cream cards, slate navy outlines, mustard gold accents, pixel headings, retro borders, hard offset shadows, and custom pixel-art icons.
+Version: 0.20.0
 Requires at least: 6.7
 Tested up to: 6.9
 Requires PHP: 7.4
@@ -16,13 +16,12 @@ Tags: blog, child-theme, full-site-editing, two-columns, custom-colors, custom-l
 */
 
 /* ---------- PIXEL SCATTER PATTERN BACKGROUND ----------
-   Sage bg with subtle multi-shape pattern: diamond, plus, dot,
-   and triangle scattered across a 72px tile in a single light
-   sage tone. */
+   Sky bg with subtle multi-shape pattern: diamond, plus, dot,
+   and triangle scattered across a 72px tile in lighter sky. */
 
 body {
-  background-color: #C5CDB5;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='72' height='72' viewBox='0 0 72 72'><g fill='%23D8DEC9'><rect x='18' y='12' width='3' height='3'/><rect x='15' y='15' width='3' height='3'/><rect x='21' y='15' width='3' height='3'/><rect x='18' y='18' width='3' height='3'/><rect x='51' y='18' width='3' height='3'/><rect x='48' y='21' width='3' height='3'/><rect x='51' y='21' width='3' height='3'/><rect x='54' y='21' width='3' height='3'/><rect x='51' y='24' width='3' height='3'/><rect x='24' y='42' width='3' height='3'/><rect x='54' y='51' width='3' height='3'/><rect x='51' y='54' width='3' height='3'/><rect x='57' y='54' width='3' height='3'/></g></svg>");
+  background-color: #CDD8E0;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='72' height='72' viewBox='0 0 72 72'><g fill='%23DCE3E9'><rect x='18' y='12' width='3' height='3'/><rect x='15' y='15' width='3' height='3'/><rect x='21' y='15' width='3' height='3'/><rect x='18' y='18' width='3' height='3'/><rect x='51' y='18' width='3' height='3'/><rect x='48' y='21' width='3' height='3'/><rect x='51' y='21' width='3' height='3'/><rect x='54' y='21' width='3' height='3'/><rect x='51' y='24' width='3' height='3'/><rect x='24' y='42' width='3' height='3'/><rect x='54' y='51' width='3' height='3'/><rect x='51' y='54' width='3' height='3'/><rect x='57' y='54' width='3' height='3'/></g></svg>");
   background-attachment: fixed;
 }
 
@@ -120,8 +119,8 @@ textarea,
 }
 
 /* ---------- PIXEL BUTTONS ----------
-   Cream cards, olive-warm outlines, terracotta button text.
-   Hover deepens text to clay. */
+   Cream cards, slate navy outlines, mustard button text.
+   Hover deepens text to navy. */
 
 .wp-block-button__link,
 .wp-block-search__button,
@@ -131,10 +130,10 @@ input[type="submit"] {
   font-weight: 700 !important;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: #9E5A3F !important;
-  background-color: #F7F1E1 !important;
-  border: 3px solid #5C5950 !important;
-  box-shadow: 5px 5px 0 0 #F7F1E1;
+  color: #C49A3F !important;
+  background-color: #F4ECD8 !important;
+  border: 3px solid #3A4A5C !important;
+  box-shadow: 5px 5px 0 0 #F4ECD8;
   padding: 0.7em 1.4em;
   transition: transform 0.06s ease, box-shadow 0.06s ease, color 0.1s ease;
 }
@@ -143,16 +142,16 @@ input[type="submit"] {
 .wp-block-search__button:hover,
 input[type="submit"]:hover,
 button:not(.components-button):not([class*="editor-"]):not(.wp-block-navigation__responsive-container-open):not(.wp-block-navigation__responsive-container-close):hover {
-  color: #7A4530 !important;
+  color: #3A4A5C !important;
   transform: translate(2px, 2px);
-  box-shadow: 3px 3px 0 0 #F7F1E1;
+  box-shadow: 3px 3px 0 0 #F4ECD8;
 }
 
 .wp-block-button__link:active,
 .wp-block-search__button:active,
 input[type="submit"]:active {
   transform: translate(5px, 5px);
-  box-shadow: 0 0 0 0 #F7F1E1;
+  box-shadow: 0 0 0 0 #F4ECD8;
 }
 
 /* ---------- PIXEL SEPARATORS ---------- */
@@ -178,7 +177,7 @@ input[type="submit"]:active {
 .wp-block-separator.is-style-dots::before {
   font-family: 'Silkscreen', monospace;
   letter-spacing: 0.5em;
-  color: var(--wp--preset--color--warm-brown, #7A5C3E);
+  color: #C49A3F;
   content: '■  ■  ■';
 }
 
@@ -198,16 +197,16 @@ hr:not(.wp-block-separator) {
 /* ---------- IMAGES & CARDS ---------- */
 
 .wp-block-image img {
-  border: 3px solid #5C5950;
-  box-shadow: 6px 6px 0 0 #F7F1E1;
+  border: 3px solid #3A4A5C;
+  box-shadow: 6px 6px 0 0 #F4ECD8;
 }
 
 .wp-block-cover {
-  border: 3px solid #5C5950;
+  border: 3px solid #3A4A5C;
 }
 
 /* ---------- POST & PAGE CARDS ----------
-   Cream cards on sage bg. Wrap single posts and individual pages
+   Cream cards on sky bg. Wrap single posts and individual pages
    in a chunky cream card. The Twenty Twenty-Five single template
    uses <main> directly inside .wp-site-blocks (no <article>), so
    target that. Override .alignfull negative margins inside the
@@ -215,9 +214,9 @@ hr:not(.wp-block-separator) {
 
 body.single .wp-site-blocks > main.wp-block-group,
 body.page:not(.home) .wp-site-blocks > main.wp-block-group {
-  background: #F7F1E1;
-  border: 3px solid #5C5950;
-  box-shadow: 6px 6px 0 0 #F7F1E1;
+  background: #F4ECD8;
+  border: 3px solid #3A4A5C;
+  box-shadow: 6px 6px 0 0 #F4ECD8;
   padding: clamp(1.5rem, 4vw, 3rem) !important;
   margin: 2rem auto !important;
   max-width: min(960px, calc(100% - 2rem));
@@ -254,9 +253,9 @@ body.page:not(.home) .wp-site-blocks > main.wp-block-group > .wp-block-post-cont
 .wp-block-latest-posts__list > li {
   padding: 1em 1.25em;
   margin-bottom: 1.25em !important;
-  background: #F7F1E1;
-  border: 3px solid #5C5950;
-  box-shadow: 5px 5px 0 0 #F7F1E1;
+  background: #F4ECD8;
+  border: 3px solid #3A4A5C;
+  box-shadow: 5px 5px 0 0 #F4ECD8;
   position: relative;
 }
 .wp-block-latest-posts__list > li > a {
@@ -264,12 +263,12 @@ body.page:not(.home) .wp-site-blocks > main.wp-block-group > .wp-block-post-cont
   font-size: 1.2em;
   font-weight: 600;
   text-decoration: none;
-  color: #9E5A3F;
+  color: #C49A3F;
   transition: color 0.1s ease;
 }
 .wp-block-latest-posts__list > li > a:hover,
 .wp-block-latest-posts__list > li > a:focus {
-  color: #7A4530;
+  color: #3A4A5C;
 }
 .wp-block-latest-posts__list > li > a::before {
   content: '';
@@ -277,7 +276,7 @@ body.page:not(.home) .wp-site-blocks > main.wp-block-group > .wp-block-post-cont
   width: 0.95em;
   height: 0.95em;
   margin-right: 0.5em;
-  background-color: var(--wp--preset--color--warm-brown, #7A5C3E);
+  background-color: #C49A3F;
   -webkit-mask: url('assets/icons/page.svg') center/contain no-repeat;
           mask: url('assets/icons/page.svg') center/contain no-repeat;
   vertical-align: -0.1em;
@@ -286,7 +285,7 @@ body.page:not(.home) .wp-site-blocks > main.wp-block-group > .wp-block-post-cont
   display: block;
   font-family: 'Silkscreen', monospace;
   font-size: 0.7em;
-  color: var(--wp--preset--color--warm-brown, #7A5C3E);
+  color: #C49A3F;
   margin-top: 0.4em;
   text-transform: uppercase;
   letter-spacing: 0.1em;
@@ -340,9 +339,9 @@ ul.wp-block-categories-list li a {
   font-size: 1.05em;
   text-decoration: none;
   color: var(--wp--preset--color--charcoal, #1F1F1F);
-  background: #F7F1E1;
-  border: 3px solid #5C5950;
-  box-shadow: 4px 4px 0 0 #F7F1E1;
+  background: #F4ECD8;
+  border: 3px solid #3A4A5C;
+  box-shadow: 4px 4px 0 0 #F4ECD8;
   padding: 0.4em 0.95em;
   transition: transform 0.06s ease, box-shadow 0.06s ease, color 0.1s ease;
 }
@@ -351,9 +350,9 @@ ul.wp-block-categories li a:hover,
 ul.wp-block-categories-list li a:hover,
 ul.wp-block-categories li a:focus,
 ul.wp-block-categories-list li a:focus {
-  color: #9E5A3F;
+  color: #C49A3F;
   transform: translate(2px, 2px);
-  box-shadow: 2px 2px 0 0 #F7F1E1;
+  box-shadow: 2px 2px 0 0 #F4ECD8;
 }
 
 /* ---------- STICKY CATEGORIES SIDEBAR (desktop) ---------- */
@@ -370,9 +369,9 @@ ul.wp-block-categories-list li a:focus {
     left: clamp(1.5rem, 2vw, 2.5rem);
     width: 200px;
     z-index: 5;
-    background: #F7F1E1;
-    border: 3px solid #5C5950;
-    box-shadow: 5px 5px 0 0 #F7F1E1;
+    background: #F4ECD8;
+    border: 3px solid #3A4A5C;
+    box-shadow: 5px 5px 0 0 #F4ECD8;
     padding: 1.1em 1em 1em;
     margin: 0;
   }
@@ -384,7 +383,7 @@ ul.wp-block-categories-list li a:focus {
     margin: 0 0 0.75em;
     text-transform: uppercase;
     letter-spacing: 0.18em;
-    color: var(--wp--preset--color--warm-brown, #7A5C3E);
+    color: #C49A3F;
   }
 
   .pixel-sidebar__list {
@@ -396,7 +395,7 @@ ul.wp-block-categories-list li a:focus {
   .pixel-sidebar__item {
     margin: 0;
     padding: 0;
-    border-bottom: 2px dashed #C5CDB5;
+    border-bottom: 2px dashed #CDD8E0;
   }
 
   .pixel-sidebar__item:last-child {
@@ -420,13 +419,13 @@ ul.wp-block-categories-list li a:focus {
     position: absolute;
     left: 0;
     opacity: 0;
-    color: #9E5A3F;
+    color: #C49A3F;
     transition: opacity 0.1s ease;
   }
 
   .pixel-sidebar__item a:hover,
   .pixel-sidebar__item a:focus {
-    color: #9E5A3F;
+    color: #C49A3F;
     padding-left: 1.2em;
   }
 
@@ -436,7 +435,7 @@ ul.wp-block-categories-list li a:focus {
   }
 
   .pixel-sidebar__item.is-current a {
-    color: #9E5A3F;
+    color: #C49A3F;
     padding-left: 1.2em;
     font-weight: 700;
   }
@@ -464,7 +463,7 @@ a {
 
 .wp-block-quote,
 .wp-block-pullquote {
-  border-left: 4px solid #9E5A3F !important;
+  border-left: 4px solid #C49A3F !important;
   padding-left: 1.25em;
   font-style: normal;
   background: transparent;
@@ -474,14 +473,14 @@ a {
 
 code, pre, kbd, samp {
   font-family: 'Silkscreen', 'Courier New', monospace !important;
-  background: #E5E8DD;
+  background: #E5EBF0;
   padding: 0.1em 0.35em;
-  border: 2px solid #5C5950;
+  border: 2px solid #3A4A5C;
 }
 
 pre {
   padding: 1em;
-  box-shadow: 4px 4px 0 0 #F7F1E1;
+  box-shadow: 4px 4px 0 0 #F4ECD8;
   overflow-x: auto;
 }
 pre code {
@@ -502,7 +501,7 @@ pre code {
   width: 0.9em;
   height: 0.9em;
   margin-right: 0.4em;
-  background-color: var(--wp--preset--color--warm-brown, #7A5C3E);
+  background-color: #C49A3F;
   -webkit-mask: url('assets/icons/sparkle.svg') center/contain no-repeat;
           mask: url('assets/icons/sparkle.svg') center/contain no-repeat;
   vertical-align: -0.05em;
@@ -547,7 +546,7 @@ pre code {
 time.wp-block-post-date {
   font-family: 'Silkscreen', monospace !important;
   font-size: 0.85em;
-  color: var(--wp--preset--color--warm-brown, #7A5C3E);
+  color: #C49A3F;
   text-transform: uppercase;
   letter-spacing: 0.08em;
 }
@@ -567,17 +566,17 @@ time.wp-block-post-date::before {
 /* ---------- BURGER MENU / MOBILE NAV ---------- */
 
 .wp-block-navigation__responsive-container-open {
-  background: #F7F1E1 !important;
-  border: 3px solid #5C5950 !important;
+  background: #F4ECD8 !important;
+  border: 3px solid #3A4A5C !important;
   border-radius: 0 !important;
   padding: 0.45em 0.55em !important;
-  box-shadow: 4px 4px 0 0 #F7F1E1;
+  box-shadow: 4px 4px 0 0 #F4ECD8;
   transition: transform 0.06s ease, box-shadow 0.06s ease;
 }
 .wp-block-navigation__responsive-container-open:hover,
 .wp-block-navigation__responsive-container-open:focus {
   transform: translate(2px, 2px);
-  box-shadow: 2px 2px 0 0 #F7F1E1;
+  box-shadow: 2px 2px 0 0 #F4ECD8;
 }
 .wp-block-navigation__responsive-container-open svg {
   fill: var(--wp--preset--color--charcoal, #1F1F1F) !important;
@@ -586,7 +585,7 @@ time.wp-block-post-date::before {
 .wp-block-navigation__responsive-container.is-menu-open {
   background-color: #F4ECD8 !important;
   background-image: radial-gradient(
-    #C5CDB5 1.5px,
+    #CDD8E0 1.5px,
     transparent 1.5px
   ) !important;
   background-size: 28px 28px !important;
@@ -608,7 +607,7 @@ time.wp-block-post-date::before {
   font-family: 'Silkscreen', monospace;
   font-size: 0.85rem;
   letter-spacing: 0.25em;
-  color: #9E5A3F;
+  color: #C49A3F;
   text-align: center;
   margin-bottom: 1.5em;
 }
@@ -622,7 +621,7 @@ time.wp-block-post-date::before {
 .wp-block-navigation__responsive-container.is-menu-open
   .wp-block-navigation-item {
   width: 100%;
-  border-bottom: 3px dashed #9E5A3F;
+  border-bottom: 3px dashed #C49A3F;
   padding: 0.5em 0;
 }
 .wp-block-navigation__responsive-container.is-menu-open
@@ -647,7 +646,7 @@ time.wp-block-post-date::before {
   .wp-block-navigation-item__content:hover,
 .wp-block-navigation__responsive-container.is-menu-open
   .wp-block-navigation-item__content:focus {
-  color: #9E5A3F !important;
+  color: #C49A3F !important;
   padding-left: 1.5em;
 }
 .wp-block-navigation__responsive-container.is-menu-open
@@ -656,7 +655,7 @@ time.wp-block-post-date::before {
   position: absolute;
   left: 0;
   opacity: 0;
-  color: #9E5A3F;
+  color: #C49A3F;
   transition: opacity 0.1s ease;
 }
 .wp-block-navigation__responsive-container.is-menu-open
@@ -668,7 +667,7 @@ time.wp-block-post-date::before {
 
 .wp-block-navigation__responsive-container.is-menu-open
   .current-menu-item .wp-block-navigation-item__content {
-  color: #9E5A3F !important;
+  color: #C49A3F !important;
   padding-left: 1.5em;
 }
 .wp-block-navigation__responsive-container.is-menu-open
@@ -677,11 +676,11 @@ time.wp-block-post-date::before {
 }
 
 .wp-block-navigation__responsive-container-close {
-  background: #F7F1E1 !important;
-  border: 3px solid #5C5950 !important;
+  background: #F4ECD8 !important;
+  border: 3px solid #3A4A5C !important;
   border-radius: 0 !important;
   padding: 0.45em 0.55em !important;
-  box-shadow: 4px 4px 0 0 #F7F1E1;
+  box-shadow: 4px 4px 0 0 #F4ECD8;
   transition: transform 0.06s ease, box-shadow 0.06s ease;
   top: 1.25em !important;
   right: 1.25em !important;
@@ -689,7 +688,7 @@ time.wp-block-post-date::before {
 .wp-block-navigation__responsive-container-close:hover,
 .wp-block-navigation__responsive-container-close:focus {
   transform: translate(2px, 2px);
-  box-shadow: 2px 2px 0 0 #F7F1E1;
+  box-shadow: 2px 2px 0 0 #F4ECD8;
 }
 .wp-block-navigation__responsive-container-close svg {
   fill: var(--wp--preset--color--charcoal, #1F1F1F) !important;

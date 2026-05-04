@@ -4,8 +4,8 @@ Theme URI: https://blog.creativebymelissa.com
 Template: twentytwentyfive
 Author: Creative by Melissa
 Author URI: https://blog.creativebymelissa.com
-Description: A cute pixel-style child theme of Twenty Twenty-Five — sky + eggplant palette with light gray cards, slate navy outlines, deep eggplant accents, Jersey 15 headings, rounded corners, hard offset shadows, and custom pixel-art icons.
-Version: 0.28.0
+Description: A cute pixel-style child theme of Twenty Twenty-Five — sky + eggplant palette with light gray cards, slate navy outlines, deep eggplant accents, mixed pixel typography (Press Start 2P wordmark, Jersey 15 headings, Silkscreen labels), rounded corners, hard offset shadows, and custom pixel-art icons.
+Version: 0.29.0
 Requires at least: 6.7
 Tested up to: 6.9
 Requires PHP: 7.4
@@ -26,9 +26,11 @@ body {
 }
 
 /* ---------- PIXEL TYPOGRAPHY ----------
-   Jersey 15 for all headings and link titles — rounded
-   pixel-block letterforms, very legible. Site title stays
-   VT323 (logo wordmark). Body stays Inter. */
+   Hierarchy:
+   - Press Start 2P → site-title wordmark only (8-bit, distinctive)
+   - Jersey 15 → display headings, post titles, link titles
+   - Silkscreen → small UI labels (buttons, dates, nav, categories)
+   - Inter → body text, paragraphs */
 
 h1, h2, h3, h4, h5, h6,
 .wp-block-post-title,
@@ -42,12 +44,15 @@ h1, h2, h3, h4, h5, h6,
   font-weight: 400;
 }
 
+/* Site title wordmark — Press Start 2P at smaller-than-default
+   size since the font is chunky. */
 .wp-block-site-title,
 .wp-block-site-title a {
-  font-family: 'VT323', monospace !important;
+  font-family: 'Press Start 2P', monospace !important;
   font-weight: 400 !important;
+  font-size: 1rem !important;
   letter-spacing: 0.04em;
-  line-height: 1.2;
+  line-height: 1.6;
 }
 
 body,
@@ -330,7 +335,8 @@ body.page:not(.home) .wp-site-blocks > main.wp-block-group > .wp-block-post-cont
   color: var(--wp--preset--color--charcoal, #1F1F1F);
 }
 
-/* ---------- CATEGORIES BLOCK (pill buttons) ---------- */
+/* ---------- CATEGORIES BLOCK (pill buttons) ----------
+   Silkscreen UPPERCASE — small UI tag/label feel. */
 
 .wp-block-categories {
   margin-top: 0.5em;
@@ -357,16 +363,18 @@ ul.wp-block-categories-list > li {
 ul.wp-block-categories li a,
 ul.wp-block-categories-list li a {
   display: inline-block;
-  font-family: 'Jersey 15', monospace;
-  font-weight: 400;
-  font-size: 1.2em;
+  font-family: 'Silkscreen', monospace;
+  font-weight: 700;
+  font-size: 0.85em;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
   text-decoration: none;
   color: var(--wp--preset--color--charcoal, #1F1F1F);
   background: #EFF1F4;
   border: 3px solid #3A4A5C;
   border-radius: 12px;
   box-shadow: 4px 4px 0 0 #EFF1F4;
-  padding: 0.4em 0.95em;
+  padding: 0.5em 1em;
   transition: transform 0.06s ease, box-shadow 0.06s ease, color 0.1s ease;
 }
 
@@ -480,9 +488,7 @@ ul.wp-block-categories-list li a:focus {
 /* ---------- LINKS ----------
    Global link color — eggplant accent, navy on hover.
    Catches body content links, header navigation, and any
-   other links that don't have their own explicit color rule.
-   Twenty Twenty-Five's default contrast color was reading
-   warm/brown; this overrides it. */
+   other links that don't have their own explicit color rule. */
 
 a {
   color: #6B4A7A;
@@ -496,10 +502,16 @@ a:focus {
   color: #3A4A5C;
 }
 
-/* Header navigation links specifically — pick up the eggplant
-   from the global rule above. Make the current page bolder. */
+/* Header desktop navigation — Silkscreen UPPERCASE label feel.
+   Scoped to non-mobile-menu-open state so the burger menu can
+   keep its own larger styling. */
 .wp-block-navigation:not(.is-menu-open) .wp-block-navigation-item__content {
   color: #6B4A7A;
+  font-family: 'Silkscreen', monospace;
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
 }
 .wp-block-navigation:not(.is-menu-open) .wp-block-navigation-item__content:hover,
 .wp-block-navigation:not(.is-menu-open) .wp-block-navigation-item__content:focus {
@@ -507,7 +519,6 @@ a:focus {
 }
 .wp-block-navigation:not(.is-menu-open) .current-menu-item .wp-block-navigation-item__content {
   color: #6B4A7A;
-  font-weight: 700;
 }
 
 /* Site title link should stay charcoal (it's the wordmark, not
@@ -623,7 +634,9 @@ time.wp-block-post-date::before {
   vertical-align: -0.2em;
 }
 
-/* ---------- BURGER MENU / MOBILE NAV ---------- */
+/* ---------- BURGER MENU / MOBILE NAV ----------
+   Mobile fullscreen menu — Silkscreen UPPERCASE labels at a
+   tappable size. */
 
 .wp-block-navigation__responsive-container-open {
   background: #EFF1F4 !important;
@@ -691,14 +704,15 @@ time.wp-block-post-date::before {
 
 .wp-block-navigation__responsive-container.is-menu-open
   .wp-block-navigation-item__content {
-  font-family: 'Jersey 15', monospace !important;
-  font-size: 1.9rem !important;
-  font-weight: 400 !important;
+  font-family: 'Silkscreen', monospace !important;
+  font-size: 1.4rem !important;
+  font-weight: 700 !important;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
   color: var(--wp--preset--color--charcoal, #1F1F1F) !important;
   text-decoration: none !important;
-  letter-spacing: 0.02em;
   display: block;
-  padding: 0.35em 0 0.35em 0;
+  padding: 0.45em 0 0.45em 0;
   position: relative;
   transition: color 0.1s ease, padding-left 0.1s ease;
 }
@@ -763,5 +777,5 @@ time.wp-block-post-date::before {
 }
 .wp-block-navigation__responsive-container.is-menu-open
   .wp-block-navigation__submenu-container .wp-block-navigation-item__content {
-  font-size: 1.3rem !important;
+  font-size: 1rem !important;
 }

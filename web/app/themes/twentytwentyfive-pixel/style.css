@@ -4,8 +4,8 @@ Theme URI: https://blog.creativebymelissa.com
 Template: twentytwentyfive
 Author: Creative by Melissa
 Author URI: https://blog.creativebymelissa.com
-Description: A cute pixel-style child theme of Twenty Twenty-Five — sky + coral palette with light gray cards, slate navy outlines, dusty coral accents, pixel headings, rounded corners, hard offset shadows, and custom pixel-art icons.
-Version: 0.21.0
+Description: A cute pixel-style child theme of Twenty Twenty-Five — sky + coral palette with light gray cards, slate navy outlines, dusty coral accents, Jersey 15 headings, rounded corners, hard offset shadows, and custom pixel-art icons.
+Version: 0.22.0
 Requires at least: 6.7
 Tested up to: 6.9
 Requires PHP: 7.4
@@ -25,7 +25,10 @@ body {
   background-attachment: fixed;
 }
 
-/* ---------- PIXEL TYPOGRAPHY ---------- */
+/* ---------- PIXEL TYPOGRAPHY ----------
+   Jersey 15 for all headings and link titles — rounded
+   pixel-block letterforms, very legible. Site title stays
+   VT323 (logo wordmark). Body stays Inter. */
 
 h1, h2, h3, h4, h5, h6,
 .wp-block-post-title,
@@ -34,9 +37,9 @@ h1, h2, h3, h4, h5, h6,
 .wp-block-cover h1,
 .wp-block-cover h2,
 .wp-block-cover h3 {
-  font-family: 'Pixelify Sans', monospace !important;
+  font-family: 'Jersey 15', monospace !important;
   letter-spacing: 0.01em;
-  font-weight: 600;
+  font-weight: 400;
 }
 
 .wp-block-site-title,
@@ -141,7 +144,7 @@ textarea,
 .wp-block-search__button,
 button:not(.components-button):not([class*="editor-"]):not(.wp-block-navigation__responsive-container-open):not(.wp-block-navigation__responsive-container-close),
 input[type="submit"] {
-  font-family: 'Silkscreen', 'Pixelify Sans', monospace !important;
+  font-family: 'Silkscreen', 'Jersey 15', monospace !important;
   font-weight: 700 !important;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -279,9 +282,9 @@ body.page:not(.home) .wp-site-blocks > main.wp-block-group > .wp-block-post-cont
   position: relative;
 }
 .wp-block-latest-posts__list > li > a {
-  font-family: 'Pixelify Sans', monospace !important;
-  font-size: 1.2em;
-  font-weight: 600;
+  font-family: 'Jersey 15', monospace !important;
+  font-size: 1.4em;
+  font-weight: 400;
   text-decoration: none;
   color: #C97565;
   transition: color 0.1s ease;
@@ -354,9 +357,9 @@ ul.wp-block-categories-list > li {
 ul.wp-block-categories li a,
 ul.wp-block-categories-list li a {
   display: inline-block;
-  font-family: 'Pixelify Sans', monospace;
-  font-weight: 600;
-  font-size: 1.05em;
+  font-family: 'Jersey 15', monospace;
+  font-weight: 400;
+  font-size: 1.2em;
   text-decoration: none;
   color: var(--wp--preset--color--charcoal, #1F1F1F);
   background: #EFF1F4;
@@ -426,9 +429,9 @@ ul.wp-block-categories-list li a:focus {
 
   .pixel-sidebar__item a {
     display: block;
-    font-family: 'Pixelify Sans', monospace;
-    font-size: 1rem;
-    font-weight: 600;
+    font-family: 'Jersey 15', monospace;
+    font-size: 1.15rem;
+    font-weight: 400;
     color: var(--wp--preset--color--charcoal, #1F1F1F);
     text-decoration: none;
     padding: 0.45em 0;
@@ -459,7 +462,7 @@ ul.wp-block-categories-list li a:focus {
   .pixel-sidebar__item.is-current a {
     color: #C97565;
     padding-left: 1.2em;
-    font-weight: 700;
+    font-weight: 400;
   }
 
   .pixel-sidebar__item.is-current a::before {
@@ -656,9 +659,9 @@ time.wp-block-post-date::before {
 
 .wp-block-navigation__responsive-container.is-menu-open
   .wp-block-navigation-item__content {
-  font-family: 'Pixelify Sans', monospace !important;
-  font-size: 1.6rem !important;
-  font-weight: 600 !important;
+  font-family: 'Jersey 15', monospace !important;
+  font-size: 1.9rem !important;
+  font-weight: 400 !important;
   color: var(--wp--preset--color--charcoal, #1F1F1F) !important;
   text-decoration: none !important;
   letter-spacing: 0.02em;
@@ -728,5 +731,5 @@ time.wp-block-post-date::before {
 }
 .wp-block-navigation__responsive-container.is-menu-open
   .wp-block-navigation__submenu-container .wp-block-navigation-item__content {
-  font-size: 1.1rem !important;
+  font-size: 1.3rem !important;
 }

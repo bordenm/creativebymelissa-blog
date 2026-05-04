@@ -5,7 +5,7 @@ Template: twentytwentyfive
 Author: Creative by Melissa
 Author URI: https://blog.creativebymelissa.com
 Description: A cute pixel-style child theme of Twenty Twenty-Five — pixel headings, retro borders, hard offset shadows, pixelated dividers, custom pixel-art icons, and small touches in a warm millennial-gray, light-gray, brown, and slate-blue palette.
-Version: 0.17.0
+Version: 0.17.1
 Requires at least: 6.7
 Tested up to: 6.9
 Requires PHP: 7.4
@@ -17,12 +17,13 @@ Tags: blog, child-theme, full-site-editing, two-columns, custom-colors, custom-l
 
 /* ---------- PIXEL SCATTER PATTERN BACKGROUND ----------
    Subtle multi-shape pattern: diamond, plus, dot, and triangle
-   scattered across a 72px tile. Pattern color is just slightly
-   lighter than bg for soft visibility on dark cool brown. */
+   scattered across a 72px tile in a single light color so the
+   pattern reads as soft varied constellation rather than a
+   uniform grid. 3px cells. */
 
 body {
-  background-color: #3D3530;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='72' height='72' viewBox='0 0 72 72'><g fill='%234A423C'><rect x='18' y='12' width='3' height='3'/><rect x='15' y='15' width='3' height='3'/><rect x='21' y='15' width='3' height='3'/><rect x='18' y='18' width='3' height='3'/><rect x='51' y='18' width='3' height='3'/><rect x='48' y='21' width='3' height='3'/><rect x='51' y='21' width='3' height='3'/><rect x='54' y='21' width='3' height='3'/><rect x='51' y='24' width='3' height='3'/><rect x='24' y='42' width='3' height='3'/><rect x='54' y='51' width='3' height='3'/><rect x='51' y='54' width='3' height='3'/><rect x='57' y='54' width='3' height='3'/></g></svg>");
+  background-color: #BFA88E;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='72' height='72' viewBox='0 0 72 72'><g fill='%23D7C0A8'><rect x='18' y='12' width='3' height='3'/><rect x='15' y='15' width='3' height='3'/><rect x='21' y='15' width='3' height='3'/><rect x='18' y='18' width='3' height='3'/><rect x='51' y='18' width='3' height='3'/><rect x='48' y='21' width='3' height='3'/><rect x='51' y='21' width='3' height='3'/><rect x='54' y='21' width='3' height='3'/><rect x='51' y='24' width='3' height='3'/><rect x='24' y='42' width='3' height='3'/><rect x='54' y='51' width='3' height='3'/><rect x='51' y='54' width='3' height='3'/><rect x='57' y='54' width='3' height='3'/></g></svg>");
   background-attachment: fixed;
 }
 

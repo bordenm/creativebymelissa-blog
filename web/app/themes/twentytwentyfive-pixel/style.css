@@ -5,7 +5,7 @@ Template: twentytwentyfive
 Author: Creative by Melissa
 Author URI: https://blog.creativebymelissa.com
 Description: A cute pixel-style child theme of Twenty Twenty-Five — pixel headings, retro borders, hard offset shadows, pixelated dividers, custom pixel-art icons, and small touches in a warm millennial-gray, light-gray, brown, and slate-blue palette.
-Version: 0.16.0
+Version: 0.16.1
 Requires at least: 6.7
 Tested up to: 6.9
 Requires PHP: 7.4
@@ -128,7 +128,7 @@ button:not(.components-button):not([class*="editor-"]):not(.wp-block-navigation_
   font-weight: 700 !important;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  border: 3px solid var(--wp--preset--color--charcoal, #1F1F1F) !important;
+  border: 3px solid #3D3D3D !important;
   box-shadow: 5px 5px 0 0 var(--wp--preset--color--white, #FFFFFF);
   padding: 0.7em 1.4em;
   transition: transform 0.06s ease, box-shadow 0.06s ease;
@@ -189,12 +189,12 @@ hr:not(.wp-block-separator) {
 /* ---------- IMAGES & CARDS ---------- */
 
 .wp-block-image img {
-  border: 3px solid var(--wp--preset--color--charcoal, #1F1F1F);
+  border: 3px solid #3D3D3D;
   box-shadow: 6px 6px 0 0 var(--wp--preset--color--white, #FFFFFF);
 }
 
 .wp-block-cover {
-  border: 3px solid var(--wp--preset--color--charcoal, #1F1F1F);
+  border: 3px solid #3D3D3D;
 }
 
 /* ---------- POST & PAGE CARDS ----------
@@ -206,7 +206,7 @@ hr:not(.wp-block-separator) {
 body.single .wp-site-blocks > main.wp-block-group,
 body.page:not(.home) .wp-site-blocks > main.wp-block-group {
   background: var(--wp--preset--color--white, #ffffff);
-  border: 3px solid var(--wp--preset--color--charcoal, #1F1F1F);
+  border: 3px solid #3D3D3D;
   box-shadow: 6px 6px 0 0 var(--wp--preset--color--white, #FFFFFF);
   padding: clamp(1.5rem, 4vw, 3rem) !important;
   margin: 2rem auto !important;
@@ -245,7 +245,7 @@ body.page:not(.home) .wp-site-blocks > main.wp-block-group > .wp-block-post-cont
   padding: 1em 1.25em;
   margin-bottom: 1.25em !important;
   background: var(--wp--preset--color--white, #ffffff);
-  border: 3px solid var(--wp--preset--color--charcoal, #1F1F1F);
+  border: 3px solid #3D3D3D;
   box-shadow: 5px 5px 0 0 var(--wp--preset--color--white, #FFFFFF);
   position: relative;
 }
@@ -326,7 +326,7 @@ ul.wp-block-categories-list li a {
   text-decoration: none;
   color: var(--wp--preset--color--charcoal, #1F1F1F);
   background: var(--wp--preset--color--white, #ffffff);
-  border: 3px solid var(--wp--preset--color--charcoal, #1F1F1F);
+  border: 3px solid #3D3D3D;
   box-shadow: 4px 4px 0 0 var(--wp--preset--color--white, #FFFFFF);
   padding: 0.4em 0.95em;
   transition: transform 0.06s ease, box-shadow 0.06s ease, color 0.1s ease;
@@ -356,7 +356,7 @@ ul.wp-block-categories-list li a:focus {
     width: 200px;
     z-index: 5;
     background: var(--wp--preset--color--white, #ffffff);
-    border: 3px solid var(--wp--preset--color--charcoal, #1F1F1F);
+    border: 3px solid #3D3D3D;
     box-shadow: 5px 5px 0 0 var(--wp--preset--color--white, #FFFFFF);
     padding: 1.1em 1em 1em;
     margin: 0;
@@ -461,7 +461,7 @@ code, pre, kbd, samp {
   font-family: 'Silkscreen', 'Courier New', monospace !important;
   background: var(--wp--preset--color--millennial-gray, #CFD2D7);
   padding: 0.1em 0.35em;
-  border: 2px solid var(--wp--preset--color--charcoal, #1F1F1F);
+  border: 2px solid #3D3D3D;
 }
 
 pre {
@@ -553,7 +553,7 @@ time.wp-block-post-date::before {
 
 .wp-block-navigation__responsive-container-open {
   background: var(--wp--preset--color--white, #ffffff) !important;
-  border: 3px solid var(--wp--preset--color--charcoal, #1F1F1F) !important;
+  border: 3px solid #3D3D3D !important;
   border-radius: 0 !important;
   padding: 0.45em 0.55em !important;
   box-shadow: 4px 4px 0 0 var(--wp--preset--color--white, #FFFFFF);
@@ -663,7 +663,7 @@ time.wp-block-post-date::before {
 
 .wp-block-navigation__responsive-container-close {
   background: var(--wp--preset--color--white, #ffffff) !important;
-  border: 3px solid var(--wp--preset--color--charcoal, #1F1F1F) !important;
+  border: 3px solid #3D3D3D !important;
   border-radius: 0 !important;
   padding: 0.45em 0.55em !important;
   box-shadow: 4px 4px 0 0 var(--wp--preset--color--white, #FFFFFF);

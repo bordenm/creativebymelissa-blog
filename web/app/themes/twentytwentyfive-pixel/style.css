@@ -5,7 +5,7 @@ Template: twentytwentyfive
 Author: Creative by Melissa
 Author URI: https://blog.creativebymelissa.com
 Description: A cute pixel-style child theme of Twenty Twenty-Five — pixel headings, retro borders, hard offset shadows, pixelated dividers, custom pixel-art icons, and small touches in a warm millennial-gray, light-gray, brown, and slate-blue palette.
-Version: 0.15.1
+Version: 0.16.0
 Requires at least: 6.7
 Tested up to: 6.9
 Requires PHP: 7.4
@@ -129,7 +129,7 @@ button:not(.components-button):not([class*="editor-"]):not(.wp-block-navigation_
   letter-spacing: 0.08em;
   text-transform: uppercase;
   border: 3px solid var(--wp--preset--color--charcoal, #1F1F1F) !important;
-  box-shadow: 5px 5px 0 0 var(--wp--preset--color--charcoal, #1F1F1F);
+  box-shadow: 5px 5px 0 0 var(--wp--preset--color--white, #FFFFFF);
   padding: 0.7em 1.4em;
   transition: transform 0.06s ease, box-shadow 0.06s ease;
 }
@@ -137,13 +137,13 @@ button:not(.components-button):not([class*="editor-"]):not(.wp-block-navigation_
 .wp-block-button__link:hover,
 .wp-block-search__button:hover {
   transform: translate(2px, 2px);
-  box-shadow: 3px 3px 0 0 var(--wp--preset--color--charcoal, #1F1F1F);
+  box-shadow: 3px 3px 0 0 var(--wp--preset--color--white, #FFFFFF);
 }
 
 .wp-block-button__link:active,
 .wp-block-search__button:active {
   transform: translate(5px, 5px);
-  box-shadow: 0 0 0 0 var(--wp--preset--color--charcoal, #1F1F1F);
+  box-shadow: 0 0 0 0 var(--wp--preset--color--white, #FFFFFF);
 }
 
 /* ---------- PIXEL SEPARATORS ---------- */
@@ -190,7 +190,7 @@ hr:not(.wp-block-separator) {
 
 .wp-block-image img {
   border: 3px solid var(--wp--preset--color--charcoal, #1F1F1F);
-  box-shadow: 6px 6px 0 0 var(--wp--preset--color--charcoal, #1F1F1F);
+  box-shadow: 6px 6px 0 0 var(--wp--preset--color--white, #FFFFFF);
 }
 
 .wp-block-cover {
@@ -207,7 +207,7 @@ body.single .wp-site-blocks > main.wp-block-group,
 body.page:not(.home) .wp-site-blocks > main.wp-block-group {
   background: var(--wp--preset--color--white, #ffffff);
   border: 3px solid var(--wp--preset--color--charcoal, #1F1F1F);
-  box-shadow: 6px 6px 0 0 var(--wp--preset--color--charcoal, #1F1F1F);
+  box-shadow: 6px 6px 0 0 var(--wp--preset--color--white, #FFFFFF);
   padding: clamp(1.5rem, 4vw, 3rem) !important;
   margin: 2rem auto !important;
   max-width: min(960px, calc(100% - 2rem));
@@ -246,7 +246,7 @@ body.page:not(.home) .wp-site-blocks > main.wp-block-group > .wp-block-post-cont
   margin-bottom: 1.25em !important;
   background: var(--wp--preset--color--white, #ffffff);
   border: 3px solid var(--wp--preset--color--charcoal, #1F1F1F);
-  box-shadow: 5px 5px 0 0 var(--wp--preset--color--charcoal, #1F1F1F);
+  box-shadow: 5px 5px 0 0 var(--wp--preset--color--white, #FFFFFF);
   position: relative;
 }
 .wp-block-latest-posts__list > li > a {
@@ -327,7 +327,7 @@ ul.wp-block-categories-list li a {
   color: var(--wp--preset--color--charcoal, #1F1F1F);
   background: var(--wp--preset--color--white, #ffffff);
   border: 3px solid var(--wp--preset--color--charcoal, #1F1F1F);
-  box-shadow: 4px 4px 0 0 var(--wp--preset--color--charcoal, #1F1F1F);
+  box-shadow: 4px 4px 0 0 var(--wp--preset--color--white, #FFFFFF);
   padding: 0.4em 0.95em;
   transition: transform 0.06s ease, box-shadow 0.06s ease, color 0.1s ease;
 }
@@ -338,7 +338,7 @@ ul.wp-block-categories li a:focus,
 ul.wp-block-categories-list li a:focus {
   color: var(--wp--preset--color--navy, #4F6E92);
   transform: translate(2px, 2px);
-  box-shadow: 2px 2px 0 0 var(--wp--preset--color--charcoal, #1F1F1F);
+  box-shadow: 2px 2px 0 0 var(--wp--preset--color--white, #FFFFFF);
 }
 
 /* ---------- STICKY CATEGORIES SIDEBAR (desktop) ---------- */
@@ -357,7 +357,7 @@ ul.wp-block-categories-list li a:focus {
     z-index: 5;
     background: var(--wp--preset--color--white, #ffffff);
     border: 3px solid var(--wp--preset--color--charcoal, #1F1F1F);
-    box-shadow: 5px 5px 0 0 var(--wp--preset--color--charcoal, #1F1F1F);
+    box-shadow: 5px 5px 0 0 var(--wp--preset--color--white, #FFFFFF);
     padding: 1.1em 1em 1em;
     margin: 0;
   }
@@ -466,7 +466,7 @@ code, pre, kbd, samp {
 
 pre {
   padding: 1em;
-  box-shadow: 4px 4px 0 0 var(--wp--preset--color--charcoal, #1F1F1F);
+  box-shadow: 4px 4px 0 0 var(--wp--preset--color--white, #FFFFFF);
   overflow-x: auto;
 }
 pre code {
@@ -556,13 +556,13 @@ time.wp-block-post-date::before {
   border: 3px solid var(--wp--preset--color--charcoal, #1F1F1F) !important;
   border-radius: 0 !important;
   padding: 0.45em 0.55em !important;
-  box-shadow: 4px 4px 0 0 var(--wp--preset--color--charcoal, #1F1F1F);
+  box-shadow: 4px 4px 0 0 var(--wp--preset--color--white, #FFFFFF);
   transition: transform 0.06s ease, box-shadow 0.06s ease;
 }
 .wp-block-navigation__responsive-container-open:hover,
 .wp-block-navigation__responsive-container-open:focus {
   transform: translate(2px, 2px);
-  box-shadow: 2px 2px 0 0 var(--wp--preset--color--charcoal, #1F1F1F);
+  box-shadow: 2px 2px 0 0 var(--wp--preset--color--white, #FFFFFF);
 }
 .wp-block-navigation__responsive-container-open svg {
   fill: var(--wp--preset--color--charcoal, #1F1F1F) !important;
@@ -666,7 +666,7 @@ time.wp-block-post-date::before {
   border: 3px solid var(--wp--preset--color--charcoal, #1F1F1F) !important;
   border-radius: 0 !important;
   padding: 0.45em 0.55em !important;
-  box-shadow: 4px 4px 0 0 var(--wp--preset--color--charcoal, #1F1F1F);
+  box-shadow: 4px 4px 0 0 var(--wp--preset--color--white, #FFFFFF);
   transition: transform 0.06s ease, box-shadow 0.06s ease;
   top: 1.25em !important;
   right: 1.25em !important;
@@ -674,7 +674,7 @@ time.wp-block-post-date::before {
 .wp-block-navigation__responsive-container-close:hover,
 .wp-block-navigation__responsive-container-close:focus {
   transform: translate(2px, 2px);
-  box-shadow: 2px 2px 0 0 var(--wp--preset--color--charcoal, #1F1F1F);
+  box-shadow: 2px 2px 0 0 var(--wp--preset--color--white, #FFFFFF);
 }
 .wp-block-navigation__responsive-container-close svg {
   fill: var(--wp--preset--color--charcoal, #1F1F1F) !important;

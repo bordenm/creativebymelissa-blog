@@ -5,7 +5,7 @@ Template: twentytwentyfive
 Author: Creative by Melissa
 Author URI: https://blog.creativebymelissa.com
 Description: A cute pixel-style child theme of Twenty Twenty-Five — sky + eggplant palette with light gray cards, slate navy outlines, deep eggplant accents, mixed pixel typography (Pixelify Sans wordmark + nav, Jersey 15 headings, Silkscreen labels, DM Sans body), rounded corners, hard offset shadows, and custom pixel-art icons (moon, cat, sparkle, calendar, heart, page, arrow, comment).
-Version: 0.36.0
+Version: 0.36.1
 Requires at least: 6.7
 Tested up to: 6.9
 Requires PHP: 7.4
@@ -625,7 +625,7 @@ pre code {
 }
 
 .wp-block-site-title a::after {
-  content: 'CBM';
+  content: 'CBM Blog';
   font-family: 'Pixelify Sans', monospace;
   font-weight: 600;
   font-size: 1.5rem;

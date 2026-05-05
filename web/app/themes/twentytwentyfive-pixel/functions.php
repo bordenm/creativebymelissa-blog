@@ -48,6 +48,23 @@ add_action( 'enqueue_block_editor_assets', function () {
 } );
 
 /**
+ * Pixel moon-and-star favicon. The same shape used for the site title
+ * wordmark gets reused as the favicon so the tab icon, bookmark, and
+ * header all carry the same visual identity. Served as SVG (which all
+ * modern browsers including iOS Safari 14+ render in browser tabs).
+ * Versioned via theme version so cache busts on theme updates.
+ */
+add_action( 'wp_head', function () {
+    $favicon_url = get_stylesheet_directory_uri() . '/assets/icons/favicon.svg';
+    $version     = wp_get_theme()->get( 'Version' );
+    printf(
+        "<link rel=\"icon\" type=\"image/svg+xml\" href=\"%s?v=%s\">\n",
+        esc_url( $favicon_url ),
+        esc_attr( $version )
+    );
+}, 1 );
+
+/**
  * Sticky header scroll detection — uses IntersectionObserver to toggle
  * an .is-scrolled class on the header. Pairs with the .is-scrolled rule
  * in style.css which adds the offset shadow only when the class is

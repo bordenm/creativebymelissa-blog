@@ -1,8 +1,8 @@
 <?php
 /**
  * Plugin Name: Pixel Theme — Sticky Categories Sidebar
- * Description: Adds a sticky left sidebar listing post categories and a monthly post-activity calendar on every front-end page.
- * Version: 1.1.0
+ * Description: Adds a sticky left sidebar listing post categories and a monthly post-activity calendar (with prev/next month nav) on every front-end page.
+ * Version: 1.2.0
  * Author: Creative by Melissa
  */
 
@@ -57,25 +57,71 @@ add_action( 'wp_body_open', function () {
 } );
 
 /**
- * Render a monthly post-activity calendar for the current month.
+ * Render a monthly post-activity calendar.
  *
- * Each day is a cell in a 7-column grid. Days that have one or more
- * published posts become links to that day's archive and are styled
- * with the eggplant accent. Days with 2+ posts get a small gold count
- * badge. Today gets a thin outline.
+ * The visible month/year is read from the query string (cal_year &
+ * cal_month), defaulting to the current month. Each day is a cell in
+ * a 7-column grid; days that have one or more published posts become
+ * links to that day's archive and are styled with the eggplant accent.
+ * Days with 2+ posts get a small gold count badge in the corner. The
+ * actual today gets a thin outline (only when the visible month is
+ * the actual current month).
+ *
+ * Prev/next arrows navigate to neighbouring months by setting
+ * cal_year & cal_month query params on the current page URL. The
+ * "next" arrow is disabled when viewing the current month or beyond,
+ * since there can't be future posts to look at.
  */
 function pixel_sidebar_render_calendar() {
-    $year  = (int) current_time( 'Y' );
-    $month = (int) current_time( 'n' );
+    $today_year  = (int) current_time( 'Y' );
+    $today_month = (int) current_time( 'n' );
+    $today_day   = (int) current_time( 'j' );
+
+    // Read year/month from the query string with sanity bounds.
+    $year  = isset( $_GET['cal_year'] )  ? (int) $_GET['cal_year']  : $today_year;
+    $month = isset( $_GET['cal_month'] ) ? (int) $_GET['cal_month'] : $today_month;
+    if ( $year < 2000 || $year > 2100 ) {
+        $year = $today_year;
+    }
+    if ( $month < 1 || $month > 12 ) {
+        $month = $today_month;
+    }
 
     $first_day_ts  = mktime( 0, 0, 0, $month, 1, $year );
     $days_in_month = (int) date( 't', $first_day_ts );
     $first_weekday = (int) date( 'w', $first_day_ts ); // 0 = Sun
     $month_label   = date_i18n( 'M Y', $first_day_ts );
 
-    $today_day = (int) current_time( 'j' );
+    // Only highlight "today" when the visible month is the real current month.
+    $is_current_view = ( $year === $today_year && $month === $today_month );
 
-    // Query post counts per day for this month.
+    // Compute prev/next month for the nav arrows.
+    $prev_ts    = mktime( 0, 0, 0, $month - 1, 1, $year );
+    $next_ts    = mktime( 0, 0, 0, $month + 1, 1, $year );
+    $prev_year  = (int) date( 'Y', $prev_ts );
+    $prev_month = (int) date( 'n', $prev_ts );
+    $next_year  = (int) date( 'Y', $next_ts );
+    $next_month = (int) date( 'n', $next_ts );
+
+    // Disable "next" if we're already at the current month or beyond.
+    $next_disabled = ( $year > $today_year ) || ( $year === $today_year && $month >= $today_month );
+
+    // Build prev/next URLs from the current request URI, preserving any
+    // other existing query params (e.g. ?paged=2 on a category archive).
+    $prev_url = add_query_arg(
+        array(
+            'cal_year'  => $prev_year,
+            'cal_month' => $prev_month,
+        )
+    );
+    $next_url = $next_disabled ? '' : add_query_arg(
+        array(
+            'cal_year'  => $next_year,
+            'cal_month' => $next_month,
+        )
+    );
+
+    // Query post counts per day for the visible month.
     global $wpdb;
     $start = sprintf( '%04d-%02d-01 00:00:00', $year, $month );
     $end   = date( 'Y-m-t 23:59:59', $first_day_ts );
@@ -98,7 +144,24 @@ function pixel_sidebar_render_calendar() {
 
     echo '<h3 class="pixel-sidebar__heading pixel-sidebar__heading--calendar">Activity</h3>';
     echo '<div class="pixel-sidebar__calendar">';
-    echo '<div class="pixel-sidebar__calendar-month">' . esc_html( strtoupper( $month_label ) ) . '</div>';
+
+    // Month label row with prev/next arrows.
+    echo '<div class="pixel-sidebar__calendar-month">';
+    printf(
+        '<a class="pixel-sidebar__calendar-nav" href="%s" aria-label="Previous month" rel="nofollow">&lsaquo;</a>',
+        esc_url( $prev_url )
+    );
+    echo '<span class="pixel-sidebar__calendar-month-label">' . esc_html( strtoupper( $month_label ) ) . '</span>';
+    if ( $next_disabled ) {
+        echo '<span class="pixel-sidebar__calendar-nav pixel-sidebar__calendar-nav--disabled" aria-hidden="true">&rsaquo;</span>';
+    } else {
+        printf(
+            '<a class="pixel-sidebar__calendar-nav" href="%s" aria-label="Next month" rel="nofollow">&rsaquo;</a>',
+            esc_url( $next_url )
+        );
+    }
+    echo '</div>';
+
     echo '<div class="pixel-sidebar__calendar-grid" role="grid">';
 
     // Weekday header row (Sun – Sat).
@@ -115,7 +178,7 @@ function pixel_sidebar_render_calendar() {
     // Day cells.
     for ( $d = 1; $d <= $days_in_month; $d++ ) {
         $count    = isset( $counts[ $d ] ) ? $counts[ $d ] : 0;
-        $is_today = ( $d === $today_day );
+        $is_today = ( $is_current_view && $d === $today_day );
 
         $classes = array( 'pixel-sidebar__calendar-day' );
         if ( $count > 0 ) {

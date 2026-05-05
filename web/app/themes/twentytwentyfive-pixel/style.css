@@ -5,7 +5,7 @@ Template: twentytwentyfive
 Author: Creative by Melissa
 Author URI: https://blog.creativebymelissa.com
 Description: A cute pixel-style child theme of Twenty Twenty-Five — sky + eggplant palette with light gray cards, slate navy outlines, deep eggplant accents, mixed pixel typography (Pixelify Sans wordmark, Jersey 15 headings, Silkscreen labels), rounded corners, hard offset shadows, and custom pixel-art icons.
-Version: 0.30.0
+Version: 0.30.1
 Requires at least: 6.7
 Tested up to: 6.9
 Requires PHP: 7.4
@@ -237,7 +237,9 @@ hr:not(.wp-block-separator) {
    in a chunky card. The Twenty Twenty-Five single template uses
    <main> directly inside .wp-site-blocks (no <article>), so target
    that. Override .alignfull negative margins inside the card so
-   children don't break out. */
+   children don't break out.
+   Padding tightened so rounded corners feel more proportional
+   (matching the smaller card vibe of categories/posts list). */
 
 body.single .wp-site-blocks > main.wp-block-group,
 body.page:not(.home) .wp-site-blocks > main.wp-block-group {
@@ -245,7 +247,7 @@ body.page:not(.home) .wp-site-blocks > main.wp-block-group {
   border: 3px solid #3A4A5C;
   border-radius: 12px;
   box-shadow: 6px 6px 0 0 #EFF1F4;
-  padding: clamp(1.5rem, 4vw, 3rem) !important;
+  padding: clamp(1rem, 2.5vw, 1.5rem) !important;
   margin: 2rem auto !important;
   max-width: min(960px, calc(100% - 2rem));
   box-sizing: border-box;

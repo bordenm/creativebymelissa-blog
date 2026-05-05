@@ -5,7 +5,7 @@ Template: twentytwentyfive
 Author: Creative by Melissa
 Author URI: https://blog.creativebymelissa.com
 Description: A cute pixel-style child theme of Twenty Twenty-Five — sky + eggplant palette with light gray cards, slate navy outlines, deep eggplant accents, mixed pixel typography (Pixelify Sans wordmark + nav, Jersey 15 headings, Silkscreen labels, DM Sans body), rounded corners, hard offset shadows, and custom pixel-art icons (moon, cat, sparkle, calendar, heart, page, arrow, comment).
-Version: 0.37.0
+Version: 0.37.1
 Requires at least: 6.7
 Tested up to: 6.9
 Requires PHP: 7.4
@@ -523,14 +523,53 @@ ul.wp-block-categories-list li a:focus {
   /* ----- Activity Calendar ----- */
 
   .pixel-sidebar__calendar-month {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.4em;
     font-family: 'Silkscreen', monospace;
     font-size: 0.7rem;
     font-weight: 700;
     letter-spacing: 0.18em;
-    text-align: center;
     color: #3A4A5C;
     margin-bottom: 0.6em;
     text-transform: uppercase;
+  }
+
+  .pixel-sidebar__calendar-month-label {
+    flex: 1;
+    text-align: center;
+  }
+
+  .pixel-sidebar__calendar-nav {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.6em;
+    height: 1.6em;
+    font-family: 'Pixelify Sans', monospace;
+    font-size: 1.2rem;
+    font-weight: 600;
+    line-height: 1;
+    color: #6B4A7A;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background 0.1s ease, color 0.1s ease;
+    flex-shrink: 0;
+  }
+
+  .pixel-sidebar__calendar-nav:hover,
+  .pixel-sidebar__calendar-nav:focus {
+    background: #6B4A7A;
+    color: #FFFFFF;
+  }
+
+  .pixel-sidebar__calendar-nav--disabled,
+  .pixel-sidebar__calendar-nav--disabled:hover,
+  .pixel-sidebar__calendar-nav--disabled:focus {
+    color: #CDD8E0;
+    background: transparent;
+    cursor: default;
   }
 
   .pixel-sidebar__calendar-grid {

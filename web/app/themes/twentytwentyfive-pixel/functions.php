@@ -49,15 +49,23 @@ add_action( 'enqueue_block_editor_assets', function () {
 
 /**
  * Sticky header scroll detection — uses IntersectionObserver to toggle
- * an .is-scrolled class on the header once the user scrolls past the
- * very top of the page. Pairs with the .is-scrolled rule in style.css
- * which adds the offset shadow only when the class is present, so the
- * top of the page renders cleanly without any separator.
+ * an .is-scrolled class on the header. Pairs with the .is-scrolled rule
+ * in style.css which adds the offset shadow only when the class is
+ * present, so the top of the page renders cleanly without a separator.
  *
- * Implementation: prepends a 1x1px transparent sentinel at the top of
- * the body and observes its viewport intersection. When the sentinel
- * is no longer intersecting (scrolled past), the header is in "stuck"
- * mode and gets the .is-scrolled class.
+ * Two strategies depending on the page:
+ *
+ * 1. Homepage (any page containing svg.pixel-logo): observe the logo
+ *    card itself with a rootMargin equal to the header's height. The
+ *    shadow appears the moment the logo card is fully hidden behind
+ *    the sticky header — so you only get the separator after you've
+ *    scrolled past the hero, not on the very first scroll pixel.
+ *
+ * 2. Every other page (posts, archives, search, etc.): fall back to
+ *    a 1x1px sentinel prepended to the body. As soon as the user
+ *    scrolls past the very top, the sentinel leaves the viewport and
+ *    the shadow appears. (No big hero on these pages, so a delayed
+ *    trigger doesn't make sense.)
  */
 add_action( 'wp_enqueue_scripts', function () {
     $script = <<<'JS'
@@ -66,14 +74,31 @@ add_action( 'wp_enqueue_scripts', function () {
   function init() {
     var header = document.querySelector('header.wp-block-template-part');
     if (!header) return;
-    var sentinel = document.createElement('div');
-    sentinel.style.cssText = 'position:absolute;top:0;left:0;height:1px;width:1px;pointer-events:none;';
-    sentinel.setAttribute('aria-hidden', 'true');
-    document.body.prepend(sentinel);
+
+    var logo = document.querySelector('svg.pixel-logo');
+    var logoCard = logo ? logo.closest('.wp-block-html') : null;
+    var target = logoCard;
+    var rootMargin = '0px';
+
+    if (target) {
+      // Homepage: shrink the intersection root by the sticky header
+      // height so the logo is considered "out of view" the moment it
+      // disappears behind the header (not when its bottom finally
+      // crosses y=0 of the raw viewport).
+      var headerHeight = header.offsetHeight || 80;
+      rootMargin = '-' + headerHeight + 'px 0px 0px 0px';
+    } else {
+      // Other pages: 1x1px sentinel at the very top of body.
+      target = document.createElement('div');
+      target.style.cssText = 'position:absolute;top:0;left:0;height:1px;width:1px;pointer-events:none;';
+      target.setAttribute('aria-hidden', 'true');
+      document.body.prepend(target);
+    }
+
     var observer = new IntersectionObserver(function (entries) {
       header.classList.toggle('is-scrolled', !entries[0].isIntersecting);
-    }, { threshold: 0 });
-    observer.observe(sentinel);
+    }, { threshold: 0, rootMargin: rootMargin });
+    observer.observe(target);
   }
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);

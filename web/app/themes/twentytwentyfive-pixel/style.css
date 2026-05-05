@@ -5,7 +5,7 @@ Template: twentytwentyfive
 Author: Creative by Melissa
 Author URI: https://blog.creativebymelissa.com
 Description: A cute pixel-style child theme of Twenty Twenty-Five — sky + eggplant palette with light gray cards, slate navy outlines, deep eggplant accents, mixed pixel typography (Pixelify Sans wordmark + nav, Jersey 15 headings, Silkscreen labels, DM Sans body), rounded corners, hard offset shadows, and custom pixel-art icons (moon, cat, sparkle, calendar, heart, page, arrow, comment).
-Version: 0.36.1
+Version: 0.37.0
 Requires at least: 6.7
 Tested up to: 6.9
 Requires PHP: 7.4
@@ -435,6 +435,8 @@ ul.wp-block-categories-list li a:focus {
     top: 7.5rem;
     left: clamp(1.5rem, 2vw, 2.5rem);
     width: 220px;
+    max-height: calc(100vh - 9rem);
+    overflow-y: auto;
     z-index: 5;
     background: #EFF1F4;
     border: 3px solid #3A4A5C;
@@ -452,6 +454,12 @@ ul.wp-block-categories-list li a:focus {
     text-transform: uppercase;
     letter-spacing: 0.18em;
     color: #6B4A7A;
+  }
+
+  .pixel-sidebar__heading--calendar {
+    margin-top: 1.25em;
+    padding-top: 1em;
+    border-top: 2px dashed #CDD8E0;
   }
 
   .pixel-sidebar__list {
@@ -510,6 +518,100 @@ ul.wp-block-categories-list li a:focus {
 
   .pixel-sidebar__item.is-current a::before {
     opacity: 1;
+  }
+
+  /* ----- Activity Calendar ----- */
+
+  .pixel-sidebar__calendar-month {
+    font-family: 'Silkscreen', monospace;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-align: center;
+    color: #3A4A5C;
+    margin-bottom: 0.6em;
+    text-transform: uppercase;
+  }
+
+  .pixel-sidebar__calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 2px;
+  }
+
+  .pixel-sidebar__calendar-weekday {
+    font-family: 'Silkscreen', monospace;
+    font-size: 0.55rem;
+    font-weight: 700;
+    text-align: center;
+    color: #6B4A7A;
+    padding: 0.25em 0;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .pixel-sidebar__calendar-day {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 1 / 1;
+    font-family: 'Pixelify Sans', monospace;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: #3A4A5C;
+    text-decoration: none;
+    position: relative;
+    border-radius: 3px;
+  }
+
+  .pixel-sidebar__calendar-day-num {
+    line-height: 1;
+  }
+
+  .pixel-sidebar__calendar-day--pad {
+    color: transparent;
+  }
+
+  .pixel-sidebar__calendar-day--has-posts {
+    background: #6B4A7A;
+    color: #FFFFFF;
+    font-weight: 600;
+    transition: background 0.1s ease, transform 0.06s ease;
+  }
+
+  .pixel-sidebar__calendar-day--has-posts:hover,
+  .pixel-sidebar__calendar-day--has-posts:focus {
+    background: #3A4A5C;
+    color: #FFFFFF;
+  }
+
+  .pixel-sidebar__calendar-day--today {
+    outline: 2px solid #6B4A7A;
+    outline-offset: -2px;
+  }
+
+  .pixel-sidebar__calendar-day--today.pixel-sidebar__calendar-day--has-posts {
+    outline-color: #E0BB72;
+  }
+
+  .pixel-sidebar__calendar-count {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    background: #E0BB72;
+    color: #1F1F1F;
+    font-family: 'Silkscreen', monospace;
+    font-size: 0.5rem;
+    font-weight: 700;
+    min-width: 1em;
+    height: 1em;
+    padding: 0 0.2em;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1.5px solid #3A4A5C;
+    line-height: 1;
   }
 }
 
@@ -596,13 +698,13 @@ pre code {
 /* ---------- SITE TITLE WORDMARK ---------- */
 
 /* Visual swap: keep "Creative by Melissa" as the link's accessible
-   text (good for screen readers and SEO) but display "CBM" with the
-   moon icon as the visible wordmark. The link text gets font-size: 0
-   so the actual text node collapses, while ::before (moon) and
-   ::after (CBM) restore their own font-size to render at full size.
-   Applies to both header and footer site-title blocks; the browser
-   tab title and the "© 2026 Creative by Melissa" copyright line are
-   untouched (different sources). */
+   text (good for screen readers and SEO) but display "CBM Blog" with
+   the moon icon as the visible wordmark. The link text gets
+   font-size: 0 so the actual text node collapses, while ::before
+   (moon) and ::after (CBM Blog) restore their own font-size to render
+   at full size. Applies to both header and footer site-title blocks;
+   the browser tab title and the "© 2026 Creative by Melissa"
+   copyright line are untouched (different sources). */
 .wp-block-site-title a {
   color: var(--wp--preset--color--charcoal, #1F1F1F);
   text-decoration: none;

@@ -26,9 +26,9 @@
           "slug": "silkscreen"
         },
         {
-          "fontFamily": "'Quicksand', system-ui, -apple-system, sans-serif",
-          "name": "Quicksand",
-          "slug": "quicksand"
+          "fontFamily": "'Fredoka', system-ui, -apple-system, sans-serif",
+          "name": "Fredoka",
+          "slug": "fredoka"
         }
       ]
     }
@@ -39,7 +39,7 @@
       "text": "var(--wp--preset--color--charcoal)"
     },
     "typography": {
-      "fontFamily": "var(--wp--preset--font-family--quicksand)",
+      "fontFamily": "var(--wp--preset--font-family--fredoka)",
       "lineHeight": "1.6"
     },
     "elements": {

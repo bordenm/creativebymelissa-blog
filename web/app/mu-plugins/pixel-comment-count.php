@@ -3,7 +3,7 @@
  * Plugin Name: Pixel Comment Count
  * Description: Adds comment counts to the core/latest-posts block output for the homepage Latest Posts list.
  * Author: Creative by Melissa
- * Version: 1.0.0
+ * Version: 1.1.0
  */
 
 if (!defined('ABSPATH')) {
@@ -35,11 +35,27 @@ add_filter('render_block', function ($block_content, $block) {
                     if ($count > 0 || comments_open($post_id)) {
                         $label = $count === 1 ? '1 comment' : $count . ' comments';
                         $href = get_permalink($post_id) . '#comments';
-                        $inner .= sprintf(
+                        $comment_link = sprintf(
                             '<a class="pixel-comment-count" href="%s">%s</a>',
                             esc_url($href),
                             esc_html($label)
                         );
+
+                        // Insert immediately after </time> so the count sits next to the
+                        // date inline, instead of falling below the (potentially empty)
+                        // excerpt block-level div at the end of the <li>.
+                        $injected = preg_replace(
+                            '/(<\/time>)/',
+                            '$1' . $comment_link,
+                            $inner,
+                            1
+                        );
+                        if ($injected !== null && $injected !== $inner) {
+                            $inner = $injected;
+                        } else {
+                            // Fallback: append at end if no </time> found.
+                            $inner .= $comment_link;
+                        }
                     }
                 }
             }

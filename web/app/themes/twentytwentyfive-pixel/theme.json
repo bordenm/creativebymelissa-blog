@@ -26,9 +26,9 @@
           "slug": "silkscreen"
         },
         {
-          "fontFamily": "'Fredoka', system-ui, -apple-system, sans-serif",
-          "name": "Fredoka",
-          "slug": "fredoka"
+          "fontFamily": "'DM Sans', system-ui, -apple-system, sans-serif",
+          "name": "DM Sans",
+          "slug": "dm-sans"
         }
       ]
     }
@@ -39,7 +39,7 @@
       "text": "var(--wp--preset--color--charcoal)"
     },
     "typography": {
-      "fontFamily": "var(--wp--preset--font-family--fredoka)",
+      "fontFamily": "var(--wp--preset--font-family--dm-sans)",
       "lineHeight": "1.6"
     },
     "elements": {

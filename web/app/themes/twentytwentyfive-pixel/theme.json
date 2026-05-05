@@ -26,9 +26,9 @@
           "slug": "silkscreen"
         },
         {
-          "fontFamily": "'Nunito', system-ui, -apple-system, sans-serif",
-          "name": "Nunito",
-          "slug": "nunito"
+          "fontFamily": "'Quicksand', system-ui, -apple-system, sans-serif",
+          "name": "Quicksand",
+          "slug": "quicksand"
         }
       ]
     }
@@ -39,7 +39,7 @@
       "text": "var(--wp--preset--color--charcoal)"
     },
     "typography": {
-      "fontFamily": "var(--wp--preset--font-family--nunito)",
+      "fontFamily": "var(--wp--preset--font-family--quicksand)",
       "lineHeight": "1.6"
     },
     "elements": {

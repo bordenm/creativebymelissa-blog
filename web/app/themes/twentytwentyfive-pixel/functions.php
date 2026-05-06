@@ -71,7 +71,9 @@ add_action( 'wp_head', function () {
  * circle showing the commenter's first initial in Pixelify Sans on one
  * of four palette colors. Color is picked via a stable hash of the
  * commenter's name so the same person always lands on the same color
- * across comments.
+ * across comments. Initial is lowercase to match the lowercase
+ * "cbm blog" wordmark and to dodge Pixelify Sans's quirky uppercase
+ * letterforms.
  *
  * Trade-off: this discards real Gravatars in favor of visual
  * consistency. For a personal blog the cohesive look is the better
@@ -118,7 +120,7 @@ add_filter( 'get_avatar', function ( $avatar, $id_or_email, $size, $default, $al
     if ( empty( $name ) ) {
         $name = '?';
     }
-    $initial = mb_strtoupper( mb_substr( trim( (string) $name ), 0, 1 ) );
+    $initial = mb_strtolower( mb_substr( trim( (string) $name ), 0, 1 ) );
 
     // Theme palette — eggplant, navy, sage, gold. Pick by stable hash
     // so the same name always gets the same color.

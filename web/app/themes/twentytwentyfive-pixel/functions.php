@@ -105,12 +105,12 @@ function pixel_has_gravatar( $email ) {
  * Themed pixel avatar for comment authors WITHOUT a Gravatar. Real
  * Gravatars (like Melissa's own) pass through unchanged so commenters
  * who put effort into setting one up are honored. Anyone else gets a
- * consistent themed circle: their first initial in Pixelify Sans
- * lowercase on one of four palette colors (eggplant, navy, sage,
- * gold), picked via a stable hash of their name so the same person
- * always lands on the same color across comments. Lowercase matches
- * the "cbm blog" wordmark and dodges Pixelify Sans's quirky uppercase
- * letterforms.
+ * consistent themed circle: their first initial in Jersey 15 uppercase
+ * on one of four palette colors (eggplant, navy, sage, gold), picked
+ * via a stable hash of their name so the same person always lands on
+ * the same color across comments. Jersey 15 (the same font as post
+ * titles) reads cleanly at avatar size where Pixelify Sans's lowercase
+ * "e" was too curly.
  *
  * Detection is via pixel_has_gravatar() — a HEAD request to Gravatar
  * with d=404, cached in a 24-hour transient per email so we only do
@@ -173,7 +173,7 @@ add_filter( 'get_avatar', function ( $avatar, $id_or_email, $size, $default, $al
     if ( empty( $name ) ) {
         $name = '?';
     }
-    $initial = mb_strtolower( mb_substr( trim( (string) $name ), 0, 1 ) );
+    $initial = mb_strtoupper( mb_substr( trim( (string) $name ), 0, 1 ) );
 
     // Theme palette — eggplant, navy, sage, gold. Pick by stable hash
     // so the same name always gets the same color.

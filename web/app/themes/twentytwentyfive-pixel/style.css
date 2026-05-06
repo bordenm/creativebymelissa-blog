@@ -5,7 +5,7 @@ Template: twentytwentyfive
 Author: Creative by Melissa
 Author URI: https://blog.creativebymelissa.com
 Description: A cute pixel-style child theme of Twenty Twenty-Five — sky + eggplant palette with light gray cards, slate navy outlines, deep eggplant accents, mixed pixel typography (Pixelify Sans wordmark + nav, Jersey 15 headings, Silkscreen labels, DM Sans body), rounded corners, hard offset shadows, and custom pixel-art icons (moon, cat, sparkle, calendar, heart, page, arrow, comment).
-Version: 0.38.4
+Version: 0.38.5
 Requires at least: 6.7
 Tested up to: 6.9
 Requires PHP: 7.4
@@ -113,9 +113,12 @@ footer.wp-block-template-part {
    viewport and align perfectly (the header's pattern picks up exactly
    where the body's leaves off, no visible seam). Header still needs
    the opaque #CDD8E0 base color so content scrolling under is hidden.
-   The hard pixel offset shadow only appears when .is-scrolled is added
-   by the JS in functions.php — on the homepage, that fires once you've
-   scrolled past the logo card; on other pages, on first scroll. */
+   No shadow on scroll — the matching plus-pattern between header and
+   body makes a separator unnecessary, and a hard cream line was
+   reading as an unwanted "white line" breaking up the floating
+   header. The .is-scrolled class is still toggled by the JS in
+   functions.php (kept for potential future use) but renders as a
+   no-op visually. */
 header.wp-block-template-part {
   position: sticky;
   top: 0;
@@ -123,11 +126,6 @@ header.wp-block-template-part {
   background-color: #CDD8E0;
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'><g fill='%23DCE3E9'><rect x='9' y='6' width='3' height='3'/><rect x='6' y='9' width='3' height='3'/><rect x='9' y='9' width='3' height='3'/><rect x='12' y='9' width='3' height='3'/><rect x='9' y='12' width='3' height='3'/></g></svg>");
   background-attachment: fixed;
-  transition: box-shadow 0.2s ease;
-}
-
-header.wp-block-template-part.is-scrolled {
-  box-shadow: 0 4px 0 0 #EFF1F4;
 }
 
 /* ---------- ROUNDED CORNERS ---------- */

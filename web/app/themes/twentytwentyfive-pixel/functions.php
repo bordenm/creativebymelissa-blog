@@ -65,6 +65,84 @@ add_action( 'wp_head', function () {
 }, 1 );
 
 /**
+ * Themed pixel avatar for comment authors. Replaces WordPress's default
+ * avatar (Gravatar's mystery person, or its random-color initial
+ * fallback for users without a Gravatar) with a consistent themed
+ * circle showing the commenter's first initial in Pixelify Sans on one
+ * of four palette colors. Color is picked via a stable hash of the
+ * commenter's name so the same person always lands on the same color
+ * across comments.
+ *
+ * Trade-off: this discards real Gravatars in favor of visual
+ * consistency. For a personal blog the cohesive look is the better
+ * fit. To re-enable Gravatars later, just remove this filter.
+ *
+ * The CSS lives in style.css under .pixel-avatar; this function only
+ * emits the markup with three CSS custom properties (--pa-size,
+ * --pa-bg, --pa-fg) so layout and palette are fully owned by CSS.
+ */
+add_filter( 'get_avatar', function ( $avatar, $id_or_email, $size, $default, $alt ) {
+    $name = '';
+
+    if ( is_numeric( $id_or_email ) ) {
+        $user = get_userdata( (int) $id_or_email );
+        if ( $user ) {
+            $name = $user->display_name;
+        }
+    } elseif ( is_string( $id_or_email ) ) {
+        // Email — try a registered user first, then any matching
+        // comment author.
+        $user = get_user_by( 'email', $id_or_email );
+        if ( $user ) {
+            $name = $user->display_name;
+        } else {
+            global $wpdb;
+            $name = $wpdb->get_var( $wpdb->prepare(
+                "SELECT comment_author FROM {$wpdb->comments} WHERE comment_author_email = %s ORDER BY comment_ID DESC LIMIT 1",
+                $id_or_email
+            ) );
+        }
+    } elseif ( is_object( $id_or_email ) ) {
+        if ( ! empty( $id_or_email->comment_author ) ) {
+            $name = $id_or_email->comment_author;
+        } elseif ( ! empty( $id_or_email->display_name ) ) {
+            $name = $id_or_email->display_name;
+        } elseif ( ! empty( $id_or_email->user_email ) ) {
+            $user = get_user_by( 'email', $id_or_email->user_email );
+            if ( $user ) {
+                $name = $user->display_name;
+            }
+        }
+    }
+
+    if ( empty( $name ) ) {
+        $name = '?';
+    }
+    $initial = mb_strtoupper( mb_substr( trim( (string) $name ), 0, 1 ) );
+
+    // Theme palette — eggplant, navy, sage, gold. Pick by stable hash
+    // so the same name always gets the same color.
+    $palette = array( '#6B4A7A', '#3A4A5C', '#93B198', '#E0BB72' );
+    $bg      = $palette[ abs( crc32( $name ) ) % count( $palette ) ];
+    // Gold needs darker text for contrast; the others use cream.
+    $fg = ( '#E0BB72' === $bg ) ? '#1F1F1F' : '#FFFFFF';
+
+    $size = absint( $size );
+    if ( ! $size ) {
+        $size = 96;
+    }
+
+    return sprintf(
+        '<span class="pixel-avatar avatar avatar-%1$d photo" aria-label="%2$s" style="--pa-size:%1$dpx;--pa-bg:%3$s;--pa-fg:%4$s;">%5$s</span>',
+        $size,
+        esc_attr( $name ),
+        esc_attr( $bg ),
+        esc_attr( $fg ),
+        esc_html( $initial )
+    );
+}, 10, 5 );
+
+/**
  * Sticky header scroll detection — uses IntersectionObserver to toggle
  * an .is-scrolled class on the header. Pairs with the .is-scrolled rule
  * in style.css which adds the offset shadow only when the class is

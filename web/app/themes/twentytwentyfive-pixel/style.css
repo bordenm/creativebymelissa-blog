@@ -5,7 +5,7 @@ Template: twentytwentyfive
 Author: Creative by Melissa
 Author URI: https://blog.creativebymelissa.com
 Description: A cute pixel-style child theme of Twenty Twenty-Five — sky + eggplant palette with light gray cards, slate navy outlines, deep eggplant accents, mixed pixel typography (Pixelify Sans wordmark + nav, Jersey 15 headings, Silkscreen labels, DM Sans body), rounded corners, hard offset shadows, and custom pixel-art icons (moon, cat, sparkle, calendar, heart, page, arrow, comment).
-Version: 0.38.1
+Version: 0.38.3
 Requires at least: 6.7
 Tested up to: 6.9
 Requires PHP: 7.4
@@ -841,7 +841,9 @@ time.wp-block-post-date::before {
    a <span class="pixel-avatar"> with CSS variables --pa-size, --pa-bg,
    and --pa-fg already set per author, so layout/color "just works"
    wherever WordPress renders an avatar (comment list, recent comments
-   widget, author bios). */
+   widget, author bios). Letter is set in Jersey 15 (same as post
+   titles) for clean, legible letterforms — Pixelify Sans's lowercase
+   "e" reads as too curly at this scale. */
 .pixel-avatar {
   display: inline-flex;
   align-items: center;
@@ -852,9 +854,9 @@ time.wp-block-post-date::before {
   color: var(--pa-fg, #FFFFFF);
   border: 2px solid #3A4A5C;
   border-radius: 50%;
-  font-family: 'Pixelify Sans', monospace;
-  font-weight: 600;
-  font-size: calc(var(--pa-size, 48px) * 0.5);
+  font-family: 'Jersey 15', monospace;
+  font-weight: 400;
+  font-size: calc(var(--pa-size, 48px) * 0.65);
   line-height: 1;
   letter-spacing: 0;
   vertical-align: middle;

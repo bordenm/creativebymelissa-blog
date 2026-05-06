@@ -65,58 +65,111 @@ add_action( 'wp_head', function () {
 }, 1 );
 
 /**
- * Themed pixel avatar for comment authors. Replaces WordPress's default
- * avatar (Gravatar's mystery person, or its random-color initial
- * fallback for users without a Gravatar) with a consistent themed
- * circle showing the commenter's first initial in Pixelify Sans on one
- * of four palette colors. Color is picked via a stable hash of the
- * commenter's name so the same person always lands on the same color
- * across comments. Initial is lowercase to match the lowercase
- * "cbm blog" wordmark and to dodge Pixelify Sans's quirky uppercase
+ * Lightweight check for whether an email address has a real Gravatar.
+ * Hits gravatar.com/avatar/{hash}?d=404 once per email and caches the
+ * 200/404 result in a transient for 24 hours to avoid repeating the
+ * lookup. On network errors we fail open (return true) and cache that
+ * briefly so the rendering path falls through to the normal Gravatar
+ * URL — at worst the user sees Gravatar's mystery person, which is
+ * fine.
+ */
+function pixel_has_gravatar( $email ) {
+    if ( empty( $email ) ) {
+        return false;
+    }
+    $hash      = md5( strtolower( trim( $email ) ) );
+    $cache_key = 'pxhg_' . $hash;
+    $cached    = get_transient( $cache_key );
+    if ( false !== $cached ) {
+        return '1' === $cached;
+    }
+    $response = wp_remote_head(
+        'https://www.gravatar.com/avatar/' . $hash . '?d=404',
+        array(
+            'timeout'     => 3,
+            'redirection' => 0,
+        )
+    );
+    if ( is_wp_error( $response ) ) {
+        // Network hiccup — assume yes and cache briefly so we don't
+        // hammer Gravatar on every render.
+        set_transient( $cache_key, '1', 5 * MINUTE_IN_SECONDS );
+        return true;
+    }
+    $has = ( 200 === wp_remote_retrieve_response_code( $response ) );
+    set_transient( $cache_key, $has ? '1' : '0', DAY_IN_SECONDS );
+    return $has;
+}
+
+/**
+ * Themed pixel avatar for comment authors WITHOUT a Gravatar. Real
+ * Gravatars (like Melissa's own) pass through unchanged so commenters
+ * who put effort into setting one up are honored. Anyone else gets a
+ * consistent themed circle: their first initial in Pixelify Sans
+ * lowercase on one of four palette colors (eggplant, navy, sage,
+ * gold), picked via a stable hash of their name so the same person
+ * always lands on the same color across comments. Lowercase matches
+ * the "cbm blog" wordmark and dodges Pixelify Sans's quirky uppercase
  * letterforms.
  *
- * Trade-off: this discards real Gravatars in favor of visual
- * consistency. For a personal blog the cohesive look is the better
- * fit. To re-enable Gravatars later, just remove this filter.
+ * Detection is via pixel_has_gravatar() — a HEAD request to Gravatar
+ * with d=404, cached in a 24-hour transient per email so we only do
+ * the lookup once per commenter per day.
  *
  * The CSS lives in style.css under .pixel-avatar; this function only
  * emits the markup with three CSS custom properties (--pa-size,
  * --pa-bg, --pa-fg) so layout and palette are fully owned by CSS.
  */
 add_filter( 'get_avatar', function ( $avatar, $id_or_email, $size, $default, $alt ) {
-    $name = '';
+    $email = '';
+    $name  = '';
 
     if ( is_numeric( $id_or_email ) ) {
         $user = get_userdata( (int) $id_or_email );
         if ( $user ) {
-            $name = $user->display_name;
+            $email = $user->user_email;
+            $name  = $user->display_name;
         }
     } elseif ( is_string( $id_or_email ) ) {
-        // Email — try a registered user first, then any matching
-        // comment author.
-        $user = get_user_by( 'email', $id_or_email );
+        // Common case: email passed in as string (e.g., from comments).
+        $email = $id_or_email;
+        $user  = get_user_by( 'email', $email );
         if ( $user ) {
             $name = $user->display_name;
         } else {
             global $wpdb;
             $name = $wpdb->get_var( $wpdb->prepare(
                 "SELECT comment_author FROM {$wpdb->comments} WHERE comment_author_email = %s ORDER BY comment_ID DESC LIMIT 1",
-                $id_or_email
+                $email
             ) );
         }
     } elseif ( is_object( $id_or_email ) ) {
+        // Pull email from comment objects, user objects, or WP_User.
+        if ( ! empty( $id_or_email->user_email ) ) {
+            $email = $id_or_email->user_email;
+        } elseif ( ! empty( $id_or_email->comment_author_email ) ) {
+            $email = $id_or_email->comment_author_email;
+        }
         if ( ! empty( $id_or_email->comment_author ) ) {
             $name = $id_or_email->comment_author;
         } elseif ( ! empty( $id_or_email->display_name ) ) {
             $name = $id_or_email->display_name;
-        } elseif ( ! empty( $id_or_email->user_email ) ) {
-            $user = get_user_by( 'email', $id_or_email->user_email );
+        } elseif ( $email ) {
+            $user = get_user_by( 'email', $email );
             if ( $user ) {
                 $name = $user->display_name;
             }
         }
     }
 
+    // If a real Gravatar exists for this email, return WordPress's
+    // default markup unchanged so commenters who set up a Gravatar
+    // see their photo. The expensive HEAD request is cached.
+    if ( $email && pixel_has_gravatar( $email ) ) {
+        return $avatar;
+    }
+
+    // Otherwise, render the themed pixel circle.
     if ( empty( $name ) ) {
         $name = '?';
     }

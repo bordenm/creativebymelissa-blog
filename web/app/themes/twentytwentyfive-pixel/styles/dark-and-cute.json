@@ -1,0 +1,56 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "version": 3,
+  "title": "Dark & Cute",
+  "styles": {
+    "color": {
+      "background": "#46474C",
+      "text": "var(--wp--preset--color--cream)"
+    },
+    "background": {
+      "backgroundImage": {
+        "url": "https://blog.creativebymelissa.com/app/uploads/2026/05/Dark-Cute-Background-%E2%80%94-moons-clouds-fruit.jpg"
+      },
+      "backgroundSize": "contain",
+      "backgroundRepeat": "no-repeat",
+      "backgroundPosition": "50% 0%",
+      "backgroundAttachment": "fixed"
+    },
+    "typography": {
+      "fontFamily": "var(--wp--preset--font-family--dm-sans)",
+      "lineHeight": "1.65"
+    },
+    "elements": {
+      "heading": {
+        "color": { "text": "var(--wp--preset--color--white)" },
+        "typography": {
+          "fontFamily": "var(--wp--preset--font-family--dm-sans)",
+          "fontWeight": "700",
+          "letterSpacing": "-0.01em"
+        }
+      },
+      "h1": { "typography": { "fontFamily": "var(--wp--preset--font-family--dm-sans)", "fontWeight": "700" }, "color": { "text": "var(--wp--preset--color--white)" } },
+      "h2": { "typography": { "fontFamily": "var(--wp--preset--font-family--dm-sans)", "fontWeight": "700" }, "color": { "text": "var(--wp--preset--color--white)" } },
+      "h3": { "typography": { "fontFamily": "var(--wp--preset--font-family--dm-sans)", "fontWeight": "600" }, "color": { "text": "var(--wp--preset--color--white)" } },
+      "h4": { "typography": { "fontFamily": "var(--wp--preset--font-family--dm-sans)", "fontWeight": "600" }, "color": { "text": "var(--wp--preset--color--white)" } },
+      "h5": { "typography": { "fontFamily": "var(--wp--preset--font-family--dm-sans)", "fontWeight": "600" }, "color": { "text": "var(--wp--preset--color--white)" } },
+      "h6": { "typography": { "fontFamily": "var(--wp--preset--font-family--dm-sans)", "fontWeight": "600" }, "color": { "text": "var(--wp--preset--color--white)" } },
+      "link": {
+        "color": { "text": "#F2A7A7" },
+        ":hover": { "color": { "text": "#EBD27A" } }
+      },
+      "button": {
+        "color": {
+          "background": "#D98C99",
+          "text": "#1F1F1F"
+        },
+        "typography": {
+          "fontFamily": "var(--wp--preset--font-family--dm-sans)",
+          "fontWeight": "700",
+          "textTransform": "none",
+          "letterSpacing": "0.02em"
+        }
+      }
+    }
+  }
+}

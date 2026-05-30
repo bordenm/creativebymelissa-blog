@@ -115,6 +115,48 @@ body.design--berry footer.wp-block-template-part{
 }
 body.design--berry footer.wp-block-template-part a{color:#4FE3CE;}
 
+/* ---------- sidebar: Categories / Archives / Calendar ----------
+   The theme paints the sidebar as a light Pixel card; darken whatever
+   container holds these widgets so Berry's light links sit on dark. */
+body.design--berry aside:has(.wp-block-calendar),
+body.design--berry aside:has(.wp-block-categories),
+body.design--berry .wp-block-column:has(.wp-block-calendar),
+body.design--berry .wp-block-column:has(.wp-block-categories),
+body.design--berry .wp-block-group:has(> .wp-block-calendar),
+body.design--berry .wp-block-group:has(> .wp-block-categories),
+body.design--berry .wp-block-group:has(> .wp-block-archives){
+  background:linear-gradient(180deg,rgba(255,255,255,0.055),rgba(255,255,255,0.02));
+  border:1px dashed rgba(79,227,206,0.4);border-radius:0;
+  box-shadow:0 12px 30px rgba(0,0,0,0.34);
+}
+/* widget headings → light so they don't vanish on the dark card */
+body.design--berry aside .wp-block-heading,
+body.design--berry .wp-block-column .wp-block-heading,
+body.design--berry .wp-block-group:has(.wp-block-calendar) .wp-block-heading,
+body.design--berry .wp-block-group:has(.wp-block-categories) .wp-block-heading{color:#EAF6F3;}
+
+/* category & archive links */
+body.design--berry .wp-block-categories a,
+body.design--berry .wp-block-archives a{color:#4FE3CE;text-decoration:none;}
+body.design--berry .wp-block-categories a:hover,
+body.design--berry .wp-block-archives a:hover{color:#9BE25A;}
+body.design--berry .wp-block-categories,
+body.design--berry .wp-block-archives{color:#CFE6E2;}
+
+/* calendar block */
+body.design--berry .wp-block-calendar table{color:#CFE6E2;}
+body.design--berry .wp-block-calendar caption{color:#EAF6F3;font-family:'Fredoka',sans-serif;}
+body.design--berry .wp-block-calendar th{color:#9BE25A;}
+body.design--berry .wp-block-calendar td,
+body.design--berry .wp-block-calendar th{border-color:rgba(79,227,206,0.16);}
+/* days that have posts: teal chip with dark text (was eggplant + cyan = clash) */
+body.design--berry .wp-block-calendar tbody td:has(a){background:#4FE3CE;}
+body.design--berry .wp-block-calendar tbody td a{color:#04221F;font-weight:700;}
+body.design--berry .wp-block-calendar #today,
+body.design--berry .wp-block-calendar td#today{background:transparent;outline:2px solid #4FE3CE;outline-offset:-2px;color:#EAF6F3;}
+body.design--berry .wp-block-calendar .wp-calendar-nav a,
+body.design--berry .wp-block-calendar .wp-calendar-nav{color:#4FE3CE;}
+
 /* ---------- blueprint geometric backdrop ---------- */
 .berry-deco{display:none;}
 body.design--berry .berry-deco{

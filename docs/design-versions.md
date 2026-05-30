@@ -15,33 +15,42 @@ and "plug in" to the switcher.
   self-contained CSS bundle activated by a `design--{slug}` class on `<body>`.
   A version may also rearrange layout/sections where needed.
 - **Switcher UI:** a row of labeled pills in the site header, each pill with a
-  distinct pixel icon.
-- **Persistence:** session-only. No cookie, no storage — a reload returns to the
-  default version. (Keeps page caching simple; nothing to vary on.)
-- **Default version:** the newest design we build becomes the default.
-- **Baseline:** the current `twentytwentyfive-pixel` look is the "Pixel" version.
+  distinct icon.
+- **Persistence:** session-only & client-side. No cookie, no storage, no
+  cache-vary — switching swaps the body class in JS; a reload returns to the
+  default version.
+- **Default version:** the newest version (first entry in the registry).
+- **Colour rule:** never use pink or red in any version. Accent palette skews
+  teal / indigo / blue / lime-green / amber-gold.
 
-## Pipeline
+## How it works (live)
 
-1. Prototype each version as HTML in the design tool (preview / QA / sign-off).
-2. On approval, migrate into this repo:
-   - structural HTML  -> block templates / template parts
-   - each skin        -> scoped CSS bundle (`design--{slug}`)
-   - switcher logic   -> a small always-on mu-plugin that registers versions,
-     resolves the active one per request (session-only), adds the body class,
-     enqueues that version's assets, and renders the header pills.
+- `web/app/mu-plugins/design-versions.php` — always-on plugin. Registers the
+  versions (newest first), sets the default `design--{slug}` body class,
+  enqueues each version's scoped CSS bundle, injects the header pill switcher
+  after the Site Title block, prints the Berry backdrop layer, and ships the
+  client-side switch script.
+- `web/app/themes/twentytwentyfive-pixel/assets/designs/{slug}/{slug}.css` —
+  one scoped bundle per version (Pixel needs none; the theme's own style.css
+  IS Pixel).
 
-## Planned layout (subject to change)
+## Adding a new version
 
-```
-web/app/mu-plugins/
-  design-versions/              # registry + switcher (always-on)
-web/app/themes/twentytwentyfive-pixel/
-  assets/designs/{slug}/        # per-version css/js
-```
+1. Prototype as HTML, get sign-off.
+2. Drop `assets/designs/{slug}/{slug}.css` (everything scoped under
+   `body.design--{slug}`).
+3. Add one entry to `CBM_Design_Versions::versions()` (newest goes first to
+   become the default). Add an icon `<symbol>` to `sprite()` if needed.
+
+## Current versions
+
+- **berry** (default/newest) — dark teal/indigo abstract, gem-strawberry,
+  blueprint backdrop, sharp dashed edges, per-post accent colours.
+- **pixel** — the original light pixel-art look (base theme style.css).
 
 ## Status
 
-- [x] Prototype harness with Pixel baseline + header switcher
-- [ ] First new design direction
-- [ ] mu-plugin migration
+- [x] Prototype harness with switcher + Berry/Pixel skins
+- [x] mu-plugin migration (switcher + registry)
+- [x] Berry scoped CSS bundle
+- [ ] Verify on live site / staging and fine-tune selectors against real markup

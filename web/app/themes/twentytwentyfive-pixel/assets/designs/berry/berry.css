@@ -1,0 +1,145 @@
+/**
+ * Design version: BERRY
+ * Scoped entirely under  body.design--berry  so it cleanly overrides the
+ * theme's base (Pixel) style.css when active, and is inert otherwise.
+ *
+ * Dark teal/indigo abstract palette · rounded Fredoka type · gem-strawberry ·
+ * sharp DASHED edges (the inverse of Pixel's rounded solid cards) · blueprint
+ * geometric backdrop · per-post accent colours. No pink / no red (project rule).
+ */
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap');
+
+/* ---------- ground & type ---------- */
+body.design--berry{
+  font-family:'Nunito',system-ui,sans-serif;
+  color:#CFE6E2;
+  background:#081213;
+}
+body.design--berry .wp-site-blocks{
+  position:relative;z-index:1;
+  background:
+    radial-gradient(90% 60% at 16% -6%, rgba(90,166,240,0.22) 0%, transparent 55%),
+    radial-gradient(80% 55% at 92% 6%, rgba(79,227,206,0.18) 0%, transparent 55%),
+    radial-gradient(120% 90% at 50% -10%, #0F2A2C 0%, #0B1A1C 52%, #081213 100%);
+}
+body.design--berry h1,
+body.design--berry h2,
+body.design--berry h3,
+body.design--berry h4,
+body.design--berry .wp-block-post-title,
+body.design--berry .wp-block-site-title{
+  font-family:'Fredoka',sans-serif;font-weight:600;letter-spacing:-0.01em;color:#EAF6F3;
+}
+
+/* ---------- header ---------- */
+body.design--berry header.wp-block-template-part{
+  background:rgba(9,18,19,0.72);
+  -webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(79,227,206,0.18);
+  box-shadow:none;
+}
+body.design--berry header.wp-block-template-part.is-scrolled{box-shadow:0 6px 20px rgba(0,0,0,0.35);}
+body.design--berry .wp-block-site-title a{color:#EAF6F3;}
+/* recolour the pixel moon-and-star logo to teal so it reads on dark */
+body.design--berry svg.pixel-logo{color:#4FE3CE;fill:#4FE3CE;}
+
+/* homepage logo card → sharp dashed berry card, glow removed */
+body.design--berry .wp-block-html:has(svg.pixel-logo){
+  background:linear-gradient(150deg,rgba(90,166,240,0.12),rgba(79,227,206,0.06));
+  border:1px dashed rgba(79,227,206,0.45);border-radius:0;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,0.05);
+}
+
+/* ---------- switcher pills (Berry look) ---------- */
+body.design--berry .cbm-switcher__label{color:#8FB7B0;font-family:'Fredoka',sans-serif;font-weight:500;letter-spacing:.16em;}
+body.design--berry .cbm-switcher .pill{
+  background:rgba(255,255,255,0.04);color:#93BDB5;
+  border:1px dashed rgba(79,227,206,0.5);border-radius:0;
+  font-family:'Fredoka',sans-serif;font-weight:500;text-transform:none;letter-spacing:.01em;font-size:.78rem;
+}
+body.design--berry .cbm-switcher .pill:hover{transform:translateY(-1px);color:#EAF6F3;border-color:rgba(79,227,206,0.8);}
+body.design--berry .cbm-switcher .pill[aria-selected="true"]{
+  background:linear-gradient(180deg,#4FE3CE,#27A38F);color:#04221F;border-color:transparent;box-shadow:0 3px 9px rgba(0,0,0,0.3);
+}
+body.design--berry .cbm-switcher .pill[aria-selected="true"] .pi{filter:brightness(0) invert(1);}
+
+/* ---------- post list (Query Loop) ---------- */
+body.design--berry .wp-block-post-template{display:flex;flex-direction:column;gap:1.5rem;}
+body.design--berry li.wp-block-post{
+  background:linear-gradient(180deg,rgba(255,255,255,0.055),rgba(255,255,255,0.02));
+  border:1px dashed rgba(79,227,206,0.4);border-radius:0;
+  padding:1.6rem 1.8rem;box-shadow:0 12px 30px rgba(0,0,0,0.34);
+  transition:transform .16s ease,box-shadow .16s ease,border-color .16s ease;
+}
+body.design--berry li.wp-block-post:hover{transform:translateY(-3px);box-shadow:0 14px 32px rgba(0,0,0,0.42);border-color:var(--accent,#4FE3CE);}
+
+/* per-post accent rotation (teal / lime / blue / amber — no pink) */
+body.design--berry li.wp-block-post:nth-child(4n+1){--accent:#4FE3CE;}
+body.design--berry li.wp-block-post:nth-child(4n+2){--accent:#9BE25A;}
+body.design--berry li.wp-block-post:nth-child(4n+3){--accent:#5AA6F0;}
+body.design--berry li.wp-block-post:nth-child(4n+4){--accent:#E7B24C;}
+
+body.design--berry .wp-block-post-title{font-size:1.55rem;}
+body.design--berry .wp-block-post-title a{color:#EAF6F3;}
+body.design--berry .wp-block-post-title a:hover{color:var(--accent,#4FE3CE);}
+body.design--berry .wp-block-post-excerpt{color:#CFE6E2;font-size:1.02rem;}
+body.design--berry .wp-block-post-date,
+body.design--berry .wp-block-post-terms,
+body.design--berry .wp-block-post-author,
+body.design--berry .wp-block-comments-title,
+body.design--berry .wp-block-latest-comments__comment-meta{color:#7FA8A0;font-family:'Nunito',sans-serif;}
+body.design--berry .wp-block-post-date,
+body.design--berry .wp-block-post-terms a{color:var(--accent,#7FA8A0);}
+body.design--berry .wp-block-read-more,
+body.design--berry .wp-block-post-excerpt__more-link{
+  color:var(--accent,#4FE3CE);font-family:'Fredoka',sans-serif;font-weight:500;text-decoration:none;
+}
+
+/* category / tag chips on a post */
+body.design--berry .wp-block-post-terms a{
+  display:inline-block;border:1px dashed color-mix(in srgb,var(--accent,#4FE3CE) 55%,transparent);
+  padding:.18em .55em;margin:.1em .25em .1em 0;border-radius:0;
+  font-family:'Fredoka',sans-serif;font-weight:600;font-size:.72rem;letter-spacing:.04em;text-transform:uppercase;
+}
+
+/* links & buttons */
+body.design--berry a{color:#4FE3CE;}
+body.design--berry .wp-element-button,
+body.design--berry .wp-block-button__link{
+  background:linear-gradient(180deg,#4FE3CE,#27A38F);color:#04221F;border-radius:0;border:1px dashed transparent;
+}
+
+/* ---------- footer ---------- */
+body.design--berry footer.wp-block-template-part{
+  border-top:1px solid rgba(79,227,206,0.18);background:#081213;
+}
+body.design--berry footer.wp-block-template-part a{color:#4FE3CE;}
+
+/* ---------- blueprint geometric backdrop ---------- */
+.berry-deco{display:none;}
+body.design--berry .berry-deco{
+  display:block;position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;
+  background-image:
+    linear-gradient(rgba(79,227,206,0.05) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(79,227,206,0.05) 1px,transparent 1px);
+  background-size:46px 46px,46px 46px;
+}
+body.design--berry .bshape{position:absolute;animation:cbm-bdrift 26s ease-in-out infinite;}
+body.design--berry .target{border:2px solid currentColor;border-radius:50%;opacity:.18;}
+body.design--berry .target::before{content:"";position:absolute;inset:22%;border:2px solid currentColor;border-radius:50%;}
+body.design--berry .diamond{border:2px solid currentColor;transform:rotate(45deg);opacity:.16;}
+body.design--berry .arc{border:2px solid currentColor;border-color:currentColor transparent transparent currentColor;border-radius:50% 0 0 0;opacity:.18;}
+body.design--berry .lines{opacity:.20;background-image:repeating-linear-gradient(45deg,currentColor 0 2px,transparent 2px 11px);}
+body.design--berry .hex{opacity:.16;background:currentColor;clip-path:polygon(50% 0,93% 25%,93% 75%,50% 100%,7% 75%,7% 25%);}
+body.design--berry .hex::before{content:"";position:absolute;inset:3px;background:#0B1A1C;clip-path:polygon(50% 0,93% 25%,93% 75%,50% 100%,7% 75%,7% 25%);}
+body.design--berry .chevron{opacity:.18;background-image:repeating-linear-gradient(135deg,currentColor 0 2px,transparent 2px 12px),repeating-linear-gradient(45deg,currentColor 0 2px,transparent 2px 12px);background-size:50% 100%,50% 100%;background-position:left,right;background-repeat:no-repeat;}
+body.design--berry .g1{width:150px;height:150px;color:#5AA6F0;top:11%;left:4%;animation-duration:30s;}
+body.design--berry .g2{width:84px;height:84px;color:#9BE25A;top:70%;right:7%;animation-duration:25s;animation-delay:-6s;}
+body.design--berry .g3{width:70px;height:70px;color:#4FE3CE;top:20%;right:9%;animation-duration:28s;animation-delay:-3s;}
+body.design--berry .g4{width:38px;height:38px;color:#5AA6F0;top:82%;left:40%;animation-duration:22s;animation-delay:-9s;}
+body.design--berry .g5{width:96px;height:96px;color:#4FE3CE;top:60%;left:9%;animation-duration:27s;animation-delay:-4s;}
+body.design--berry .g7{width:90px;height:60px;color:#5AA6F0;top:38%;right:6%;animation-duration:26s;animation-delay:-2s;}
+body.design--berry .g9{width:58px;height:64px;color:#9BE25A;top:33%;left:14%;animation-duration:29s;animation-delay:-8s;}
+body.design--berry .g10{width:54px;height:54px;color:#5AA6F0;top:50%;right:22%;animation-duration:21s;animation-delay:-1s;}
+@keyframes cbm-bdrift{0%{translate:0 0}50%{translate:0 -18px}100%{translate:0 0}}
+@media(prefers-reduced-motion:reduce){body.design--berry .bshape{animation:none;}}

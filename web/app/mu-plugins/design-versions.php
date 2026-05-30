@@ -47,6 +47,7 @@ final class CBM_Design_Versions {
 		add_action( 'wp_enqueue_scripts', array( __CLASS__, 'enqueue' ), 30 );
 		add_filter( 'render_block', array( __CLASS__, 'inject_switcher' ), 10, 2 );
 		add_action( 'wp_body_open', array( __CLASS__, 'print_decoration' ) );
+		add_filter( 'render_block_core/latest-posts', array( __CLASS__, 'tag_latest_posts_categories' ) );
 	}
 
 	/** Default body class = the newest version, so reloads land on the default. */
@@ -85,7 +86,7 @@ final class CBM_Design_Versions {
 		wp_add_inline_script( 'cbm-switcher', self::switcher_js() );
 	}
 
-	/** Inline SVG sprite of the pill icons (pixel-art moon + gem strawberry). */
+	/** Inline SVG sprite of the pill icons (pixel-art moon + gem strawberry + plus). */
 	public static function sprite() {
 		return '<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">'
 			. '<symbol id="cbm-i-moon" viewBox="0 0 12 12" fill="currentColor"><rect x="3" y="0" width="4" height="1"/><rect x="2" y="1" width="6" height="1"/><rect x="1" y="2" width="5" height="1"/><rect x="0" y="3" width="5" height="1"/><rect x="0" y="4" width="4" height="2"/><rect x="0" y="6" width="2" height="1"/><rect x="3" y="6" width="1" height="1"/><rect x="0" y="7" width="4" height="1"/><rect x="0" y="8" width="5" height="1"/><rect x="1" y="9" width="5" height="1"/><rect x="2" y="10" width="6" height="1"/><rect x="3" y="11" width="4" height="1"/><rect x="6" y="5" width="1" height="1"/><rect x="5" y="6" width="3" height="1"/><rect x="6" y="7" width="1" height="1"/></symbol>'
@@ -133,6 +134,35 @@ final class CBM_Design_Versions {
 		}
 		$done = true;
 		return $block_content . self::markup();
+	}
+
+	/**
+	 * Add data-cat="{slug}" to each Latest Posts <li> so Berry (and future
+	 * versions) can colour posts by category. Core's Latest Posts block does
+	 * not emit category classes, so we resolve each item's post by its title
+	 * link and stamp its primary category slug.
+	 */
+	public static function tag_latest_posts_categories( $content ) {
+		if ( is_admin() || false === strpos( $content, 'wp-block-latest-posts__list' ) ) {
+			return $content;
+		}
+		return preg_replace_callback( '#<li(\s[^>]*)?>(.*?)</li>#is', function ( $m ) {
+			$attrs = isset( $m[1] ) ? $m[1] : '';
+			$inner = $m[2];
+			if ( false !== strpos( $attrs, 'data-cat=' ) ) {
+				return $m[0];
+			}
+			if ( preg_match( '#href="([^"]+)"#', $inner, $h ) ) {
+				$pid = url_to_postid( html_entity_decode( $h[1] ) );
+				if ( $pid ) {
+					$cats = get_the_category( $pid );
+					if ( ! empty( $cats ) ) {
+						$attrs .= ' data-cat="' . esc_attr( $cats[0]->slug ) . '"';
+					}
+				}
+			}
+			return '<li' . $attrs . '>' . $inner . '</li>';
+		}, $content );
 	}
 
 	/** Berry's fixed geometric backdrop. Always in the DOM; only shown under body.design--berry via CSS. */

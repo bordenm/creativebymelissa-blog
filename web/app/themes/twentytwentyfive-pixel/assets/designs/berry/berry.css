@@ -5,7 +5,7 @@
  *
  * Dark teal/indigo abstract palette · rounded Fredoka type · gem-strawberry ·
  * sharp DASHED edges (the inverse of Pixel's rounded solid cards) · blueprint
- * geometric backdrop · per-post accent colours. No pink / no red (project rule).
+ * geometric backdrop · per-CATEGORY accent colours. No pink / no red (project rule).
  *
  * NOTE: many Pixel rules use !important (fonts, rounded corners, buttons), so
  * Berry mirrors !important where it must win.
@@ -97,10 +97,11 @@ body.design--berry .wp-block-latest-posts__list > li{
   box-shadow:0 12px 30px rgba(0,0,0,0.34) !important;
   transition:transform .16s ease,box-shadow .16s ease,border-color .16s ease;
 }
-body.design--berry .wp-block-latest-posts__list > li:nth-child(4n+1){--accent:#4FE3CE;}
-body.design--berry .wp-block-latest-posts__list > li:nth-child(4n+2){--accent:#9BE25A;}
-body.design--berry .wp-block-latest-posts__list > li:nth-child(4n+3){--accent:#5AA6F0;}
-body.design--berry .wp-block-latest-posts__list > li:nth-child(4n+4){--accent:#E7B24C;}
+/* per-category accent (consistent colour per category, no pink/red) */
+body.design--berry .wp-block-latest-posts__list > li[data-cat="health-fitness"]{--accent:#4FE3CE;}
+body.design--berry .wp-block-latest-posts__list > li[data-cat="random"]{--accent:#5AA6F0;}
+body.design--berry .wp-block-latest-posts__list > li[data-cat="food-cooking"]{--accent:#9BE25A;}
+body.design--berry .wp-block-latest-posts__list > li[data-cat="uncategorized"]{--accent:#E7B24C;}
 body.design--berry .wp-block-latest-posts__list > li:hover{transform:translateY(-3px);border-color:var(--accent) !important;box-shadow:0 14px 32px rgba(0,0,0,0.42) !important;}
 body.design--berry .wp-block-latest-posts__list > li > a.wp-block-latest-posts__post-title{color:#EAF6F3;}
 body.design--berry .wp-block-latest-posts__list > li > a.wp-block-latest-posts__post-title:hover,
@@ -120,10 +121,11 @@ body.design--berry li.wp-block-post{
   padding:1.6rem 1.8rem;box-shadow:0 12px 30px rgba(0,0,0,0.34);
   transition:transform .16s ease,box-shadow .16s ease,border-color .16s ease;
 }
-body.design--berry li.wp-block-post:nth-child(4n+1){--accent:#4FE3CE;}
-body.design--berry li.wp-block-post:nth-child(4n+2){--accent:#9BE25A;}
-body.design--berry li.wp-block-post:nth-child(4n+3){--accent:#5AA6F0;}
-body.design--berry li.wp-block-post:nth-child(4n+4){--accent:#E7B24C;}
+/* per-category accent — Query Loop posts carry category-{slug} via post_class() */
+body.design--berry li.wp-block-post.category-health-fitness{--accent:#4FE3CE;}
+body.design--berry li.wp-block-post.category-random{--accent:#5AA6F0;}
+body.design--berry li.wp-block-post.category-food-cooking{--accent:#9BE25A;}
+body.design--berry li.wp-block-post.category-uncategorized{--accent:#E7B24C;}
 body.design--berry li.wp-block-post:hover{transform:translateY(-3px);box-shadow:0 14px 32px rgba(0,0,0,0.42);border-color:var(--accent,#4FE3CE);}
 body.design--berry .wp-block-post-title a{color:#EAF6F3;}
 body.design--berry .wp-block-post-title a:hover{color:var(--accent,#4FE3CE);}

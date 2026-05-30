@@ -16,15 +16,17 @@
 body.design--berry{
   font-family:'Nunito',system-ui,sans-serif;
   color:#CFE6E2;
-  background:#081213;
-}
-body.design--berry .wp-site-blocks{
-  position:relative;z-index:1;
-  background:
+  background-color:#081213;
+  /* page gradient lives on <body>, BEHIND the fixed .berry-deco shape layer */
+  background-image:
     radial-gradient(90% 60% at 16% -6%, rgba(90,166,240,0.22) 0%, transparent 55%),
     radial-gradient(80% 55% at 92% 6%, rgba(79,227,206,0.18) 0%, transparent 55%),
     radial-gradient(120% 90% at 50% -10%, #0F2A2C 0%, #0B1A1C 52%, #081213 100%);
+  background-attachment:fixed;
 }
+/* content sits ABOVE the deco (z-index 1) but is transparent, so the
+   geometric backdrop shows through the page. */
+body.design--berry .wp-site-blocks{position:relative;z-index:1;background:transparent;}
 /* headings → Fredoka (Pixel forces Jersey 15 !important, so mirror it).
    The wordmark (.wp-block-site-title) is intentionally left as Pixel's
    Pixelify Sans and only recoloured below. */

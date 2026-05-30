@@ -157,6 +157,13 @@ body.design--berry input[type="submit"]{
   border:1px dashed transparent !important;border-radius:0 !important;box-shadow:none;
 }
 body.design--berry .wp-block-image img{border:1px dashed rgba(79,227,206,0.4) !important;border-radius:0 !important;box-shadow:0 10px 24px rgba(0,0,0,0.4);}
+/* Strava embed — base theme adds  iframe[src*="strava"]{box-shadow:6px 6px 0 0 #6B4A7A!important}
+   (eggplant offset, unscoped). Keep it for Pixel; restyle for Berry. */
+body.design--berry iframe[src*="strava"],
+body.design--berry .strava-embed-placeholder{
+  border:1px dashed rgba(79,227,206,0.4) !important;border-radius:0 !important;
+  box-shadow:0 12px 30px rgba(0,0,0,0.4) !important;
+}
 
 /* ---------- footer ---------- */
 body.design--berry footer.wp-block-template-part{

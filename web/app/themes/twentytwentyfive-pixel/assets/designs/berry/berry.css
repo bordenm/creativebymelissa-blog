@@ -85,7 +85,7 @@ body.design--berry .cbm-switcher .pill{
 }
 body.design--berry .cbm-switcher .pill:hover{transform:translateY(-1px);color:#EAF6F3;border-color:rgba(79,227,206,0.8);}
 body.design--berry .cbm-switcher .pill[aria-selected="true"]{
-  background:linear-gradient(180deg,#4FE3CE,#27A38F);color:#04221F;border-color:transparent;box-shadow:0 3px 9px rgba(0,0,0,0.3);
+  background:#4FE3CE;color:#04221F;border:1px dashed #4FE3CE;border-radius:0;box-shadow:none;
 }
 body.design--berry .cbm-switcher .pill[aria-selected="true"] .pi{filter:brightness(0) invert(1);}
 

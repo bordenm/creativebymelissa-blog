@@ -6,6 +6,9 @@
  * Dark teal/indigo abstract palette · rounded Fredoka type · gem-strawberry ·
  * sharp DASHED edges (the inverse of Pixel's rounded solid cards) · blueprint
  * geometric backdrop · per-post accent colours. No pink / no red (project rule).
+ *
+ * NOTE: many Pixel rules use !important (fonts, rounded corners, buttons), so
+ * Berry mirrors !important where it must win.
  */
 @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap');
 
@@ -22,32 +25,53 @@ body.design--berry .wp-site-blocks{
     radial-gradient(80% 55% at 92% 6%, rgba(79,227,206,0.18) 0%, transparent 55%),
     radial-gradient(120% 90% at 50% -10%, #0F2A2C 0%, #0B1A1C 52%, #081213 100%);
 }
+/* headings → Fredoka (Pixel forces Jersey 15 !important, so mirror it).
+   The wordmark (.wp-block-site-title) is intentionally left as Pixel's
+   Pixelify Sans and only recoloured below. */
 body.design--berry h1,
 body.design--berry h2,
 body.design--berry h3,
 body.design--berry h4,
+body.design--berry h5,
+body.design--berry h6,
 body.design--berry .wp-block-post-title,
-body.design--berry .wp-block-site-title{
-  font-family:'Fredoka',sans-serif;font-weight:600;letter-spacing:-0.01em;color:#EAF6F3;
+body.design--berry .wp-block-post-title a,
+body.design--berry .wp-block-query-title{
+  font-family:'Fredoka',sans-serif !important;font-weight:600;letter-spacing:-0.01em;color:#EAF6F3;
 }
 
 /* ---------- header ---------- */
 body.design--berry header.wp-block-template-part{
   background:rgba(9,18,19,0.72);
+  background-image:none;
   -webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);
   border-bottom:1px solid rgba(79,227,206,0.18);
-  box-shadow:none;
 }
-body.design--berry header.wp-block-template-part.is-scrolled{box-shadow:0 6px 20px rgba(0,0,0,0.35);}
-body.design--berry .wp-block-site-title a{color:#EAF6F3;}
-/* recolour the pixel moon-and-star logo to teal so it reads on dark */
-body.design--berry svg.pixel-logo{color:#4FE3CE;fill:#4FE3CE;}
+/* wordmark: recolour the ::before moon (teal) + ::after "cbm blog" text (light).
+   Applies in header AND footer site-title. */
+body.design--berry .wp-block-site-title a::before{background-color:#4FE3CE;}
+body.design--berry .wp-block-site-title a::after{color:#EAF6F3;}
+/* tablet inline nav links (desktop nav is hidden by the theme) */
+body.design--berry .wp-block-navigation:not(.is-menu-open) .wp-block-navigation-item__content{color:#CFE6E2;}
+body.design--berry .wp-block-navigation:not(.is-menu-open) .wp-block-navigation-item__content:hover,
+body.design--berry .wp-block-navigation:not(.is-menu-open) .wp-block-navigation-item__content:focus{color:#4FE3CE;}
 
 /* homepage logo card → sharp dashed berry card, glow removed */
 body.design--berry .wp-block-html:has(svg.pixel-logo){
   background:linear-gradient(150deg,rgba(90,166,240,0.12),rgba(79,227,206,0.06));
   border:1px dashed rgba(79,227,206,0.45);border-radius:0;
   box-shadow:inset 0 1px 0 rgba(255,255,255,0.05);
+}
+
+/* page/archive/single/blog/search content card → dark berry panel */
+body.design--berry.single .wp-site-blocks > main.wp-block-group,
+body.design--berry.page:not(.home) .wp-site-blocks > main.wp-block-group,
+body.design--berry.archive .wp-site-blocks > main.wp-block-group,
+body.design--berry.search .wp-site-blocks > main.wp-block-group,
+body.design--berry.blog .wp-site-blocks > main.wp-block-group{
+  background:linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0.02));
+  border:1px dashed rgba(79,227,206,0.4);border-radius:0;
+  box-shadow:0 12px 30px rgba(0,0,0,0.34);
 }
 
 /* ---------- switcher pills (Berry look) ---------- */
@@ -63,7 +87,30 @@ body.design--berry .cbm-switcher .pill[aria-selected="true"]{
 }
 body.design--berry .cbm-switcher .pill[aria-selected="true"] .pi{filter:brightness(0) invert(1);}
 
-/* ---------- post list (Query Loop) ---------- */
+/* ---------- homepage "Latest posts" (Latest Posts block) ---------- */
+body.design--berry .wp-block-latest-posts__list{--accent:#4FE3CE;}
+body.design--berry .wp-block-latest-posts__list > li{
+  background:linear-gradient(180deg,rgba(255,255,255,0.055),rgba(255,255,255,0.02)) !important;
+  border:1px dashed rgba(79,227,206,0.4) !important;border-radius:0 !important;
+  box-shadow:0 12px 30px rgba(0,0,0,0.34) !important;
+  transition:transform .16s ease,box-shadow .16s ease,border-color .16s ease;
+}
+body.design--berry .wp-block-latest-posts__list > li:nth-child(4n+1){--accent:#4FE3CE;}
+body.design--berry .wp-block-latest-posts__list > li:nth-child(4n+2){--accent:#9BE25A;}
+body.design--berry .wp-block-latest-posts__list > li:nth-child(4n+3){--accent:#5AA6F0;}
+body.design--berry .wp-block-latest-posts__list > li:nth-child(4n+4){--accent:#E7B24C;}
+body.design--berry .wp-block-latest-posts__list > li:hover{transform:translateY(-3px);border-color:var(--accent) !important;box-shadow:0 14px 32px rgba(0,0,0,0.42) !important;}
+body.design--berry .wp-block-latest-posts__list > li > a.wp-block-latest-posts__post-title{color:#EAF6F3;}
+body.design--berry .wp-block-latest-posts__list > li > a.wp-block-latest-posts__post-title:hover,
+body.design--berry .wp-block-latest-posts__list > li > a.wp-block-latest-posts__post-title:focus{color:var(--accent);}
+body.design--berry .wp-block-latest-posts__list > li > a.wp-block-latest-posts__post-title::before{background-color:var(--accent);}
+body.design--berry .wp-block-latest-posts__post-date{color:#7FA8A0;}
+body.design--berry .pixel-comment-count{color:#7FA8A0;}
+body.design--berry .pixel-comment-count:hover,
+body.design--berry .pixel-comment-count:focus{color:var(--accent,#4FE3CE);}
+body.design--berry .wp-block-latest-posts__post-excerpt{color:#CFE6E2;}
+
+/* ---------- post list (core Query Loop — archive/category pages) ---------- */
 body.design--berry .wp-block-post-template{display:flex;flex-direction:column;gap:1.5rem;}
 body.design--berry li.wp-block-post{
   background:linear-gradient(180deg,rgba(255,255,255,0.055),rgba(255,255,255,0.02));
@@ -71,91 +118,78 @@ body.design--berry li.wp-block-post{
   padding:1.6rem 1.8rem;box-shadow:0 12px 30px rgba(0,0,0,0.34);
   transition:transform .16s ease,box-shadow .16s ease,border-color .16s ease;
 }
-body.design--berry li.wp-block-post:hover{transform:translateY(-3px);box-shadow:0 14px 32px rgba(0,0,0,0.42);border-color:var(--accent,#4FE3CE);}
-
-/* per-post accent rotation (teal / lime / blue / amber — no pink) */
 body.design--berry li.wp-block-post:nth-child(4n+1){--accent:#4FE3CE;}
 body.design--berry li.wp-block-post:nth-child(4n+2){--accent:#9BE25A;}
 body.design--berry li.wp-block-post:nth-child(4n+3){--accent:#5AA6F0;}
 body.design--berry li.wp-block-post:nth-child(4n+4){--accent:#E7B24C;}
-
-body.design--berry .wp-block-post-title{font-size:1.55rem;}
+body.design--berry li.wp-block-post:hover{transform:translateY(-3px);box-shadow:0 14px 32px rgba(0,0,0,0.42);border-color:var(--accent,#4FE3CE);}
 body.design--berry .wp-block-post-title a{color:#EAF6F3;}
 body.design--berry .wp-block-post-title a:hover{color:var(--accent,#4FE3CE);}
-body.design--berry .wp-block-post-excerpt{color:#CFE6E2;font-size:1.02rem;}
-body.design--berry .wp-block-post-date,
-body.design--berry .wp-block-post-terms,
-body.design--berry .wp-block-post-author,
-body.design--berry .wp-block-comments-title,
-body.design--berry .wp-block-latest-comments__comment-meta{color:#7FA8A0;font-family:'Nunito',sans-serif;}
-body.design--berry .wp-block-post-date,
-body.design--berry .wp-block-post-terms a{color:var(--accent,#7FA8A0);}
+body.design--berry .wp-block-post-excerpt{color:#CFE6E2;}
 body.design--berry .wp-block-read-more,
-body.design--berry .wp-block-post-excerpt__more-link{
-  color:var(--accent,#4FE3CE);font-family:'Fredoka',sans-serif;font-weight:500;text-decoration:none;
-}
+body.design--berry .wp-block-post-excerpt__more-link{color:var(--accent,#4FE3CE);font-family:'Fredoka',sans-serif;font-weight:500;text-decoration:none;}
 
-/* category / tag chips on a post */
-body.design--berry .wp-block-post-terms a{
-  display:inline-block;border:1px dashed color-mix(in srgb,var(--accent,#4FE3CE) 55%,transparent);
-  padding:.18em .55em;margin:.1em .25em .1em 0;border-radius:0;
-  font-family:'Fredoka',sans-serif;font-weight:600;font-size:.72rem;letter-spacing:.04em;text-transform:uppercase;
-}
+/* date pill (core post-date, used on single/archive) */
+body.design--berry .wp-block-post-date,
+body.design--berry .wp-block-post-date a,
+body.design--berry time.wp-block-post-date{color:#7FA8A0;}
 
-/* links & buttons */
+/* ---------- Categories block (pill buttons) ---------- */
+body.design--berry ul.wp-block-categories li a,
+body.design--berry ul.wp-block-categories-list li a{
+  color:#CFE6E2;background:rgba(255,255,255,0.04);
+  border:1px dashed rgba(79,227,206,0.5);border-radius:0;box-shadow:none;
+}
+body.design--berry ul.wp-block-categories li a:hover,
+body.design--berry ul.wp-block-categories-list li a:hover{color:#4FE3CE;transform:none;box-shadow:none;border-color:rgba(79,227,206,0.8);}
+
+/* ---------- links & buttons ---------- */
 body.design--berry a{color:#4FE3CE;}
-body.design--berry .wp-element-button,
-body.design--berry .wp-block-button__link{
-  background:linear-gradient(180deg,#4FE3CE,#27A38F);color:#04221F;border-radius:0;border:1px dashed transparent;
+body.design--berry a:hover,body.design--berry a:focus{color:#9BE25A;}
+body.design--berry .wp-block-button__link,
+body.design--berry .wp-block-search__button,
+body.design--berry input[type="submit"]{
+  color:#04221F !important;background:linear-gradient(180deg,#4FE3CE,#27A38F) !important;
+  border:1px dashed transparent !important;border-radius:0 !important;box-shadow:none;
 }
+body.design--berry .wp-block-image img{border:1px dashed rgba(79,227,206,0.4) !important;border-radius:0 !important;box-shadow:0 10px 24px rgba(0,0,0,0.4);}
 
 /* ---------- footer ---------- */
 body.design--berry footer.wp-block-template-part{
-  border-top:1px solid rgba(79,227,206,0.18);background:#081213;
+  border-top:1px solid rgba(79,227,206,0.18);background:#081213;background-image:none;
 }
 body.design--berry footer.wp-block-template-part a{color:#4FE3CE;}
 
-/* ---------- sidebar: Categories / Archives / Calendar ----------
-   The theme paints the sidebar as a light Pixel card; darken whatever
-   container holds these widgets so Berry's light links sit on dark. */
-body.design--berry aside:has(.wp-block-calendar),
-body.design--berry aside:has(.wp-block-categories),
-body.design--berry .wp-block-column:has(.wp-block-calendar),
-body.design--berry .wp-block-column:has(.wp-block-categories),
-body.design--berry .wp-block-group:has(> .wp-block-calendar),
-body.design--berry .wp-block-group:has(> .wp-block-categories),
-body.design--berry .wp-block-group:has(> .wp-block-archives){
-  background:linear-gradient(180deg,rgba(255,255,255,0.055),rgba(255,255,255,0.02));
+/* ---------- custom Pixel sidebar (Categories list + activity calendar) ---------- */
+body.design--berry .pixel-sidebar{
+  background:linear-gradient(180deg,rgba(18,42,44,0.94),rgba(11,26,28,0.94));
   border:1px dashed rgba(79,227,206,0.4);border-radius:0;
-  box-shadow:0 12px 30px rgba(0,0,0,0.34);
+  box-shadow:0 14px 34px rgba(0,0,0,0.45);
+  -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
 }
-/* widget headings → light so they don't vanish on the dark card */
-body.design--berry aside .wp-block-heading,
-body.design--berry .wp-block-column .wp-block-heading,
-body.design--berry .wp-block-group:has(.wp-block-calendar) .wp-block-heading,
-body.design--berry .wp-block-group:has(.wp-block-categories) .wp-block-heading{color:#EAF6F3;}
-
-/* category & archive links */
-body.design--berry .wp-block-categories a,
-body.design--berry .wp-block-archives a{color:#4FE3CE;text-decoration:none;}
-body.design--berry .wp-block-categories a:hover,
-body.design--berry .wp-block-archives a:hover{color:#9BE25A;}
-body.design--berry .wp-block-categories,
-body.design--berry .wp-block-archives{color:#CFE6E2;}
-
-/* calendar block */
-body.design--berry .wp-block-calendar table{color:#CFE6E2;}
-body.design--berry .wp-block-calendar caption{color:#EAF6F3;font-family:'Fredoka',sans-serif;}
-body.design--berry .wp-block-calendar th{color:#9BE25A;}
-body.design--berry .wp-block-calendar td,
-body.design--berry .wp-block-calendar th{border-color:rgba(79,227,206,0.16);}
-/* days that have posts: teal chip with dark text (was eggplant + cyan = clash) */
-body.design--berry .wp-block-calendar tbody td:has(a){background:#4FE3CE;}
-body.design--berry .wp-block-calendar tbody td a{color:#04221F;font-weight:700;}
-body.design--berry .wp-block-calendar #today,
-body.design--berry .wp-block-calendar td#today{background:transparent;outline:2px solid #4FE3CE;outline-offset:-2px;color:#EAF6F3;}
-body.design--berry .wp-block-calendar .wp-calendar-nav a,
-body.design--berry .wp-block-calendar .wp-calendar-nav{color:#4FE3CE;}
+body.design--berry .pixel-sidebar__heading{color:#EAF6F3;font-family:'Fredoka',sans-serif;}
+body.design--berry .pixel-sidebar__heading--calendar{border-top-color:rgba(79,227,206,0.28);}
+body.design--berry .pixel-sidebar__item{border-bottom-color:rgba(79,227,206,0.18);}
+body.design--berry .pixel-sidebar__item a{color:#CFE6E2;}
+body.design--berry .pixel-sidebar__item a::before{color:#4FE3CE;}
+body.design--berry .pixel-sidebar__item a:hover,
+body.design--berry .pixel-sidebar__item a:focus,
+body.design--berry .pixel-sidebar__item.is-current a{color:#4FE3CE;}
+/* activity calendar */
+body.design--berry .pixel-sidebar__calendar-month{color:#8FB7B0;}
+body.design--berry .pixel-sidebar__calendar-nav{color:#4FE3CE;}
+body.design--berry .pixel-sidebar__calendar-nav:hover,
+body.design--berry .pixel-sidebar__calendar-nav:focus{background:#4FE3CE;color:#04221F;}
+body.design--berry .pixel-sidebar__calendar-nav--disabled,
+body.design--berry .pixel-sidebar__calendar-nav--disabled:hover{color:rgba(143,183,176,0.4);background:transparent;}
+body.design--berry .pixel-sidebar__calendar-weekday{color:#9BE25A;}
+body.design--berry .pixel-sidebar__calendar-day{color:#CFE6E2;}
+body.design--berry .pixel-sidebar__calendar-day--has-posts{background:#4FE3CE;color:#04221F;}
+body.design--berry .pixel-sidebar__calendar-day--has-posts:hover,
+body.design--berry .pixel-sidebar__calendar-day--has-posts:focus{background:#27A38F;color:#04221F;}
+body.design--berry .pixel-sidebar__calendar-day--today{outline-color:#4FE3CE;}
+body.design--berry .pixel-sidebar__calendar-day--today.pixel-sidebar__calendar-day--has-posts{outline-color:#9BE25A;}
+body.design--berry .pixel-sidebar__calendar-count{background:#E7B24C;color:#04221F;border-color:rgba(79,227,206,0.5);}
 
 /* ---------- blueprint geometric backdrop ---------- */
 .berry-deco{display:none;}

@@ -111,11 +111,18 @@ body.design--berry header .wp-block-navigation button.wp-block-navigation-submen
    container (not <body>), and core's .has-modal-open{overflow:hidden} was clipping
    the menu so it couldn't scroll. overflow-y:auto !important restores scrolling. */
 body.design--berry .wp-block-navigation__responsive-container.is-menu-open{
-  position:fixed !important;inset:0 !important;height:100% !important;max-height:100dvh !important;
+  position:fixed !important;top:0 !important;right:0 !important;bottom:0 !important;left:0 !important;
+  width:100% !important;height:100dvh !important;
   overflow-y:auto !important;-webkit-overflow-scrolling:touch;z-index:100000 !important;
   background-color:#0B1A1C !important;
   background-image:radial-gradient(rgba(79,227,206,0.14) 1.5px, transparent 1.5px) !important;
   background-size:28px 28px !important;
+}
+/* CRITICAL: the header's backdrop-filter makes it the containing block for the
+   fixed overlay, trapping it at header height. Drop the blur while the menu is
+   open so the overlay escapes to the full viewport (Pixel header has no blur). */
+body.design--berry:has(.wp-block-navigation__responsive-container.is-menu-open) header.wp-block-template-part{
+  -webkit-backdrop-filter:none !important;backdrop-filter:none !important;
 }
 /* "— MENU —" label */
 body.design--berry .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation__responsive-container-content::before{color:#8FB7B0 !important;}

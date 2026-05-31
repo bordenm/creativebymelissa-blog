@@ -129,8 +129,7 @@ body.design--berry .wp-block-navigation__responsive-container.is-menu-open .wp-b
 /* item dividers (Pixel: 3px dashed eggplant) → dashed teal */
 body.design--berry .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation-item{border-bottom-color:rgba(79,227,206,0.3) !important;}
 /* fullscreen menu: centered column so labels, text and dividers all align
-   tidily (Fredoka is wider than the theme's pixel font, and items were
-   right-justified). Cap size + center the whole column. */
+   tidily (Fredoka is wider than the theme's pixel font, items were right-justified). */
 body.design--berry .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation__responsive-container-content{max-width:440px !important;width:100% !important;margin:0 auto !important;padding:0 !important;align-items:stretch !important;justify-content:flex-start !important;}
 body.design--berry .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation__container{align-items:center !important;justify-content:center !important;width:100% !important;}
 body.design--berry .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation-item{text-align:center !important;width:100% !important;}
@@ -161,6 +160,10 @@ body.design--berry.blog .wp-site-blocks > main.wp-block-group{
   border:1px dashed rgba(79,227,206,0.4);border-radius:0;
   box-shadow:0 12px 30px rgba(0,0,0,0.34);
 }
+
+/* single-post title centered (was left-aligned) */
+body.design--berry.single .wp-block-post-title,
+body.design--berry.single .wp-block-post-title a{text-align:center !important;}
 
 /* ---------- switcher pills (Berry look) ----------
    Must outrank the theme's global  button:not(...){...!important}  rule,

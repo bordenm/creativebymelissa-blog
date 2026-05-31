@@ -57,6 +57,42 @@ body.design--berry .wp-block-site-title a::after{color:#EAF6F3;}
 body.design--berry .wp-block-navigation:not(.is-menu-open) .wp-block-navigation-item__content{color:#CFE6E2;}
 body.design--berry .wp-block-navigation:not(.is-menu-open) .wp-block-navigation-item__content:hover,
 body.design--berry .wp-block-navigation:not(.is-menu-open) .wp-block-navigation-item__content:focus{color:#4FE3CE;}
+body.design--berry .wp-block-navigation:not(.is-menu-open) .current-menu-item .wp-block-navigation-item__content{color:#4FE3CE !important;}
+
+/* ---------- mobile burger nav (Pixel renders cream boxes + light pixel overlay) ---------- */
+/* open + close burger buttons → dark dashed teal (override Pixel cream boxes) */
+body.design--berry .wp-block-navigation__responsive-container-open,
+body.design--berry .wp-block-navigation__responsive-container-close{
+  background:rgba(255,255,255,0.05) !important;border:1px dashed rgba(79,227,206,0.6) !important;
+  border-radius:0 !important;box-shadow:none !important;color:#CFE6E2 !important;
+}
+body.design--berry .wp-block-navigation__responsive-container-open:hover,
+body.design--berry .wp-block-navigation__responsive-container-close:hover{transform:none !important;box-shadow:none !important;border-color:#4FE3CE !important;}
+body.design--berry .wp-block-navigation__responsive-container-open svg,
+body.design--berry .wp-block-navigation__responsive-container-close svg{fill:#CFE6E2 !important;}
+/* any submenu toggle button inside the nav */
+body.design--berry header .wp-block-navigation button.wp-block-navigation-submenu__toggle{
+  background:transparent !important;border:0 !important;box-shadow:none !important;color:#CFE6E2 !important;border-radius:0 !important;
+}
+body.design--berry header .wp-block-navigation button.wp-block-navigation-submenu__toggle svg{fill:currentColor !important;}
+
+/* the fullscreen overlay panel → dark berry ground + teal dots (replaces light pixel) */
+body.design--berry .wp-block-navigation__responsive-container.is-menu-open{
+  background-color:#0B1A1C !important;
+  background-image:radial-gradient(rgba(79,227,206,0.14) 1.5px, transparent 1.5px) !important;
+  background-size:28px 28px !important;
+}
+/* "— MENU —" label */
+body.design--berry .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation__responsive-container-content::before{color:#8FB7B0 !important;}
+/* item dividers (Pixel: 3px dashed eggplant) → dashed teal */
+body.design--berry .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation-item{border-bottom-color:rgba(79,227,206,0.3) !important;}
+/* item links → light, Fredoka */
+body.design--berry .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation-item__content{color:#CFE6E2 !important;font-family:'Fredoka',sans-serif !important;}
+body.design--berry .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation-item__content:hover,
+body.design--berry .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation-item__content:focus{color:#4FE3CE !important;}
+/* ▸ marker + current item (Pixel eggplant) → teal */
+body.design--berry .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation-item__content::before{color:#4FE3CE !important;}
+body.design--berry .wp-block-navigation__responsive-container.is-menu-open .current-menu-item .wp-block-navigation-item__content{color:#4FE3CE !important;}
 
 /* homepage logo card → sharp dashed berry card, glow removed */
 body.design--berry .wp-block-html:has(svg.pixel-logo){

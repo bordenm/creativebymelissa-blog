@@ -138,6 +138,8 @@ body.design--berry .wp-block-navigation__responsive-container.is-menu-open .wp-b
 body.design--berry .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation-item__content{color:#CFE6E2 !important;font-family:'Fredoka',sans-serif !important;font-size:1.5rem !important;justify-content:center !important;text-align:center !important;width:100% !important;}
 body.design--berry .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation-item__content:hover,
 body.design--berry .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation-item__content:focus{color:#4FE3CE !important;}
+/* kill the current-item box outline (it ran off the right edge); teal text + ▸ already mark current */
+body.design--berry .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation-item__content{border:0 !important;outline:0 !important;box-shadow:none !important;background:transparent !important;box-sizing:border-box !important;}
 /* ▸ marker + current item (Pixel eggplant) → teal */
 body.design--berry .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation-item__content::before{color:#4FE3CE !important;}
 body.design--berry .wp-block-navigation__responsive-container.is-menu-open .current-menu-item .wp-block-navigation-item__content{color:#4FE3CE !important;}

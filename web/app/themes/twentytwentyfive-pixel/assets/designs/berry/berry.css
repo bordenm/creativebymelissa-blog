@@ -159,7 +159,11 @@ body.design--berry.blog .wp-site-blocks > main.wp-block-group{
   background:linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0.02));
   border:1px dashed rgba(79,227,206,0.4);border-radius:0;
   box-shadow:0 12px 30px rgba(0,0,0,0.34);
+  padding-left:clamp(1.15rem,4vw,2rem) !important;padding-right:clamp(1.15rem,4vw,2rem) !important;
 }
+/* keep alignfull content (entry-content, terms) inside the dashed border so
+   bullets/text don't crowd or cross the edge */
+body.design--berry.single .wp-site-blocks > main.wp-block-group .alignfull{margin-left:0 !important;margin-right:0 !important;max-width:100% !important;}
 
 /* single-post title centered (was left-aligned) */
 body.design--berry.single .wp-block-post-title,

@@ -128,20 +128,20 @@ body.design--berry:has(.wp-block-navigation__responsive-container.is-menu-open) 
 body.design--berry .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation__responsive-container-content::before{color:#8FB7B0 !important;}
 /* item dividers (Pixel: 3px dashed eggplant) → dashed teal */
 body.design--berry .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation-item{border-bottom-color:rgba(79,227,206,0.3) !important;}
-/* fullscreen menu sizing: Fredoka is wider than the theme's pixel font at its
-   large menu size and items were right-justified (items-justified-right), so they
-   overflowed off-screen. Cap the size + center everything so all labels fit. */
-body.design--berry .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation__responsive-container-content{max-width:100% !important;width:100% !important;padding:0 1.25rem !important;align-items:center !important;justify-content:flex-start !important;}
+/* fullscreen menu: centered column so labels, text and dividers all align
+   tidily (Fredoka is wider than the theme's pixel font, and items were
+   right-justified). Cap size + center the whole column. */
+body.design--berry .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation__responsive-container-content{max-width:440px !important;width:100% !important;margin:0 auto !important;padding:0 !important;align-items:stretch !important;justify-content:flex-start !important;}
 body.design--berry .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation__container{align-items:center !important;justify-content:center !important;width:100% !important;}
 body.design--berry .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation-item{text-align:center !important;width:100% !important;}
 /* item links → light, Fredoka, fit-to-screen size, centered (override items-justified-right → justify-content:flex-end) */
 body.design--berry .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation-item__content{color:#CFE6E2 !important;font-family:'Fredoka',sans-serif !important;font-size:1.5rem !important;justify-content:center !important;text-align:center !important;width:100% !important;}
 body.design--berry .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation-item__content:hover,
 body.design--berry .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation-item__content:focus{color:#4FE3CE !important;}
-/* kill the current-item box outline (it ran off the right edge); teal text + ▸ already mark current */
+/* kill the current-item box outline (it ran off the right edge); teal text marks current */
 body.design--berry .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation-item__content{border:0 !important;outline:0 !important;box-shadow:none !important;background:transparent !important;box-sizing:border-box !important;}
-/* ▸ marker + current item (Pixel eggplant) → teal */
-body.design--berry .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation-item__content::before{color:#4FE3CE !important;}
+/* hide the ▸ markers (they sat at the far-left edge, off-centering the row) */
+body.design--berry .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation-item__content::before{display:none !important;}
 body.design--berry .wp-block-navigation__responsive-container.is-menu-open .current-menu-item .wp-block-navigation-item__content{color:#4FE3CE !important;}
 
 /* homepage logo card → sharp dashed berry card, glow removed */

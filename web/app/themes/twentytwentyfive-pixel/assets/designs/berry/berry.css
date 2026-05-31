@@ -76,8 +76,13 @@ body.design--berry header .wp-block-navigation button.wp-block-navigation-submen
 }
 body.design--berry header .wp-block-navigation button.wp-block-navigation-submenu__toggle svg{fill:currentColor !important;}
 
-/* the fullscreen overlay panel → dark berry ground + teal dots (replaces light pixel) */
+/* the fullscreen overlay panel → dark berry ground + teal dots (replaces light pixel).
+   Force fixed-fullscreen + internal scroll: the nav puts has-modal-open on THIS
+   container (not <body>), and core's .has-modal-open{overflow:hidden} was clipping
+   the menu so it couldn't scroll. overflow-y:auto !important restores scrolling. */
 body.design--berry .wp-block-navigation__responsive-container.is-menu-open{
+  position:fixed !important;inset:0 !important;height:100% !important;max-height:100dvh !important;
+  overflow-y:auto !important;-webkit-overflow-scrolling:touch;z-index:100000 !important;
   background-color:#0B1A1C !important;
   background-image:radial-gradient(rgba(79,227,206,0.14) 1.5px, transparent 1.5px) !important;
   background-size:28px 28px !important;

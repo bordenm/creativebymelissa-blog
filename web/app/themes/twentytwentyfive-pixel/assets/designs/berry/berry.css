@@ -3,9 +3,10 @@
  * Scoped entirely under  body.design--berry  so it cleanly overrides the
  * theme's base (Pixel) style.css when active, and is inert otherwise.
  *
- * Dark teal/indigo abstract palette · rounded Fredoka type · gem-strawberry ·
- * sharp DASHED edges (the inverse of Pixel's rounded solid cards) · blueprint
- * geometric backdrop · per-CATEGORY accent colours. No pink / no red (project rule).
+ * Dark teal/indigo abstract palette · Fredoka (display) + Nunito (body) — NO
+ * pixel fonts · gem-strawberry · sharp DASHED edges (the inverse of Pixel's
+ * rounded solid cards) · blueprint geometric backdrop · per-CATEGORY accent
+ * colours. No pink / no red (project rule).
  *
  * NOTE: many Pixel rules use !important (fonts, rounded corners, buttons), so
  * Berry mirrors !important where it must win.
@@ -17,6 +18,14 @@ body.design--berry{
   font-family:'Nunito',system-ui,sans-serif;
   color:#CFE6E2;
   background-color:#081213;
+  /* Berry uses Fredoka (display) + Nunito (body) — NO pixel fonts. The theme
+     assigns its four fonts via these presets (.has-*-font-family classes and
+     direct var() refs), so remapping the vars flips every pixel font to Berry's
+     two in one move: Jersey 15 + Pixelify Sans -> Fredoka; Silkscreen + DM Sans -> Nunito. */
+  --wp--preset--font-family--jersey-15:'Fredoka',sans-serif;
+  --wp--preset--font-family--pixelify-sans:'Fredoka',sans-serif;
+  --wp--preset--font-family--silkscreen:'Nunito',sans-serif;
+  --wp--preset--font-family--dm-sans:'Nunito',sans-serif;
   /* page gradient lives on <body>, BEHIND the fixed .berry-deco shape layer */
   background-image:
     radial-gradient(90% 60% at 16% -6%, rgba(90,166,240,0.22) 0%, transparent 55%),
@@ -28,8 +37,7 @@ body.design--berry{
    geometric backdrop shows through the page. */
 body.design--berry .wp-site-blocks{position:relative;z-index:1;background:transparent;}
 /* headings → Fredoka (Pixel forces Jersey 15 !important, so mirror it).
-   The wordmark (.wp-block-site-title) is intentionally left as Pixel's
-   Pixelify Sans and only recoloured below. */
+   The wordmark now becomes Fredoka too via the font-preset remap above. */
 body.design--berry h1,
 body.design--berry h2,
 body.design--berry h3,
@@ -38,6 +46,8 @@ body.design--berry h5,
 body.design--berry h6,
 body.design--berry .wp-block-post-title,
 body.design--berry .wp-block-post-title a,
+body.design--berry .wp-block-latest-posts__post-title,
+body.design--berry .wp-block-latest-posts__post-title a,
 body.design--berry .wp-block-query-title{
   font-family:'Fredoka',sans-serif !important;font-weight:600;letter-spacing:-0.01em;color:#EAF6F3;
 }

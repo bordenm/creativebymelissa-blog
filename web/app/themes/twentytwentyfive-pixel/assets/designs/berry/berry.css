@@ -60,9 +60,29 @@ body.design--berry header.wp-block-template-part{
   border-bottom:1px solid rgba(79,227,206,0.18);
 }
 /* wordmark: recolour the ::before moon (teal) + ::after "cbm blog" text (light).
-   Applies in header AND footer site-title. */
+   ::after also needs Fredoka (theme sets Pixelify literal here). */
 body.design--berry .wp-block-site-title a::before{background-color:#4FE3CE;}
-body.design--berry .wp-block-site-title a::after{color:#EAF6F3;}
+body.design--berry .wp-block-site-title a::after{color:#EAF6F3;font-family:'Fredoka',sans-serif !important;}
+
+/* ---------- FONT OVERRIDES ----------
+   The theme assigns pixel fonts via high-specificity LITERAL rules (not the
+   presets), so these explicit selectors match/beat each one. Titles/wordmark/
+   headings -> Fredoka; meta, dates, labels, sidebar, calendar -> Nunito. */
+body.design--berry .wp-block-latest-posts__list > li > a.wp-block-latest-posts__post-title{font-family:'Fredoka',sans-serif !important;}
+body.design--berry .pixel-sidebar__heading{font-family:'Fredoka',sans-serif !important;}
+body.design--berry .wp-block-latest-posts__post-date,
+body.design--berry .pixel-comment-count,
+body.design--berry ul.wp-block-categories li a,
+body.design--berry ul.wp-block-categories-list li a,
+body.design--berry .wp-block-post-date,
+body.design--berry .wp-block-post-date a,
+body.design--berry time.wp-block-post-date,
+body.design--berry .pixel-sidebar__item a,
+body.design--berry .pixel-sidebar__calendar-month,
+body.design--berry .pixel-sidebar__calendar-weekday,
+body.design--berry .pixel-sidebar__calendar-count,
+body.design--berry .pixel-sidebar__calendar-nav,
+body.design--berry .pixel-sidebar__calendar-day{font-family:'Nunito',sans-serif !important;}
 /* tablet inline nav links (desktop nav is hidden by the theme) */
 body.design--berry .wp-block-navigation:not(.is-menu-open) .wp-block-navigation-item__content{color:#CFE6E2;}
 body.design--berry .wp-block-navigation:not(.is-menu-open) .wp-block-navigation-item__content:hover,

@@ -162,8 +162,9 @@ body.design--berry.blog .wp-site-blocks > main.wp-block-group{
   padding-left:clamp(1.15rem,4vw,2rem) !important;padding-right:clamp(1.15rem,4vw,2rem) !important;
 }
 /* keep alignfull content (entry-content, terms) inside the dashed border so
-   bullets/text don't crowd or cross the edge */
-body.design--berry.single .wp-site-blocks > main.wp-block-group .alignfull{margin-left:0 !important;margin-right:0 !important;max-width:100% !important;}
+   bullets/text don't crowd or cross the edge — single posts AND query-loop cards */
+body.design--berry.single .wp-site-blocks > main.wp-block-group .alignfull,
+body.design--berry li.wp-block-post .alignfull{margin-left:0 !important;margin-right:0 !important;max-width:100% !important;}
 
 /* single-post title centered (was left-aligned) */
 body.design--berry.single .wp-block-post-title,

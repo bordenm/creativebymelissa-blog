@@ -128,8 +128,14 @@ body.design--berry:has(.wp-block-navigation__responsive-container.is-menu-open) 
 body.design--berry .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation__responsive-container-content::before{color:#8FB7B0 !important;}
 /* item dividers (Pixel: 3px dashed eggplant) → dashed teal */
 body.design--berry .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation-item{border-bottom-color:rgba(79,227,206,0.3) !important;}
-/* item links → light, Fredoka */
-body.design--berry .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation-item__content{color:#CFE6E2 !important;font-family:'Fredoka',sans-serif !important;}
+/* fullscreen menu sizing: Fredoka is wider than the theme's pixel font at its
+   large menu size and items are right-justified, so they overflowed off-screen.
+   Cap the size + center everything so all labels fit the viewport. */
+body.design--berry .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation__responsive-container-content{max-width:100% !important;width:100% !important;padding:0 1.25rem !important;align-items:center !important;}
+body.design--berry .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation__container{align-items:center !important;width:100% !important;}
+body.design--berry .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation-item{text-align:center !important;}
+/* item links → light, Fredoka, fit-to-screen size */
+body.design--berry .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation-item__content{color:#CFE6E2 !important;font-family:'Fredoka',sans-serif !important;font-size:1.5rem !important;}
 body.design--berry .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation-item__content:hover,
 body.design--berry .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation-item__content:focus{color:#4FE3CE !important;}
 /* ▸ marker + current item (Pixel eggplant) → teal */

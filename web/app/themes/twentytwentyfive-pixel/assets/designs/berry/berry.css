@@ -174,6 +174,11 @@ body.design--berry footer.wp-block-template-part{
   border-top:1px solid rgba(79,227,206,0.18);background:#081213;background-image:none;
 }
 body.design--berry footer.wp-block-template-part a{color:#4FE3CE;}
+/* footer uses INLINE #6B4A7A (eggplant) — override the dashed top border,
+   the tagline + copyright text, and the heart icon. !important beats inline. */
+body.design--berry footer.wp-block-template-part > .wp-block-group{border-top-color:rgba(79,227,206,0.3) !important;}
+body.design--berry footer.wp-block-template-part p[style*="6B4A7A"]{color:#7FA8A0 !important;}
+body.design--berry footer.wp-block-template-part .pixel-icon--heart{background-color:#4FE3CE !important;}
 
 /* ---------- custom Pixel sidebar (Categories list + activity calendar) ---------- */
 body.design--berry .pixel-sidebar{

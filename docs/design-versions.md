@@ -28,8 +28,9 @@ and "plug in" to the switcher.
 - `web/app/mu-plugins/design-versions.php` — always-on plugin. Registers the
   versions (newest first), sets the default `design--{slug}` body class,
   enqueues each version's scoped CSS bundle, injects the header pill switcher
-  after the Site Title block, prints the Berry backdrop layer, and ships the
-  client-side switch script.
+  after the Site Title block, prints the decorative backdrops, ships the
+  client-side switch script, and stamps `data-cat="{slug}"` on Latest Posts
+  items so versions can colour posts by category.
 - `web/app/themes/twentytwentyfive-pixel/assets/designs/{slug}/{slug}.css` —
   one scoped bundle per version (Pixel needs none; the theme's own style.css
   IS Pixel).
@@ -40,17 +41,23 @@ and "plug in" to the switcher.
 2. Drop `assets/designs/{slug}/{slug}.css` (everything scoped under
    `body.design--{slug}`).
 3. Add one entry to `CBM_Design_Versions::versions()` (newest goes first to
-   become the default). Add an icon `<symbol>` to `sprite()` if needed.
+   become the default). Add an icon `<symbol>` to `sprite()` and, if the
+   version has a fixed backdrop, a layer in `print_decoration()`.
 
 ## Current versions
 
-- **berry** (default/newest) — dark teal/indigo abstract, gem-strawberry,
-  blueprint backdrop, sharp dashed edges, per-post accent colours.
+- **nocturne** (default/newest) — black/deep-blue celestial-storm, Space Mono
+  type, scattered lightning + moons + diamonds + sparkles over a starfield,
+  thin solid rounded cards with a glowing per-category accent spine (cyan /
+  lilac / gold / electric-blue).
+- **berry** — dark teal/indigo abstract, gem-strawberry, blueprint backdrop,
+  sharp dashed edges, per-category accent colours.
 - **pixel** — the original light pixel-art look (base theme style.css).
 
 ## Status
 
-- [x] Prototype harness with switcher + Berry/Pixel skins
+- [x] Prototype harness with switcher
 - [x] mu-plugin migration (switcher + registry)
 - [x] Berry scoped CSS bundle
-- [ ] Verify on live site / staging and fine-tune selectors against real markup
+- [x] Nocturne scoped CSS bundle (new default)
+- [ ] Verify Nocturne on live site across post / category / single / mobile

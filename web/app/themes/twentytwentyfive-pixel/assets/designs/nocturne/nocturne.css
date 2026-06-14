@@ -1,0 +1,317 @@
+/**
+ * Design version: NOCTURNE
+ * Scoped entirely under  body.design--nocturne  so it cleanly overrides the
+ * theme's base (Pixel) style.css when active, and is inert otherwise.
+ *
+ * Black / deep-blue celestial-storm palette · Space Mono everywhere (terminal
+ * feel) · scattered lightning + moons + diamonds + sparkles backdrop · thin
+ * solid rounded cards with a glowing per-CATEGORY accent spine. Four cool
+ * accents (cyan / lilac / gold / electric-blue). No pink / no red (project rule).
+ *
+ * NOTE: many Pixel rules use !important (fonts, rounded corners, buttons), so
+ * Nocturne mirrors !important where it must win.
+ */
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
+
+/* ---------- ground & type ---------- */
+body.design--nocturne{
+  font-family:'Space Mono',monospace;
+  color:#C9D4E8;
+  background-color:#080A12;
+  /* Nocturne is monospace everywhere — remap ALL four theme font presets to
+     Space Mono so every pixel font (wordmark, titles, meta, labels) flips. */
+  --wp--preset--font-family--jersey-15:'Space Mono',monospace;
+  --wp--preset--font-family--pixelify-sans:'Space Mono',monospace;
+  --wp--preset--font-family--silkscreen:'Space Mono',monospace;
+  --wp--preset--font-family--dm-sans:'Space Mono',monospace;
+  --ndeco-bg:#080A12;
+  /* page gradient lives on <body>, BEHIND the fixed .nocturne-deco layer */
+  background-image:
+    radial-gradient(60% 40% at 16% 4%, rgba(91,141,239,0.18) 0%, transparent 60%),
+    radial-gradient(54% 38% at 88% 10%, rgba(154,140,255,0.16) 0%, transparent 60%),
+    radial-gradient(70% 50% at 50% 104%, rgba(111,227,255,0.08) 0%, transparent 60%),
+    radial-gradient(120% 90% at 50% 0%, #0C1428 0%, #090D1A 55%, #06080F 100%);
+  background-attachment:fixed;
+}
+/* content sits ABOVE the deco (z-index 1) but transparent so it shows through */
+body.design--nocturne .wp-site-blocks{position:relative;z-index:1;background:transparent;}
+
+/* everything Space Mono (Pixel forces literal pixel fonts !important, so mirror) */
+body.design--nocturne,
+body.design--nocturne h1,
+body.design--nocturne h2,
+body.design--nocturne h3,
+body.design--nocturne h4,
+body.design--nocturne h5,
+body.design--nocturne h6,
+body.design--nocturne p,
+body.design--nocturne a,
+body.design--nocturne span,
+body.design--nocturne li,
+body.design--nocturne .wp-block-post-title,
+body.design--nocturne .wp-block-post-title a,
+body.design--nocturne .wp-block-latest-posts__post-title,
+body.design--nocturne .wp-block-latest-posts__list > li > a.wp-block-latest-posts__post-title,
+body.design--nocturne .wp-block-query-title,
+body.design--nocturne .pixel-sidebar__heading,
+body.design--nocturne .wp-block-site-title a::after{
+  font-family:'Space Mono',monospace !important;
+}
+body.design--nocturne h1,
+body.design--nocturne h2,
+body.design--nocturne h3,
+body.design--nocturne .wp-block-post-title,
+body.design--nocturne .wp-block-post-title a,
+body.design--nocturne .wp-block-query-title{
+  font-weight:700;letter-spacing:-0.5px;color:#EAF0FB;
+}
+
+/* ---------- header ---------- */
+body.design--nocturne header.wp-block-template-part{
+  background:rgba(8,10,18,0.62);
+  background-image:none;
+  -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
+  border-bottom:1px solid #27324E;
+}
+/* wordmark: lightning-gold ::before mark + light "cbm blog" text */
+body.design--nocturne .wp-block-site-title a::before{background-color:#F0C24B;}
+body.design--nocturne .wp-block-site-title a::after{color:#EAF0FB;}
+body.design--nocturne .wp-block-site-title a{color:#EAF0FB;}
+
+/* tablet inline nav links */
+body.design--nocturne .wp-block-navigation:not(.is-menu-open) .wp-block-navigation-item__content{color:#C9D4E8;}
+body.design--nocturne .wp-block-navigation:not(.is-menu-open) .wp-block-navigation-item__content:hover,
+body.design--nocturne .wp-block-navigation:not(.is-menu-open) .wp-block-navigation-item__content:focus{color:#6FE3FF;}
+body.design--nocturne .wp-block-navigation:not(.is-menu-open) .current-menu-item .wp-block-navigation-item__content{color:#6FE3FF !important;}
+
+/* ---------- mobile burger nav ---------- */
+body.design--nocturne .wp-block-navigation__responsive-container-open,
+body.design--nocturne .wp-block-navigation__responsive-container-close{
+  background:rgba(255,255,255,0.04) !important;border:1px solid #27324E !important;
+  border-radius:10px !important;box-shadow:none !important;color:#C9D4E8 !important;
+}
+body.design--nocturne .wp-block-navigation__responsive-container-open:hover,
+body.design--nocturne .wp-block-navigation__responsive-container-close:hover{transform:none !important;box-shadow:none !important;border-color:#6FE3FF !important;}
+body.design--nocturne .wp-block-navigation__responsive-container-open svg,
+body.design--nocturne .wp-block-navigation__responsive-container-close svg{fill:#C9D4E8 !important;}
+body.design--nocturne header .wp-block-navigation button.wp-block-navigation-submenu__toggle{
+  background:transparent !important;border:0 !important;box-shadow:none !important;color:#C9D4E8 !important;border-radius:0 !important;
+}
+body.design--nocturne header .wp-block-navigation button.wp-block-navigation-submenu__toggle svg{fill:currentColor !important;}
+
+/* fullscreen overlay panel → dark blue ground + star dots */
+body.design--nocturne .wp-block-navigation__responsive-container.is-menu-open{
+  position:fixed !important;top:0 !important;right:0 !important;bottom:0 !important;left:0 !important;
+  width:100% !important;height:100dvh !important;
+  overflow-y:auto !important;-webkit-overflow-scrolling:touch;z-index:100000 !important;
+  background-color:#090D1A !important;
+  background-image:radial-gradient(rgba(201,212,232,0.4) 1.4px, transparent 1.5px) !important;
+  background-size:30px 30px !important;
+}
+/* drop the header blur while menu open so the fixed overlay escapes to full viewport */
+body.design--nocturne:has(.wp-block-navigation__responsive-container.is-menu-open) header.wp-block-template-part{
+  -webkit-backdrop-filter:none !important;backdrop-filter:none !important;
+}
+body.design--nocturne .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation__responsive-container-content::before{color:#7E8AA6 !important;}
+body.design--nocturne .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation-item{border-bottom-color:#27324E !important;text-align:center !important;width:100% !important;}
+body.design--nocturne .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation__responsive-container-content{max-width:440px !important;width:100% !important;margin:0 auto !important;padding:0 !important;align-items:stretch !important;justify-content:flex-start !important;}
+body.design--nocturne .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation__container{align-items:center !important;justify-content:center !important;width:100% !important;}
+body.design--nocturne .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation-item__content{color:#C9D4E8 !important;font-family:'Space Mono',monospace !important;font-size:1.35rem !important;justify-content:center !important;text-align:center !important;width:100% !important;border:0 !important;outline:0 !important;box-shadow:none !important;background:transparent !important;box-sizing:border-box !important;}
+body.design--nocturne .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation-item__content:hover,
+body.design--nocturne .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation-item__content:focus{color:#6FE3FF !important;}
+body.design--nocturne .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation-item__content::before{display:none !important;}
+body.design--nocturne .wp-block-navigation__responsive-container.is-menu-open .current-menu-item .wp-block-navigation-item__content{color:#6FE3FF !important;}
+
+/* homepage logo card → thin solid rounded panel, soft glow */
+body.design--nocturne .wp-block-html:has(svg.pixel-logo){
+  background:linear-gradient(180deg,rgba(91,141,239,0.10),rgba(255,255,255,0.015));
+  border:1px solid #27324E;border-radius:20px;
+  box-shadow:0 0 60px rgba(91,141,239,0.12),inset 0 1px 0 rgba(255,255,255,0.05);
+}
+/* recolour the pixel moon-and-star logo to pale moonlight */
+body.design--nocturne svg.pixel-logo{color:#E7EDFA;fill:#E7EDFA;}
+
+/* page/archive/single/blog/search content card */
+body.design--nocturne.single .wp-site-blocks > main.wp-block-group,
+body.design--nocturne.page:not(.home) .wp-site-blocks > main.wp-block-group,
+body.design--nocturne.archive .wp-site-blocks > main.wp-block-group,
+body.design--nocturne.search .wp-site-blocks > main.wp-block-group,
+body.design--nocturne.blog .wp-site-blocks > main.wp-block-group{
+  background:linear-gradient(180deg,rgba(255,255,255,0.045),rgba(255,255,255,0.015));
+  border:1px solid #27324E;border-radius:16px;
+  box-shadow:0 14px 34px rgba(0,0,0,0.4);
+  padding-left:clamp(1.15rem,4vw,2rem) !important;padding-right:clamp(1.15rem,4vw,2rem) !important;
+}
+body.design--nocturne.single .wp-site-blocks > main.wp-block-group .alignfull,
+body.design--nocturne li.wp-block-post .alignfull{margin-left:0 !important;margin-right:0 !important;max-width:100% !important;}
+body.design--nocturne.single .wp-block-post-title,
+body.design--nocturne.single .wp-block-post-title a{text-align:center !important;}
+
+/* ---------- switcher pills (Nocturne look) ---------- */
+body.design--nocturne .cbm-switcher__label{color:#7E8AA6;font-family:'Space Mono',monospace;font-weight:700;letter-spacing:.16em;}
+body.design--nocturne .cbm-switcher .cbm-switcher__pills button.pill{
+  background:rgba(255,255,255,0.02) !important;color:#7E8AA6 !important;
+  border:1px solid #27324E !important;border-radius:10px !important;
+  box-shadow:none !important;padding:.55em .85em !important;
+  font-family:'Space Mono',monospace !important;font-weight:700 !important;text-transform:uppercase !important;letter-spacing:.08em !important;font-size:.72rem !important;
+}
+body.design--nocturne .cbm-switcher .cbm-switcher__pills button.pill:hover{transform:translateY(-1px);color:#EAF0FB !important;border-color:#3A4870 !important;box-shadow:none !important;}
+body.design--nocturne .cbm-switcher .cbm-switcher__pills button.pill[aria-selected="true"]{
+  background:linear-gradient(180deg,#6FE3FF,#5B8DEF) !important;color:#061018 !important;border:1px solid transparent !important;border-radius:10px !important;box-shadow:0 6px 20px rgba(91,141,239,0.45) !important;
+}
+body.design--nocturne .cbm-switcher .cbm-switcher__pills button.pill[aria-selected="true"] .pi{filter:brightness(0) invert(0);}
+
+/* ---------- homepage "Latest posts" ---------- */
+body.design--nocturne .wp-block-latest-posts__list{--accent:#6FE3FF;}
+body.design--nocturne .wp-block-latest-posts__list > li{
+  position:relative;
+  background:linear-gradient(180deg,rgba(255,255,255,0.045),rgba(255,255,255,0.015)) !important;
+  border:1px solid #27324E !important;border-left:3px solid var(--accent) !important;border-radius:16px !important;
+  box-shadow:0 14px 34px rgba(0,0,0,0.4) !important;
+  transition:transform .16s ease,box-shadow .16s ease,border-color .16s ease;
+}
+/* per-category accent (consistent colour per category, no pink/red) */
+body.design--nocturne .wp-block-latest-posts__list > li[data-cat="health-fitness"]{--accent:#6FE3FF;}
+body.design--nocturne .wp-block-latest-posts__list > li[data-cat="random"]{--accent:#9A8CFF;}
+body.design--nocturne .wp-block-latest-posts__list > li[data-cat="food-cooking"]{--accent:#F0C24B;}
+body.design--nocturne .wp-block-latest-posts__list > li[data-cat="uncategorized"]{--accent:#5B8DEF;}
+body.design--nocturne .wp-block-latest-posts__list > li:hover{transform:translateY(-3px);border-left-color:var(--accent) !important;box-shadow:0 18px 40px rgba(0,0,0,0.5),-6px 0 22px -8px var(--accent) !important;}
+body.design--nocturne .wp-block-latest-posts__list > li > a.wp-block-latest-posts__post-title{color:#EAF0FB;}
+body.design--nocturne .wp-block-latest-posts__list > li > a.wp-block-latest-posts__post-title:hover,
+body.design--nocturne .wp-block-latest-posts__list > li > a.wp-block-latest-posts__post-title:focus{color:var(--accent);}
+body.design--nocturne .wp-block-latest-posts__list > li > a.wp-block-latest-posts__post-title::before{background-color:var(--accent);}
+body.design--nocturne .wp-block-latest-posts__post-date{color:#7E8AA6;}
+body.design--nocturne .pixel-comment-count{color:#7E8AA6;}
+body.design--nocturne .pixel-comment-count:hover,
+body.design--nocturne .pixel-comment-count:focus{color:var(--accent,#6FE3FF);}
+body.design--nocturne .wp-block-latest-posts__post-excerpt{color:#AEB9D2;}
+
+/* ---------- post list (core Query Loop — archive/category) ---------- */
+body.design--nocturne .wp-block-post-template{display:flex;flex-direction:column;gap:1.4rem;}
+body.design--nocturne li.wp-block-post{
+  position:relative;
+  background:linear-gradient(180deg,rgba(255,255,255,0.045),rgba(255,255,255,0.015));
+  border:1px solid #27324E;border-left:3px solid var(--accent,#6FE3FF);border-radius:16px;
+  padding:1.5rem 1.8rem;box-shadow:0 14px 34px rgba(0,0,0,0.4);
+  transition:transform .16s ease,box-shadow .16s ease,border-color .16s ease;
+}
+body.design--nocturne li.wp-block-post.category-health-fitness{--accent:#6FE3FF;}
+body.design--nocturne li.wp-block-post.category-random{--accent:#9A8CFF;}
+body.design--nocturne li.wp-block-post.category-food-cooking{--accent:#F0C24B;}
+body.design--nocturne li.wp-block-post.category-uncategorized{--accent:#5B8DEF;}
+body.design--nocturne li.wp-block-post:hover{transform:translateY(-3px);box-shadow:0 18px 40px rgba(0,0,0,0.5),-6px 0 22px -8px var(--accent,#6FE3FF);}
+body.design--nocturne .wp-block-post-title a{color:#EAF0FB;}
+body.design--nocturne .wp-block-post-title a:hover{color:var(--accent,#6FE3FF);}
+body.design--nocturne .wp-block-post-excerpt{color:#AEB9D2;}
+body.design--nocturne .wp-block-read-more,
+body.design--nocturne .wp-block-post-excerpt__more-link{color:var(--accent,#6FE3FF);font-weight:700;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;}
+
+/* date / terms */
+body.design--nocturne .wp-block-post-date,
+body.design--nocturne .wp-block-post-date a,
+body.design--nocturne time.wp-block-post-date{color:#7E8AA6;}
+body.design--nocturne .wp-block-post-terms a{color:var(--accent,#6FE3FF);}
+
+/* category / tag chips on a post */
+body.design--nocturne .wp-block-post-terms a{
+  display:inline-block;border:1px solid color-mix(in srgb,var(--accent,#6FE3FF) 50%,transparent);
+  padding:.18em .55em;margin:.1em .25em .1em 0;border-radius:8px;
+  font-weight:700;font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;
+}
+
+/* ---------- Categories block (pill buttons) ---------- */
+body.design--nocturne ul.wp-block-categories li a,
+body.design--nocturne ul.wp-block-categories-list li a{
+  color:#C9D4E8;background:rgba(255,255,255,0.02);
+  border:1px solid #27324E;border-radius:10px;box-shadow:none;
+}
+body.design--nocturne ul.wp-block-categories li a:hover,
+body.design--nocturne ul.wp-block-categories-list li a:hover{color:#6FE3FF;transform:none;box-shadow:none;border-color:#3A4870;}
+
+/* ---------- links & buttons ---------- */
+body.design--nocturne a{color:#6FE3FF;}
+body.design--nocturne a:hover,body.design--nocturne a:focus{color:#9A8CFF;}
+body.design--nocturne .wp-block-button__link,
+body.design--nocturne .wp-block-search__button,
+body.design--nocturne input[type="submit"]{
+  color:#061018 !important;background:linear-gradient(180deg,#6FE3FF,#5B8DEF) !important;
+  border:1px solid transparent !important;border-radius:10px !important;box-shadow:none;font-weight:700;
+}
+body.design--nocturne .wp-block-image img{border:1px solid #27324E !important;border-radius:12px !important;box-shadow:0 10px 24px rgba(0,0,0,0.45);}
+/* Strava embed — base theme adds eggplant offset shadow; restyle for Nocturne */
+body.design--nocturne iframe[src*="strava"],
+body.design--nocturne .strava-embed-placeholder{
+  border:1px solid #27324E !important;border-radius:12px !important;
+  box-shadow:0 12px 30px rgba(0,0,0,0.45) !important;
+}
+
+/* ---------- footer ---------- */
+body.design--nocturne footer.wp-block-template-part{
+  border-top:1px solid #27324E;background:#080A12;background-image:none;
+}
+body.design--nocturne footer.wp-block-template-part a{color:#6FE3FF;}
+/* footer uses INLINE #6B4A7A (eggplant) — override top border, text, heart */
+body.design--nocturne footer.wp-block-template-part > .wp-block-group{border-top-color:#27324E !important;}
+body.design--nocturne footer.wp-block-template-part p[style*="6B4A7A"]{color:#7E8AA6 !important;}
+body.design--nocturne footer.wp-block-template-part .pixel-icon--heart{background-color:#6FE3FF !important;}
+
+/* ---------- custom Pixel sidebar (Categories + activity calendar) ---------- */
+body.design--nocturne .pixel-sidebar{
+  background:linear-gradient(180deg,rgba(14,20,38,0.94),rgba(9,13,26,0.94));
+  border:1px solid #27324E;border-radius:16px;
+  box-shadow:0 14px 34px rgba(0,0,0,0.5);
+  -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
+}
+body.design--nocturne .pixel-sidebar__heading{color:#EAF0FB;}
+body.design--nocturne .pixel-sidebar__heading--calendar{border-top-color:#27324E;}
+body.design--nocturne .pixel-sidebar__item{border-bottom-color:rgba(39,50,78,0.7);}
+body.design--nocturne .pixel-sidebar__item a{color:#C9D4E8;}
+body.design--nocturne .pixel-sidebar__item a::before{color:#6FE3FF;}
+body.design--nocturne .pixel-sidebar__item a:hover,
+body.design--nocturne .pixel-sidebar__item a:focus,
+body.design--nocturne .pixel-sidebar__item.is-current a{color:#6FE3FF;}
+body.design--nocturne .pixel-sidebar__calendar-month{color:#7E8AA6;}
+body.design--nocturne .pixel-sidebar__calendar-nav{color:#6FE3FF;}
+body.design--nocturne .pixel-sidebar__calendar-nav:hover,
+body.design--nocturne .pixel-sidebar__calendar-nav:focus{background:#6FE3FF;color:#061018;}
+body.design--nocturne .pixel-sidebar__calendar-nav--disabled,
+body.design--nocturne .pixel-sidebar__calendar-nav--disabled:hover{color:rgba(126,138,166,0.4);background:transparent;}
+body.design--nocturne .pixel-sidebar__calendar-weekday{color:#9A8CFF;}
+body.design--nocturne .pixel-sidebar__calendar-day{color:#C9D4E8;}
+body.design--nocturne .pixel-sidebar__calendar-day--has-posts{background:#6FE3FF;color:#061018;}
+body.design--nocturne .pixel-sidebar__calendar-day--has-posts:hover,
+body.design--nocturne .pixel-sidebar__calendar-day--has-posts:focus{background:#5B8DEF;color:#061018;}
+body.design--nocturne .pixel-sidebar__calendar-day--today{outline-color:#6FE3FF;}
+body.design--nocturne .pixel-sidebar__calendar-day--today.pixel-sidebar__calendar-day--has-posts{outline-color:#9A8CFF;}
+body.design--nocturne .pixel-sidebar__calendar-count{background:#F0C24B;color:#061018;border-color:#27324E;}
+
+/* ---------- starfield + scattered celestial backdrop ---------- */
+.nocturne-deco{display:none;}
+body.design--nocturne .nocturne-deco{
+  display:block;position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;
+  background-image:radial-gradient(rgba(201,212,232,0.45) 1.4px, transparent 1.5px);
+  background-size:46px 46px;
+  -webkit-mask-image:radial-gradient(130% 100% at 50% 12%, #000 55%, transparent 100%);
+          mask-image:radial-gradient(130% 100% at 50% 12%, #000 55%, transparent 100%);
+}
+body.design--nocturne .nshape{position:absolute;animation:cbm-ndrift 24s ease-in-out infinite;}
+body.design--nocturne .bolt{background:currentColor;clip-path:polygon(54% 0,18% 58%,42% 58%,30% 100%,82% 42%,56% 42%,70% 0);
+  filter:drop-shadow(0 0 9px currentColor);opacity:.5;}
+body.design--nocturne .diamond{background:currentColor;clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%);
+  filter:drop-shadow(0 0 7px currentColor);opacity:.5;}
+body.design--nocturne .spark{background:currentColor;clip-path:polygon(50% 0,57% 43%,100% 50%,57% 57%,50% 100%,43% 57%,0 50%,43% 43%);
+  opacity:.6;}
+body.design--nocturne .moon{border-radius:50%;background:currentColor;opacity:.4;}
+body.design--nocturne .moon::before{content:"";position:absolute;inset:-16% -16% -16% 34%;border-radius:50%;background:var(--ndeco-bg);}
+body.design--nocturne .n1{width:54px;height:54px;color:#F0C24B;top:11%;left:5%;animation-duration:28s;}
+body.design--nocturne .n2{width:42px;height:42px;color:#6FE3FF;top:34%;right:6%;animation-duration:25s;animation-delay:-5s;}
+body.design--nocturne .n3{width:38px;height:38px;color:#9A8CFF;bottom:16%;left:7%;animation-duration:27s;animation-delay:-3s;}
+body.design--nocturne .n4{width:60px;height:60px;color:#C9D4E8;top:15%;right:11%;animation-duration:30s;animation-delay:-8s;}
+body.design--nocturne .n5{width:34px;height:34px;color:#9A8CFF;bottom:26%;right:6%;animation-duration:23s;animation-delay:-2s;}
+body.design--nocturne .n6{width:30px;height:30px;color:#6FE3FF;top:27%;left:12%;animation-duration:26s;animation-delay:-6s;}
+body.design--nocturne .n7{width:20px;height:20px;color:#F0C24B;top:46%;left:4%;animation-duration:22s;animation-delay:-9s;}
+body.design--nocturne .n8{width:26px;height:26px;color:#EAF0FB;top:21%;right:24%;animation-duration:24s;animation-delay:-4s;}
+body.design--nocturne .n9{width:18px;height:18px;color:#5B8DEF;bottom:40%;left:16%;animation-duration:21s;animation-delay:-7s;}
+body.design--nocturne .n10{width:22px;height:22px;color:#9A8CFF;bottom:34%;right:20%;animation-duration:29s;animation-delay:-1s;}
+@keyframes cbm-ndrift{0%{translate:0 0}50%{translate:0 -16px}100%{translate:0 0}}
+@media(prefers-reduced-motion:reduce){body.design--nocturne .nshape{animation:none;}}

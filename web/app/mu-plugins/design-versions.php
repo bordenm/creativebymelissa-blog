@@ -25,6 +25,11 @@ final class CBM_Design_Versions {
 	 */
 	public static function versions() {
 		return array(
+			'nocturne' => array(
+				'label' => 'Nocturne',
+				'icon'  => 'bolt',
+				'css'   => 'assets/designs/nocturne/nocturne.css',
+			),
 			'berry' => array(
 				'label' => 'Berry',
 				'icon'  => 'berry',
@@ -86,11 +91,12 @@ final class CBM_Design_Versions {
 		wp_add_inline_script( 'cbm-switcher', self::switcher_js() );
 	}
 
-	/** Inline SVG sprite of the pill icons (pixel-art moon + gem strawberry + plus). */
+	/** Inline SVG sprite of the pill icons (pixel-art moon + gem strawberry + lightning bolt). */
 	public static function sprite() {
 		return '<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">'
 			. '<symbol id="cbm-i-moon" viewBox="0 0 12 12" fill="currentColor"><rect x="3" y="0" width="4" height="1"/><rect x="2" y="1" width="6" height="1"/><rect x="1" y="2" width="5" height="1"/><rect x="0" y="3" width="5" height="1"/><rect x="0" y="4" width="4" height="2"/><rect x="0" y="6" width="2" height="1"/><rect x="3" y="6" width="1" height="1"/><rect x="0" y="7" width="4" height="1"/><rect x="0" y="8" width="5" height="1"/><rect x="1" y="9" width="5" height="1"/><rect x="2" y="10" width="6" height="1"/><rect x="3" y="11" width="4" height="1"/><rect x="6" y="5" width="1" height="1"/><rect x="5" y="6" width="3" height="1"/><rect x="6" y="7" width="1" height="1"/></symbol>'
 			. '<symbol id="cbm-i-berry" viewBox="0 0 24 24"><defs><linearGradient id="cbmBerryGrad" x1="5" y1="7" x2="19" y2="22" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#4FE3CE"/><stop offset="1" stop-color="#5AA6F0"/></linearGradient></defs><rect x="11.4" y="2.4" width="1.2" height="3" rx=".6" fill="#9BE25A"/><g fill="#9BE25A"><ellipse cx="12" cy="6.2" rx="1.5" ry="3"/><ellipse cx="8.7" cy="7" rx="3" ry="1.4" transform="rotate(-28 8.7 7)"/><ellipse cx="15.3" cy="7" rx="3" ry="1.4" transform="rotate(28 15.3 7)"/></g><path d="M12 21.6C6.7 19 4.2 14.6 5 10.3 5.5 7.5 8.4 6.5 12 8 15.6 6.5 18.5 7.5 19 10.3 19.8 14.6 17.3 19 12 21.6Z" fill="url(#cbmBerryGrad)"/><g fill="#EAF3D8"><circle cx="9" cy="12" r=".62"/><circle cx="12" cy="11" r=".62"/><circle cx="15" cy="12" r=".62"/><circle cx="10.4" cy="14.4" r=".62"/><circle cx="13.6" cy="14.4" r=".62"/><circle cx="12" cy="16.6" r=".62"/></g></symbol>'
+			. '<symbol id="cbm-i-bolt" viewBox="0 0 24 24" fill="currentColor"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z"/></symbol>'
 			. '</svg>';
 	}
 
@@ -137,10 +143,10 @@ final class CBM_Design_Versions {
 	}
 
 	/**
-	 * Add data-cat="{slug}" to each Latest Posts <li> so Berry (and future
-	 * versions) can colour posts by category. Core's Latest Posts block does
-	 * not emit category classes, so we resolve each item's post by its title
-	 * link and stamp its primary category slug.
+	 * Add data-cat="{slug}" to each Latest Posts <li> so Berry/Nocturne (and
+	 * future versions) can colour posts by category. Core's Latest Posts block
+	 * does not emit category classes, so we resolve each item's post by its
+	 * title link and stamp its primary category slug.
 	 */
 	public static function tag_latest_posts_categories( $content ) {
 		if ( is_admin() || false === strpos( $content, 'wp-block-latest-posts__list' ) ) {
@@ -165,8 +171,12 @@ final class CBM_Design_Versions {
 		}, $content );
 	}
 
-	/** Berry's fixed geometric backdrop. Always in the DOM; only shown under body.design--berry via CSS. */
+	/**
+	 * Fixed decorative backdrops. Both are always in the DOM; each is shown
+	 * only under its own body.design--{slug} via CSS, hidden otherwise.
+	 */
 	public static function print_decoration() {
+		// Berry — geometric blueprint shapes.
 		echo '<div class="berry-deco" aria-hidden="true">'
 			. '<span class="bshape target g1"></span>'
 			. '<span class="bshape diamond g3"></span>'
@@ -176,6 +186,20 @@ final class CBM_Design_Versions {
 			. '<span class="bshape chevron g10"></span>'
 			. '<span class="bshape diamond g4"></span>'
 			. '<span class="bshape target g2"></span>'
+			. '</div>';
+
+		// Nocturne — starfield + scattered lightning / moons / diamonds / sparkles.
+		echo '<div class="nocturne-deco" aria-hidden="true">'
+			. '<span class="nshape bolt n1"></span>'
+			. '<span class="nshape diamond n2"></span>'
+			. '<span class="nshape moon n3"></span>'
+			. '<span class="nshape moon n4"></span>'
+			. '<span class="nshape bolt n5"></span>'
+			. '<span class="nshape diamond n6"></span>'
+			. '<span class="nshape diamond n7"></span>'
+			. '<span class="nshape spark n8"></span>'
+			. '<span class="nshape spark n9"></span>'
+			. '<span class="nshape bolt n10"></span>'
 			. '</div>';
 	}
 

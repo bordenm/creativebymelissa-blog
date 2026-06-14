@@ -301,8 +301,9 @@ body.design--nocturne .diamond{background:currentColor;clip-path:polygon(50% 0,1
   filter:drop-shadow(0 0 7px currentColor);opacity:.5;}
 body.design--nocturne .spark{background:currentColor;clip-path:polygon(50% 0,57% 43%,100% 50%,57% 57%,50% 100%,43% 57%,0 50%,43% 43%);
   opacity:.6;}
-body.design--nocturne .moon{border-radius:50%;background:currentColor;opacity:.4;}
-body.design--nocturne .moon::before{content:"";position:absolute;inset:-16% -16% -16% 34%;border-radius:50%;background:var(--ndeco-bg);}
+body.design--nocturne .moon{background:currentColor;opacity:.5;
+  -webkit-mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z'/></svg>") center/contain no-repeat;
+          mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z'/></svg>") center/contain no-repeat;}
 body.design--nocturne .n1{width:54px;height:54px;color:#F0C24B;top:11%;left:5%;animation-duration:28s;}
 body.design--nocturne .n2{width:42px;height:42px;color:#6FE3FF;top:34%;right:6%;animation-duration:25s;animation-delay:-5s;}
 body.design--nocturne .n3{width:38px;height:38px;color:#9A8CFF;bottom:16%;left:7%;animation-duration:27s;animation-delay:-3s;}
